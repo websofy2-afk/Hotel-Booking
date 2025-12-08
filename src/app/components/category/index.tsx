@@ -5,6 +5,11 @@ import { hotelsData } from "@/utils/constant";
 import AdvanceSearch from "../property-list/search";
 import CategoryList from "./CategoryList";
 import { useHotel } from "@/context-api/CategoryContext";
+import FilterSidebar from "./FilterSidebar";
+import SortBar from "./SortBar";
+import HotelSkeleton from "./HotelSkeleton";
+import HotelCard from "./CotegorylCard";
+import Pagination from "./Pagination";
 
 export default function HotelsPage() {
   const [hotels, setHotels] = useState(hotelsData);

@@ -1,24 +1,25 @@
 import { Metadata } from "next";
 import HeroSub from "@/app/components/shared/hero-sub";
-import Contact from "@/app/components/contact";
+import Support from "@/app/components/support";
 
 export const metadata: Metadata = {
-  title: "Contact Us | LuxeLeaf",
+  title: "Support | LuxeLeaf",
 };
 
 const page = () => {
   const breadcrumbLinks = [
     { href: "/", text: "Home" },
-    { href: "/contact", text: "Contact" },
+    { href: "/support", text: "Support" },
   ];
+  
   return (
     <>
       <HeroSub
-        title="Contact Us"
-        description="Letraset sheets containing Lorem Ipsum passages and more recently with desktop publishing Variou"
+        title="Support"
+        description="Experience luxurious comfort with world-class amenities, peaceful surroundings, and an unforgettable stay tailored just for you."
         breadcrumbLinks={breadcrumbLinks}
       />
-      <Contact/>
+      <Support />
     </>
   );
 };

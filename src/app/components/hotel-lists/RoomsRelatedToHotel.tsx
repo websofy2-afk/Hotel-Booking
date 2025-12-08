@@ -4,18 +4,18 @@ import { Icon } from "@iconify/react";
 import Image from 'next/image';
 import PropertyCard from '../home/hotel-list/property-card';
 import { useHotel } from '@/context-api/CategoryContext';
+import { hotelDetails } from '@/utils/constant';
 
-export default function CategoryList({ category }: { category?: string }) {
+export default function RoomRelatedToHotel({ category, location, hotelName, id }: { category?: string, location?: string, hotelName?: string, id?: string }) {
     const [price, setPrice] = useState(50);
     const [price1, setPrice1] = useState(50);
-    const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
     const [sortOrder, setSortOrder] = useState("none");
     const [isOffCanvasOpen, setIsOffCanvasOpen] = useState(false);
     const [searchData, setSearchData] = useState<any>([]);
     const { property, updateFilter, filters } = useHotel()!;
 
-    
-    useEffect(() => {   
+
+    useEffect(() => {
         const fetchData = async () => {
             try {
                 const res = await fetch('/api/pagedata')
@@ -29,6 +29,10 @@ export default function CategoryList({ category }: { category?: string }) {
         }
         fetchData()
     }, [])
+    const rooms = hotelDetails[hotelName!]
+
+
+    console.log("Location, hotelName, id --> ", rooms[0].property)
 
     const handlePriceChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setPrice(Number(event.target.value));
@@ -52,10 +56,9 @@ export default function CategoryList({ category }: { category?: string }) {
         ? property.filter((data: any) =>
             normalize(data.category) === normalize(category)
         )
-        : property;
+        : rooms[0].property;
 
-    // Sort logic
-    const sortedProperties = [...filteredProperties].sort((a, b) => {
+    const sortedProperties = [...(filteredProperties ?? [])].sort((a, b) => {
         const titleA = a.hotel_name?.toLowerCase() || "";
         const titleB = b.hotel_name?.toLowerCase() || "";
 
@@ -64,16 +67,17 @@ export default function CategoryList({ category }: { category?: string }) {
         } else if (sortOrder === "desc") {
             return titleB.localeCompare(titleA);
         }
-        return 0; // no sort
+        return 0;
     });
 
-    const filteredCount = sortedProperties.length;
+
+    console.log("soerted properties -->", sortedProperties)
 
     return (
         <>
             <section className='dark:bg-darkmode px-4'>
                 <div className='lg:max-w-screen-xl max-w-screen-md mx-auto'>
-                    
+
                     {/* For Mobile view */}
                     <div className='flex lg:hidden justify-between items-center mb-4'>
                         <span className='text-2xl ml-4 '>Advance Filter</span>
@@ -244,7 +248,7 @@ export default function CategoryList({ category }: { category?: string }) {
                         <div className='col-span-12 lg:col-span-8'>
                             <div className="flex lg:flex-nowrap flex-wrap lg:gap-0 gap-6 w-full justify-between items-center pb-8">
                                 <div className="flex w-full justify-between px-4 flex-1">
-                                    <h5 className='text-xl '>{filteredCount} Properties Found</h5>
+                                    <h5 className='text-xl '>{rooms[0].property?.length} Rooms Found</h5>
                                     <p className='flex text-gray dark:text-gray gap-2 items-center'>
                                         Sort by
                                         <span>
@@ -257,44 +261,30 @@ export default function CategoryList({ category }: { category?: string }) {
                                         </span>
                                     </p>
                                 </div>
+
                                 <div className="flex-1 flex gap-3 px-4">
                                     <select
                                         name="short"
-                                        className="custom-select border border-border dark:border-dark_border dark:bg-darkmode text-midnight_text focus:border-primary rounded-lg p-3 pr-9"
+                                        className="custom-select border border-border dark:border-dark_border dark:bg-darkmode cursor-pointer text-midnight_text focus:border-primary rounded-lg p-3 pr-9"
                                         value={sortOrder}
                                         onChange={(e) => setSortOrder(e.target.value)}
                                     >
-                                        <option value="none">Sort by Title</option>
-                                        <option value="asc">Title (A-Z)</option>
-                                        <option value="desc">Title (Z-A)</option>
-                                    </select>
+                                        <option value="none">Sort by Rooms Type</option>
+                                        {/* <option value="asc">Title (A-Z)</option>
+                                        <option value="desc">Title (Z-A)</option> */}
 
-                                    <button onClick={() => setViewMode('list')} className={`${viewMode == "list" ? 'bg-primary text-white' : 'bg-transparent text-primary'} p-3 border border-primary text-primary hover:text-white rounded-lg hover:bg-primary text-base`}>
-                                        <span>
-                                            <Icon
-                                                icon="famicons:list"
-                                                width="21"
-                                                height="21"
-                                                className=""
-                                            />
-                                        </span>
-                                    </button>
-                                    <button onClick={() => setViewMode('grid')} className={`${viewMode == "grid" ? 'bg-primary text-white' : 'bg-transparent text-primary'} p-3 border border-primary text-primary hover:text-white rounded-lg hover:bg-primary text-base`}>
-                                        <span>
-                                            <Icon
-                                                icon="ion:grid-sharp"
-                                                width="21"
-                                                height="21"
-                                                className=""
-                                            />
-                                        </span>
-                                    </button>
+                                        {
+                                            rooms?.[0]?.property?.map((rm, index) => (
+                                                <option key={index} value="asc">{rm.room_type}</option>
+                                            ))
+                                        }
+                                    </select>                                    
                                 </div>
                             </div>
-                            {filteredProperties.length > 0 ?
-                                <div className={` ${viewMode === 'grid' ? 'grid sm:grid-cols-2' : 'flex flex-col'} gap-6 px-4`}>
+                            {filteredProperties!.length > 0 ?
+                                <div className={` grid sm:grid-cols-2 gap-6 px-4`}>
                                     {(sortOrder ? sortedProperties : property).map((data: any, index: any) => (
-                                        <PropertyCard key={index} property={data} viewMode={viewMode} />
+                                        <PropertyCard key={index} property={data} />
                                     ))}
                                 </div>
                                 :

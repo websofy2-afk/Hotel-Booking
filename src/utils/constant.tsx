@@ -1,4 +1,6 @@
+import { roomsProps } from "@/app/types/rooms/rooms";
 import { FaCheckCircle, FaConciergeBell, FaHandsHelping, FaLeaf, FaRegSmileBeam, FaStar, FaWifi } from "react-icons/fa";
+import { roomData } from "./roomData";
 
 export const images: string[] = [
   "/images/image-gallery/rooms/room-1.avif",
@@ -95,8 +97,6 @@ export const journey = [
     text: "Opened our premium rooftop dining & wellness spa.",
   },
 ]
-
-
 
 export const hotelsData = [
   {
@@ -230,3 +230,220 @@ export const hotelsData = [
     amenities: ["Private Villas", "Scuba Diving", "Beach Access"],
   },
 ];
+
+export const hotelList = [
+  {
+    id: 1,
+    location: "Lucknow",
+    hotels: [
+      "Revanta Hotel",  
+      "Golden Crown Residency",   
+      "Taj Hotel",   
+      "Hotel Hayat"
+    ]
+  },
+  {
+    id: 2,
+    location: "Jaipur",
+    hotels: [
+      "Raj Mahal Palace",
+      "Pink City Residency",
+    ]
+  },
+  {
+    id: 3,
+    location: "Mumbai",
+    hotels: [
+      "Grand Palace Hotel",
+      "Sea Breeze Residency",
+    ]
+  }
+];
+
+export const locationList = ["Lucknow", "Mumbai", "Jaipur"];
+
+
+type HotelInfo = {
+  id: number;
+  name: string;
+  location: string;
+  price: number;
+  rating: number;
+  image: string;
+  lat: number;
+  lng: number;
+  contact: number,
+  email: string,
+  description: string;
+  thumbnailImag? : string
+  amenities: string[];
+  property?: roomsProps[]
+};
+
+type HotelDetailsType = {
+  [key: string]: HotelInfo[];
+};
+
+export const hotelDetails: HotelDetailsType = {
+
+
+  "Revanta Hotel": [
+    {
+      id: 1,
+      name: "Revanta Hotel",
+      location: "Lucknow",
+      price: 8500,
+      rating: 4.8,
+      image: "/images/image-gallery/hotels/hotel-1.avif",
+      thumbnailImag: "/images/image-gallery/hotels/hotel-1.avif",
+      lat: 15.2993,
+      lng: 74.1240,
+      description:
+        "A premium luxury resort with sea-view rooms, infinity pools, and world-class hospitality.",
+      amenities: ["Free WiFi", "Pool", "Spa", "Bar", "Restaurant", "Beachfront"],
+      contact: 9873335652,
+      email: "revanta@gmail.com",
+      property: roomData  
+    },
+  ],
+  "Golden Crown Residency": [
+    {
+      id: 2,
+      name: "Golden Crown Residency",
+      location: "Lucknow",
+      price: 6200,
+      rating: 4.5,
+      image: "/images/image-gallery/hotels/hotel-2.avif",
+      thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
+      lat: 10.8505,
+      lng: 76.2711,
+      description:
+        "Experience backwater beauty with modern amenities and authentic Kerala cuisine.",
+      amenities: ["Spa", "Houseboat Tours", "Gym", "Restaurant"],
+      contact: 9873335658,
+      email: "golden@gmail.com",
+      property: roomData
+    },
+  ],
+
+  
+  "Taj Hotel": [
+    {
+      id: 3,
+      name: "Taj Hotel",
+      location: "Lucknow",
+      price: 6200,
+      rating: 4.5,
+      image: "/images/image-gallery/hotels/hotel-2.avif",
+      thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
+      lat: 10.8505,
+      lng: 76.2711,
+      description:
+        "Experience backwater beauty with modern amenities and authentic Kerala cuisine.",
+      amenities: ["Spa", "Houseboat Tours", "Gym", "Restaurant"],
+      contact: 9873335658,
+      email: "golden@gmail.com",
+      property: roomData
+    },
+  ],
+  "Hotel Hayat": [
+    {
+      id: 4,
+      name: "Hotel Hayat",
+      location: "Lucknow",
+      price: 6200,
+      rating: 4.5,
+      image: "/images/image-gallery/hotels/hotel-2.avif",
+      thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
+      lat: 10.8505,
+      lng: 76.2711,
+      description:
+        "Experience backwater beauty with modern amenities and authentic Kerala cuisine.",
+      amenities: ["Spa", "Houseboat Tours", "Gym", "Restaurant"],
+      contact: 9873335658,
+      email: "golden@gmail.com",
+      property: roomData
+    },
+  ],
+
+  "Raj Mahal Palace": [
+    {
+      id: 1,
+      name: "Raj Mahal Palace",
+      location: "Jaipur",
+      price: 5400,
+      rating: 4.7,
+      image: "/images/image-gallery/hotels/hotel-3.avif",
+      thumbnailImag: "/images/image-gallery/hotels/hotel-3.avif",
+      lat: 26.9124,
+      lng: 75.7873,
+      description:
+        "Heritage hotel with Rajasthani architecture, royal suites, and cultural performances.",
+      amenities: ["Heritage Rooms", "Pool", "Restaurant", "Cultural Nights"],
+      contact: 9873339652,
+      email: "rajmahal@gmail.com",
+      property: roomData
+    },
+  ],
+  "Pink City Residency": [
+    {
+      id: 2,
+      name: "Pink City Residency",
+      location: "Jaipur",
+      price: 7800,
+      rating: 4.4,
+      image: "/images/image-gallery/hotels/hotel-4.avif",
+      thumbnailImag: "/images/image-gallery/hotels/hotel-4.avif",
+      lat: 19.0760,
+      lng: 72.8777,
+      description:
+        "Luxurious city-view rooms with rooftop dining and world-class business facilities.",
+      amenities: ["Rooftop Bar", "Gym", "Business Center", "WiFi"],
+      contact: 9873335652,
+      email: "pinkcity@gmail.com",
+      property: roomData
+    },
+  ],
+  "Grand Palace Hotel": [
+    {
+      id: 1,
+      name: "Grand Palace Hotel",
+      location: "Mumbai",
+      price: 4800,
+      rating: 4.6,
+      image: "/images/image-gallery/hotels/hotel-1.avif",
+      thumbnailImag: "/images/image-gallery/hotels/hotel-1.avif",
+      lat: 32.2396,
+      lng: 77.1887,
+      description:
+        "Snow-clad mountain views, wooden interiors, and peaceful luxury for nature lovers.",
+      amenities: ["Mountain View", "Bonfire", "Adventure Tours"],
+      contact: 9873345652,
+      email: "grandpalace@gmail.com",
+      property: roomData
+    },
+    
+  ],
+  "Sea Breeze Residency": [
+    {
+      id: 2,
+      name: "Sea Breeze Residency",
+      location: "Mumbai",
+      price: 5500,
+      rating: 4.3,
+      image: "/images/image-gallery/hotels/hotel-2.avif",
+      thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
+      lat: 27.0238,
+      lng: 74.2179,
+      description:
+        "A desert luxury resort offering camel safaris, sunset dinners, and premium tents.",
+      amenities: ["Desert Safari", "Tent Luxury", "Traditional Food"],
+      contact: 8873335652,
+      email: "seabreeze@gmail.com",
+      property: roomData
+    },
+  ]
+}
+
+
+

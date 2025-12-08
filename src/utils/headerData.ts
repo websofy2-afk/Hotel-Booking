@@ -9,9 +9,9 @@ export const headerData = [
     // ],
   },
    { label: "Category", href: "/categories" },
-   { label: "Amenities", href: "#" },
-   { label: "Offers", href: "#" },
-   { label: "Gallery", href: "#" },
+  //  { label: "Amenities", href: "#" },
+  //  { label: "Offers", href: "#" },
+   { label: "Gallery", href: "/gallery" },
   // {
   //   label: "Blogs",
   //   href: "#",
@@ -21,7 +21,7 @@ export const headerData = [
   //   ],
   // },
   { label: "Contact", href: "/contact" },
-  { label: "Support", href: "#" },
+  { label: "Support", href: "/support" },
 //   { label: "Documentation", href: "/documentation" },
 ];
 

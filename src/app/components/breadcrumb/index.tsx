@@ -16,7 +16,9 @@ const Breadcrumb: FC<BreadcrumbProps> = ({ links }) => {
                             {link.text}
                         </Link>
                     ) : (
-                        <span className="dark:text-white text-midnight_text text-xl mx-2.5">{link.text}</span>
+                        <span className="dark:text-white text-midnight_text text-xl mx-2.5">
+                            {link.text}
+                            </span>
                     )}
                 </React.Fragment>
             ))}

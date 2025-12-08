@@ -1,20 +1,20 @@
 "use client";
-import React, { useState } from "react";
-import Link from "next/link";
-import Image from "next/image";
+import { useState } from "react";
+import { IoIosSend } from "react-icons/io";
+import { RiLoader4Fill } from "react-icons/ri";
 
 const ContactForm = () => {
-
   const [formData, setFormData] = useState({
-    firstname: "",
-    lastname: "",
+    name: "",
+    contactNo: "",
     email: "",
-    specialist: "",
+    message: "",
     date: "",
     time: ""
   });
-  const [submitted, setSubmitted] = useState(false);
+
   const [loader, setLoader] = useState(false);
+
   const handleChange = (e: any) => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
@@ -22,148 +22,126 @@ const ContactForm = () => {
       [name]: value
     }));
   };
+
   const reset = () => {
-    formData.firstname = "";
-    formData.lastname = "";
-    formData.email = "design & branding";
-    formData.specialist = "";
-    formData.date = "";
-    formData.time = "";
+    formData.name = "";
+    formData.contactNo = "";
+    formData.email = "";
+    formData.message = "";
   };
+
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     setLoader(true);
 
-    fetch("https://formsubmit.co/ajax/bhainirav772@gmail.com", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
-      body: JSON.stringify({
-        firstname: formData.firstname,
-        lastname: formData.lastname,
-        email: formData.email,
-        specialist: formData.specialist,
-        date: formData.date,
-        time: formData.time
-      }),
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setSubmitted(data.success);
-        reset();
-      })
-      .catch((error) => {
-        console.log(error.message);
-      });
+    try {
+      const data = await fetch("/",
+        {
+          method: "POST",
+          headers: { "Content-type": "application/json" },
+          body: JSON.stringify({
+            name: formData.name,
+            contactNo: formData.contactNo,
+            email: formData.email,
+            message: formData.message,
+          })
+        }
+      )
+
+      const res = await data.json();
+
+      if (res.success) {
+
+      } else {
+
+      }
+    } catch (err) {
+      const error = err as Error;
+      console.log("Internal server error -", error.message);
+    } finally {
+      reset();
+      setLoader(false);
+    }
   };
 
   return (
-    <>
-      <section className="dark:bg-darkmode lg:pb-24 pb-16 px-4">
-        <div className="container mx-auto lg:max-w-screen-xl md:max-w-screen-md">
-          <div className="grid md:grid-cols-12 grid-cols-1 gap-8 items-center">  
-            <div className="col-span-6">
-              <h2 className="max-w-72 text-[40px] leading-[1.2] font-bold mb-9">Get Online Consultation</h2>
-              <form onSubmit={handleSubmit} className="flex flex-wrap w-full m-auto justify-between">
-                <div className="sm:flex gap-3 w-full">
-                  <div className="mx-0 my-2.5 flex-1">
-                    <label htmlFor="first-name" className="pb-3 inline-block text-17">First Name*</label>
-                    <input
-                      id='firstname'
-                      type='text'
-                      name='firstname'
-                      value={formData.firstname}
-                      onChange={handleChange}
-                      className="w-full text-17 px-4 rounded-lg py-2.5 border-border dark:border-dark_border border-solid dark:text-white  dark:bg-darkmode border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
-                    />
-                  </div>
-                  <div className="mx-0 my-2.5 flex-1">
-                    <label htmlFor="last-name" className="pb-3 inline-block text-17">Last Name*</label>
-                    <input
-                      id='lastname'
-                      type='text'
-                      name='lastname'
-                      value={formData.lastname}
-                      onChange={handleChange}
-                      className="w-full text-17 px-4 py-2.5 rounded-lg border-border dark:border-dark_border border-solid dark:text-white  dark:bg-darkmode border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
-                    />
-                  </div>
-                </div>
-                <div className="sm:flex gap-3 w-full">
-                  <div className="mx-0 my-2.5 flex-1">
-                    <label htmlFor="email" className="pb-3 inline-block text-17">Email address*</label>
-                    <input
-                      id='email'
-                      type='email'
-                      name='email'
-                      value={formData.email}
-                      onChange={handleChange}
-                      className="w-full text-17 px-4 py-2.5 rounded-lg border-border dark:border-dark_border border-solid dark:text-white  dark:bg-darkmode border transition-all duration-500 focus:border-primary dark:focus:border-primary focus:border-solid focus:outline-0"
-                    />
-                  </div>
-                  <div className="mx-0 my-2.5 flex-1">
-                    <label htmlFor="Specialist" className="pb-3 inline-block text-17">Specialist*</label>
-                    <select  
-                    name="specialist"
-                      id="specialist"
-                      value={formData.specialist}
-                      onChange={handleChange} className="custom-select w-full text-17 px-4 py-2.5 rounded-lg border-border dark:text-white border-solid dark:bg-darkmode border transition-all duration-500 focus:border-primary dark:focus:border-primary dark:border-dark_border focus:border-solid focus:outline-0">
-                      <option value="">Choose a specialist</option>
-                      <option value="Baking &amp; Pastry">
-                        Choose a specialist
-                      </option>
-                      <option value="Exotic Cuisine">Exotic Cuisine</option>
-                      <option value="French Desserts">French Desserts</option>
-                      <option value="Seafood &amp; Wine">
-                        Choose a specialist
-                      </option>
-                    </select>
-                  </div>
-                </div>
-                <div className="sm:flex gap-3 w-full">
-                  <div className="mx-0 my-2.5 flex-1">
-                    <label htmlFor="date" className="pb-3 inline-block text-17">Date*</label>
-                    <input
-                       id='date'
-                      type='date'
-                      name='date'
-                      value={formData.date}
-                      onChange={handleChange}
-                      className="w-full text-17 px-4 rounded-lg  py-2.5 outline-none dark:text-white dark:bg-darkmode border-border border-solid border transition-all duration-500 focus:border-primary dark:focus:border-primary dark:border-dark_border focus:border-solid focus:outline-0"
-                    />
-                  </div>
-                  <div className="mx-0 my-2.5 flex-1">
-                    <label htmlFor="time" className="pb-3 inline-block text-17">Time*</label>
-                    <input
-                      id='time'
-                      type='time'
-                      name='time'
-                      value={formData.time}
-                      onChange={handleChange}
-                      className="w-full text-17 px-4 rounded-lg py-2.5 border-border outline-none dark:text-white dark:bg-darkmode border-solid border transition-all duration-500 focus:border-primary dark:focus:border-primary dark:border-dark_border focus:border-solid focus:outline-0"
-                    />
-                  </div>
-                </div>
-                <div className="mx-0 my-2.5 w-full">
-                  <button type="submit" className="bg-primary rounded-lg text-white py-4 px-8 mt-4 inline-block hover:bg-blue-700">
-                    Make an appointment
-                  </button>
-                </div>
-              </form>
-            </div>
-            <div className="col-span-6 h-[600px]">
-              <Image
-                src="/images/contact-page/contact.jpg"
-                alt="Contact"
-                width={1300}
-                height={0}
-                quality={100}
-                className="w-full h-full object-cover bg-no-repeat bg-contain rounded-lg"
-              />
-            </div>
-          </div>
+    <div className="bg-white shadow-lg rounded-xl p-8" data-aos="fade-right">
+      <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div>
+          <label className="block mb-1 font-medium">Name</label>
+          <input
+            type="text"
+            name="name"
+            className="w-full border border-midnight_text rounded-lg p-3"
+            placeholder="Enter your name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
         </div>
-      </section>
-    </>
+        <div>
+          <label className="block mb-1 font-medium">Contact Number</label>
+          <input
+            type="tel"
+            name="contactNo"
+            className="w-full border border-midnight_text rounded-lg p-3"
+            placeholder="Enter your contact number"
+            value={formData.contactNo}
+            onChange={(e) => {
+              const sanitized = e.target.value.replace(/[^0-9]/g, "").slice(0, 10);
+              handleChange({
+                target: {
+                  name: "contactNo",
+                  value: sanitized,
+                },
+              });
+            }}
+            required
+          />
+
+        </div>
+        <div>
+          <label className="block mb-1 font-medium">Email</label>
+          <input
+            type="email"
+            name="email"
+            className="w-full border border-midnight_text rounded-lg p-3"
+            placeholder="Enter your email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <div>
+          <label className="block mb-1 font-medium">Message</label>
+          <textarea
+            className="w-full border resize-none border-midnight_text rounded-lg p-3 h-32"
+            placeholder="Write your message..."
+            value={formData.message}
+            name="message"
+            onChange={handleChange}
+            required
+          />
+        </div>
+        <button className="bg-midnight_text text-white px-6 py-3 rounded-lg w-full hover:bg-opacity-85 transition">
+          {
+            loader ?
+
+              <div className="flex items-center justify-center gap-2">
+                <span>Submitting Mesasge....</span>
+                <RiLoader4Fill size={20} className="animate-spin" />
+              </div>
+              :
+              <div className="flex items-center justify-center gap-2">
+                <span>Send Message</span>
+                <IoIosSend size={20} />
+              </div>
+          }
+        </button>
+      </form>
+    </div>
   );
 };
 

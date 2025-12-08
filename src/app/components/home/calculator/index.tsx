@@ -152,16 +152,12 @@
 
 
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import AOS from "aos";
-import "aos/dist/aos.css";
 
 export default function StayCalculator() {
   const [activeTab, setActiveTab] = useState("deluxe");
   const [price, setPrice] = useState(5000);
-
-
 
 const handleTabChange = (tab: string) => {
   setActiveTab(tab);

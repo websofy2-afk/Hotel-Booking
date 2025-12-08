@@ -2,8 +2,8 @@ export const roomData = [
   {
     id: 1,
     slug: "deluxe-room",
-    hotel_name: "Lavanya Hotel",
-    city: "Delhi",
+    hotel_name: "Revanta Hotel",
+    city: "Lucknow",
     room_type: "Deluxe",
     name: "Deluxe Room",
     description: "A spacious premium room with king bed, balcony and city view.",
@@ -23,12 +23,12 @@ export const roomData = [
     ],
     images: "/images/properties/prop-1.jpg",
   },
-
+  
   {
     id: 2,
     slug: "super-deluxe-room",
-    hotel_name: "Grand Palace Hotel",
-    city: "Mumbai",
+    hotel_name: "Revanta Hotel",
+    city: "Lucknow",
     room_type: "Super Deluxe",
     name: "Super Deluxe Room",
     description: "Premium room with sea view, modern interior and luxury facilities.",

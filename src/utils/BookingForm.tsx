@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { MdLocationOn } from "react-icons/md";
-import { FaCalendarAlt, FaPlus, FaMinus } from "react-icons/fa";
+import { FaPlus, FaMinus, FaCalendarAlt } from "react-icons/fa";
 import { RxCross1 } from "react-icons/rx";
 
 interface HotelBookingFormProps {
@@ -39,10 +39,9 @@ export default function HotelBookingForm({ closeModal }: HotelBookingFormProps) 
                             <RxCross1 className="text-black" />
                         </button>
                     }
-                   
                 </div>
 
-                <div className="p-6 lg:p-8 w-full max-w-6xl mx-auto mt-10">
+                <div className="p-6 w-full max-w-6xl mx-auto">
 
                     <div className="grid grid-cols-1 md:grid-cols-2 border border-midnight_text rounded-xl overflow-hidden">
                         <div className="p-5 border-r border-b cursor-pointer" onClick={() => setShowLocation(!showLocation)}>
@@ -79,7 +78,7 @@ export default function HotelBookingForm({ closeModal }: HotelBookingFormProps) 
                         </div>
                         <div className="p-5 border-b">
                             <p className="text-xs text-gray-500 text-midnight_text">Check-In</p>
-                            <div className="flex items-center gap-3 mt-1">
+                            <div className="flex items-center w-96 gap-3 mt-1">
                                 <FaCalendarAlt className="text-midnight_text" />
                                 <input
                                     type="date"
@@ -91,7 +90,7 @@ export default function HotelBookingForm({ closeModal }: HotelBookingFormProps) 
                         </div>
                         <div className="p-5 border-r">
                             <p className="text-xs text-midnight_text">Check-Out</p>
-                            <div className="flex items-center gap-3 mt-1">
+                            <div className="flex items-center w-96 gap-3 mt-1">
                                 <FaCalendarAlt className="text-midnight_text" />
                                 <input
                                     type="date"

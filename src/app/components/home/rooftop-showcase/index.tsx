@@ -1,15 +1,9 @@
 "use client";
-import HotelBookingForm from "@/utils/BookingForm";
-import { useState, useEffect } from "react";
-import AOS from "aos";
-import "aos/dist/aos.css";
+import { useState } from "react";
+import HotelLocationForm from "../hotel-location-form";
 
 export default function RooftopShowcase() {
     const [openModal, setOpenModal] = useState(false);
-
-    useEffect(() => {
-        AOS.init({ duration: 1000, once: true });
-    }, []);
 
     return (
         <section
@@ -49,13 +43,13 @@ export default function RooftopShowcase() {
             {openModal && (
                 <div
                     onClick={() => setOpenModal(false)}
-                    className="inset-0 w-full h-[500px] bg-black/40 flex items-center justify-center z-50"
+                    className="inset-0 w-full h-[500px] backdrop-blur-md flex items-center justify-center z-50"
                 >
                     <div
                         className="p-4 shadow-xl"
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <HotelBookingForm closeModal={() => setOpenModal(false)} />
+                        <HotelLocationForm closeModal={() => setOpenModal(false)} />
                     </div>
                 </div>
             )}

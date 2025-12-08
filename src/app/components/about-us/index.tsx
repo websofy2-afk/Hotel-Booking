@@ -7,8 +7,10 @@ import MissionVission from "./MissionVission";
 import Awards from "./Awards";
 import OurJourney from "./OurJourney";
 import Founder from "./Founder";
+import { useSearchParams } from "next/navigation";
 
 export default function AboutUs() {
+  
     return (
         <>
             <HotelStory />
