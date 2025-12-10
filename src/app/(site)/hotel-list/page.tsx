@@ -1,12 +1,17 @@
 import { Metadata } from "next";
 import HotelsList from "@/app/components/hotel-lists";
+import HeroSub from "@/app/components/shared/hero-sub";
 
 export const metadata: Metadata = {
   title: "Hotel Details | LuxeLeaf",
 };
 
 const page = () => {
-  return <HotelsList />
+  return (
+    <>
+      <HotelsList />
+    </>
+  )
 };
 
 export default page;

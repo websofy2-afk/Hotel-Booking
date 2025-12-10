@@ -279,7 +279,7 @@ const PropertyCard: React.FC<RoomCardProps> = ({ property, viewMode }) => {
       {openModal && (
         <div
           onClick={() => setOpenModal(false)}
-          className="fixed inset-0 bg-black/50 backdrop-blur-lg flex items-center justify-center z-50"
+          className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50"
         >
           <div
             className=" p-6 rounded-xl "

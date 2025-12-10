@@ -15,7 +15,6 @@ export default function HotelDetails() {
     const selectedHotel = hotel ? hotelDetails[hotel] : null;
     if (!selectedHotel) return <p>No hotel found!</p>;
 
-
     return (
         <div>
             {selectedHotel?.map((item, index) => (
@@ -25,7 +24,7 @@ export default function HotelDetails() {
                         data-aos="fade-up"
                     >
                         <Image
-                            src={item.image}
+                            src={item.thumbnailImag!}
                             alt={item.name}
                             width={500}
                             height={300}

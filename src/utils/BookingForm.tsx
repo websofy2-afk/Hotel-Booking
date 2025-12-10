@@ -109,7 +109,7 @@ export default function HotelBookingForm({ closeModal }: HotelBookingFormProps) 
 
                     <div className="flex justify-center mt-6">
                         <button className="text-xl px-9 py-3 border border-midnight_text text-midnight_text rounded-lg">
-                            GET ME BEST PRICES
+                            PAY NOW
                         </button>
                     </div>
                 </div>

@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
-import HotelLocationForm from "../hotel-location-form";
-import HotelBookingForm from "@/utils/BookingForm";
+import SearchLocation from "../search-location";
 
 const Hero = () => {
   return (
@@ -30,8 +29,7 @@ const Hero = () => {
             Explore Hotels
           </Link>
         </div>
-        {/* <HotelBookingForm/> */}
-        <HotelLocationForm />
+        <SearchLocation />
       </div>
     </section>
   );

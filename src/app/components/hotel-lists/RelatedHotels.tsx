@@ -77,7 +77,7 @@ const RelatedHotels = () => {
                                 >
                                     <div className="relative w-full h-48">
                                         <Image
-                                            src={item.image}
+                                            src={item.thumbnailImag!}
                                             alt={item.name}
                                             fill
                                             className="object-cover"
@@ -111,6 +111,8 @@ const RelatedHotels = () => {
 
                                             <span className="text-gray">⭐ {item.rating ?? "No rating"}</span>
                                         </p>
+
+                                        
                                         <div className="flex items-center justify-evenly gap-2 mt-4 relative overflow-visible">
                                             {item.amenities?.slice(0, 2).map((amenity, index) => (
                                                 <span key={index} className="text-xs text-midnight_text">

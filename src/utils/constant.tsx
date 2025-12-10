@@ -1,4 +1,4 @@
-import { roomsProps } from "@/app/types/rooms/rooms";
+import { RoomCardProps, roomsProps } from "@/app/types/rooms/rooms";
 import { FaCheckCircle, FaConciergeBell, FaHandsHelping, FaLeaf, FaRegSmileBeam, FaStar, FaWifi } from "react-icons/fa";
 import { roomData } from "./roomData";
 
@@ -231,14 +231,48 @@ export const hotelsData = [
   },
 ];
 
+
+
+
+export interface HotelDetails {
+  id: number;
+  name: string;
+  location: string;
+  price: number;
+  oldPrice: number;
+  rating: number;
+  totalRating: number;
+  images: string[];
+  thumbnailImag: string;
+  lat: number;
+  lng: number;
+  description: string;
+  amenities: string[];
+  contact: number;
+  email: string;
+  property: any;
+}
+
+export interface HotelItem {
+  hotelId: number;
+  details?: HotelDetails;
+}
+
+export interface LocationHotels {
+  locationId: number;
+  hotels: string[]
+}
+export type HotelDataType = Record<string, LocationHotels>;
+
+
 export const hotelList = [
   {
     id: 1,
     location: "Lucknow",
     hotels: [
-      "Revanta Hotel",  
-      "Golden Crown Residency",   
-      "Taj Hotel",   
+      "Revanta Hotel",
+      "Golden Crown Residency",
+      "Taj Hotel",
       "Hotel Hayat"
     ]
   },
@@ -260,22 +294,165 @@ export const hotelList = [
   }
 ];
 
-export const locationList = ["Lucknow", "Mumbai", "Jaipur"];
 
+export const hotelData: HotelDataType = {
+  Lucknow: {
+    locationId: 1,
+    hotels: [
+      "Revanta Hotel",
+      "Golden Crown Residency",
+      "Taj Hotel",
+      "Hotel Hayat"
+    ]
+
+    // {
+    //   "Revanta Hotel": { 
+    //     "hotelId": 3673236237367,
+    //     details: {
+    //       id: 1,
+    //       name: "Revanta Hotel",
+    //       location: "Lucknow",
+    //       price: 8500,
+    //       oldPrice: 9000,
+    //       rating: 4.8,
+    //       totalRating : 600,
+    //       thumbnailImag: "/images/image-gallery/hotels/hotel-1.avif",
+    //        images: [
+    //             "/images/image-gallery/hotels/hotel-2.avif",
+    //             "/images/image-gallery/hotels/hotel-3.avif",
+    //             "/images/image-gallery/hotels/hotel-4.avif",
+    //             "/images/image-gallery/hotels/hotel-1.avif",
+    //         ],
+    //       lat: 15.2993,
+    //       lng: 74.1240,
+    //       description:
+    //         "A premium luxury resort with sea-view rooms, infinity pools, and world-class hospitality.",
+    //       amenities: ["Free WiFi", "Pool", "Spa", "Bar", "Restaurant", "Beachfront"],
+    //       contact: 9873335652,
+    //       email: "revanta@gmail.com",
+    //       property: roomData
+    //     },
+    //   },
+    //   "Taj Hotel": {
+    //     "hotelId": 8376364728388,
+    //     details: {
+    //       id: 3,
+    //       name: "Taj Hotel",
+    //       location: "Lucknow",
+    //       price: 6200,
+    //       oldPrice:6500,
+    //       totalRating:700,
+    //       rating: 4.5,
+    //       images: [
+    //             "/images/image-gallery/hotels/hotel-2.avif",
+    //             "/images/image-gallery/hotels/hotel-3.avif",
+    //             "/images/image-gallery/hotels/hotel-4.avif",
+    //             "/images/image-gallery/hotels/hotel-1.avif",
+    //         ],
+    //       thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
+    //       lat: 10.8505,
+    //       lng: 76.2711,
+    //       description:
+    //         "Experience backwater beauty with modern amenities and authentic Kerala cuisine.",
+    //       amenities: ["Spa", "Houseboat Tours", "Gym", "Restaurant"],
+    //       contact: 9873335658,
+    //       email: "golden@gmail.com",
+    //       property: roomData
+    //     },
+    //   },
+    //   "Hotel Hayat": {
+    //     "hotelId": 8376364655688,
+    //     details: {
+    //       id: 4,
+    //       name: "Hotel Hayat",
+    //       location: "Lucknow",
+    //       oldPrice:6500,
+    //       totalRating:700,
+    //       price: 6200,
+    //       rating: 4.5,
+    //       images: [
+    //             "/images/image-gallery/hotels/hotel-2.avif",
+    //             "/images/image-gallery/hotels/hotel-3.avif",
+    //             "/images/image-gallery/hotels/hotel-4.avif",
+    //             "/images/image-gallery/hotels/hotel-1.avif",
+    //         ],
+    //       thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
+    //       lat: 10.8505,
+    //       lng: 76.2711,
+    //       description:
+    //         "Experience backwater beauty with modern amenities and authentic Kerala cuisine.",
+    //       amenities: ["Spa", "Houseboat Tours", "Gym", "Restaurant"],
+    //       contact: 9873335658,
+    //       email: "golden@gmail.com",
+    //       property: roomData
+    //     },
+    //   },
+    //   "Golden Crown Residency": {
+    //     "hotelId": 83768746465688,
+    //     details: {
+    //       id: 2,
+    //       name: "Golden Crown Residency",
+    //       location: "Lucknow",
+    //       oldPrice:6500,
+    //       totalRating:700,
+    //       price: 6200,
+    //       rating: 4.5,
+    // images: [
+    //       "/images/image-gallery/hotels/hotel-2.avif",
+    //       "/images/image-gallery/hotels/hotel-3.avif",
+    //       "/images/image-gallery/hotels/hotel-4.avif",
+    //       "/images/image-gallery/hotels/hotel-1.avif",
+    //   ],
+    //       thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
+    //       lat: 10.8505,
+    //       lng: 76.2711,
+    //       description:
+    //         "Experience backwater beauty with modern amenities and authentic Kerala cuisine.",
+    //       amenities: ["Spa", "Houseboat Tours", "Gym", "Restaurant"],
+    //       contact: 9873335658,
+    //       email: "golden@gmail.com",
+    //       property: roomData
+    //     },
+    //   },
+    // }
+  },
+  Mumbai: {
+    locationId: 2,
+    hotels: [
+      "Grand Palace Hotel",
+      "Sea Breeze Residency",
+    ]
+  },
+  Jaipur: {
+    locationId: 3,
+    hotels: [
+      "Raj Mahal Palace",
+      "Pink City Residency",
+    ]
+  },
+}
+
+
+
+
+export const locationList = ["Lucknow", "Mumbai", "Jaipur"];
 
 type HotelInfo = {
   id: number;
   name: string;
   location: string;
   price: number;
+  oldPrice: number,
   rating: number;
-  image: string;
+  tag:string,
+  totalRating: number,
+  images: string[];
   lat: number;
   lng: number;
   contact: number,
   email: string,
   description: string;
-  thumbnailImag? : string
+  thumbnailImag?: string
   amenities: string[];
   property?: roomsProps[]
 };
@@ -285,16 +462,22 @@ type HotelDetailsType = {
 };
 
 export const hotelDetails: HotelDetailsType = {
-
-
   "Revanta Hotel": [
     {
       id: 1,
       name: "Revanta Hotel",
       location: "Lucknow",
       price: 8500,
+      oldPrice: 9000,
       rating: 4.8,
-      image: "/images/image-gallery/hotels/hotel-1.avif",
+      totalRating: 789,
+      tag:"4",
+      images: [
+        "/images/image-gallery/hotels/hotel-2.avif",
+        "/images/image-gallery/hotels/hotel-3.avif",
+        "/images/image-gallery/hotels/hotel-4.avif",
+        "/images/image-gallery/hotels/hotel-1.avif",
+      ],
       thumbnailImag: "/images/image-gallery/hotels/hotel-1.avif",
       lat: 15.2993,
       lng: 74.1240,
@@ -303,7 +486,7 @@ export const hotelDetails: HotelDetailsType = {
       amenities: ["Free WiFi", "Pool", "Spa", "Bar", "Restaurant", "Beachfront"],
       contact: 9873335652,
       email: "revanta@gmail.com",
-      property: roomData  
+      property: roomData
     },
   ],
   "Golden Crown Residency": [
@@ -313,7 +496,15 @@ export const hotelDetails: HotelDetailsType = {
       location: "Lucknow",
       price: 6200,
       rating: 4.5,
-      image: "/images/image-gallery/hotels/hotel-2.avif",
+      oldPrice: 6800,
+      totalRating: 550,
+      tag:"5",
+      images: [
+        "/images/image-gallery/hotels/hotel-2.avif",
+        "/images/image-gallery/hotels/hotel-3.avif",
+        "/images/image-gallery/hotels/hotel-4.avif",
+        "/images/image-gallery/hotels/hotel-1.avif",
+      ],
       thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
       lat: 10.8505,
       lng: 76.2711,
@@ -325,16 +516,22 @@ export const hotelDetails: HotelDetailsType = {
       property: roomData
     },
   ],
-
-  
   "Taj Hotel": [
     {
       id: 3,
       name: "Taj Hotel",
       location: "Lucknow",
       price: 6200,
+      oldPrice: 6500,
+      tag:"5",
+      totalRating: 500,
       rating: 4.5,
-      image: "/images/image-gallery/hotels/hotel-2.avif",
+      images: [
+        "/images/image-gallery/hotels/hotel-2.avif",
+        "/images/image-gallery/hotels/hotel-3.avif",
+        "/images/image-gallery/hotels/hotel-4.avif",
+        "/images/image-gallery/hotels/hotel-1.avif",
+      ],
       thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
       lat: 10.8505,
       lng: 76.2711,
@@ -353,7 +550,15 @@ export const hotelDetails: HotelDetailsType = {
       location: "Lucknow",
       price: 6200,
       rating: 4.5,
-      image: "/images/image-gallery/hotels/hotel-2.avif",
+      totalRating: 300,
+      tag:"5",
+      oldPrice: 6300,
+      images: [
+        "/images/image-gallery/hotels/hotel-2.avif",
+        "/images/image-gallery/hotels/hotel-3.avif",
+        "/images/image-gallery/hotels/hotel-4.avif",
+        "/images/image-gallery/hotels/hotel-1.avif",
+      ],
       thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
       lat: 10.8505,
       lng: 76.2711,
@@ -373,7 +578,15 @@ export const hotelDetails: HotelDetailsType = {
       location: "Jaipur",
       price: 5400,
       rating: 4.7,
-      image: "/images/image-gallery/hotels/hotel-3.avif",
+      tag:"5",
+      oldPrice: 6000,
+      totalRating: 200,
+      images: [
+        "/images/image-gallery/hotels/hotel-2.avif",
+        "/images/image-gallery/hotels/hotel-3.avif",
+        "/images/image-gallery/hotels/hotel-4.avif",
+        "/images/image-gallery/hotels/hotel-1.avif",
+      ],
       thumbnailImag: "/images/image-gallery/hotels/hotel-3.avif",
       lat: 26.9124,
       lng: 75.7873,
@@ -390,9 +603,17 @@ export const hotelDetails: HotelDetailsType = {
       id: 2,
       name: "Pink City Residency",
       location: "Jaipur",
+      tag:"5",
       price: 7800,
       rating: 4.4,
-      image: "/images/image-gallery/hotels/hotel-4.avif",
+      oldPrice: 8000,
+      totalRating: 400,
+      images: [
+        "/images/image-gallery/hotels/hotel-2.avif",
+        "/images/image-gallery/hotels/hotel-3.avif",
+        "/images/image-gallery/hotels/hotel-4.avif",
+        "/images/image-gallery/hotels/hotel-1.avif",
+      ],
       thumbnailImag: "/images/image-gallery/hotels/hotel-4.avif",
       lat: 19.0760,
       lng: 72.8777,
@@ -411,7 +632,15 @@ export const hotelDetails: HotelDetailsType = {
       location: "Mumbai",
       price: 4800,
       rating: 4.6,
-      image: "/images/image-gallery/hotels/hotel-1.avif",
+      oldPrice: 5000,
+      tag:"5",
+      totalRating: 800,
+      images: [
+        "/images/image-gallery/hotels/hotel-2.avif",
+        "/images/image-gallery/hotels/hotel-3.avif",
+        "/images/image-gallery/hotels/hotel-4.avif",
+        "/images/image-gallery/hotels/hotel-1.avif",
+      ],
       thumbnailImag: "/images/image-gallery/hotels/hotel-1.avif",
       lat: 32.2396,
       lng: 77.1887,
@@ -422,7 +651,7 @@ export const hotelDetails: HotelDetailsType = {
       email: "grandpalace@gmail.com",
       property: roomData
     },
-    
+
   ],
   "Sea Breeze Residency": [
     {
@@ -431,7 +660,15 @@ export const hotelDetails: HotelDetailsType = {
       location: "Mumbai",
       price: 5500,
       rating: 4.3,
-      image: "/images/image-gallery/hotels/hotel-2.avif",
+      totalRating: 200,
+      tag:"5",
+      oldPrice: 5900,
+      images: [
+        "/images/image-gallery/hotels/hotel-2.avif",
+        "/images/image-gallery/hotels/hotel-3.avif",
+        "/images/image-gallery/hotels/hotel-4.avif",
+        "/images/image-gallery/hotels/hotel-1.avif",
+      ],
       thumbnailImag: "/images/image-gallery/hotels/hotel-2.avif",
       lat: 27.0238,
       lng: 74.2179,
