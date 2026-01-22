@@ -4,6 +4,7 @@ import NextTopLoader from "nextjs-toploader";
 import Header from "./components/layout/header";
 import Footer from "./components/layout/footer";
 import ScrollToTop from "./components/scroll-to-top";
+import { PropertyContextProvider } from "@/context-api/PropertyContext";
 
 export default function RootLayout({
     children,
@@ -13,13 +14,15 @@ export default function RootLayout({
     return (
         <>
             <NextTopLoader />
-            <AppContextProvider>
-                <Aoscompo />
-                <Header />
-                {children}
-                <Footer />
-                <ScrollToTop />
-            </AppContextProvider>
+            <PropertyContextProvider>
+                <AppContextProvider>
+                    <Aoscompo />
+                    <Header />
+                    {children}
+                    <Footer />
+                    <ScrollToTop />
+                </AppContextProvider>
+            </PropertyContextProvider>
         </>
     );
 }

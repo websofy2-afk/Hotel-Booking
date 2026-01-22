@@ -10,10 +10,10 @@ export default function AdvanceSearch({ category }: { category?: string }) {
     const [price, setPrice] = useState(50);
     const [price1, setPrice1] = useState(50);
     const [viewMode, setViewMode] = useState<'grid' | 'list'>('grid');
-    const { properties, updateFilter, filters } = useContext(PropertyContext)!;
     const [sortOrder, setSortOrder] = useState("none");
     const [isOffCanvasOpen, setIsOffCanvasOpen] = useState(false);
     const [searchData, setSearchData] = useState<any>([]);
+    const { properties, updateFilter, filters } = useContext(PropertyContext)!;
 
     useEffect(() => {
         const fetchData = async () => {

@@ -35,19 +35,18 @@ export default function RoomRelatedToHotel({ category, location, hotelName }: { 
         );
     }, [rooms, selectedRoomType]);
 
-
-    const totalPages = Math.ceil(filteredRooms.length / ITEMS_PER_PAGE);
-
     const paginatedRooms = useMemo(() => {
         const start = (currentPage - 1) * ITEMS_PER_PAGE;
         return filteredRooms.slice(start, start + ITEMS_PER_PAGE);
     }, [filteredRooms, currentPage]);
+
+    const totalPages = Math.ceil(filteredRooms.length / ITEMS_PER_PAGE);
+
     return (
         <section className='pb-0'>
             <div className='lg:max-w-screen-xl max-w-screen-md mx-auto'>
                 <div
-                    className="px-2 flex  m-5 items-center w-20 border-gray/30 bg-gray-100 text-sm rounded border"
-                >
+                    className="px-2 flex  m-5 items-center w-20 border-gray/30 bg-gray-100 text-sm rounded border">
                     <span className="flex items-center gap-1">{rooms[0].tag}
                         <FaStar size={10} className="text-yellow-500" /></span>
                     <LuDot /> Hotel
@@ -147,7 +146,7 @@ export default function RoomRelatedToHotel({ category, location, hotelName }: { 
             <GuestReveiws hotelName={hotelName!} />
             <PropertyPolicies />
             <HotelLocation location={location!} hotelName={hotelName!} />
-            <RelatedHotels/>
+            <RelatedHotels />
         </section>
     );
 }

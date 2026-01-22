@@ -1,9 +1,8 @@
 "use client";
-import { signIn, useSession } from "next-auth/react";
 import Link from "next/link";
-import { useContext, useState } from "react";
+import { FormEvent, useState } from "react";
 import SocialSignIn from "../social-button/SocialSignIn";
-import toast, { Toaster } from 'react-hot-toast';
+import { Toaster } from 'react-hot-toast';
 import { useRouter } from "next/navigation";
 import Logo from "../../layout/header/logo";
 
@@ -46,7 +45,7 @@ const Signin = () => {
   };
 
   // form handle submit
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!validateForm()) {
       return;
@@ -71,9 +70,7 @@ const Signin = () => {
           <div className="mb-10 text-center mx-auto inline-block max-w-[160px]">
             <Logo />
           </div>
-
           <SocialSignIn />
-
           <span className="z-1 relative my-8 block text-center">
             <span className="-z-1 absolute left-0 top-1/2 block h-px w-full bg-border dark:bg-dark_border"></span>
             <span className="text-primary/40 dark:text-border relative z-10 inline-block bg-white px-3 text-base dark:bg-semidark">

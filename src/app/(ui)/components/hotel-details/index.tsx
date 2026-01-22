@@ -17,7 +17,6 @@ const HotelDetails = () => {
 
 export default HotelDetails
 
-
 export function toTitleCase(str: string) {
     if (!str) {
         return "";

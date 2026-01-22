@@ -28,9 +28,6 @@ const RelatedHotels = () => {
     const hotelData = relatedHotels?.map(item => hotelDetails[item])
     const arr = hotelData?.flat() ?? [];
 
-
-    console.log("Hotel data is --> ", hotelData![0])
-
     const popupRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {

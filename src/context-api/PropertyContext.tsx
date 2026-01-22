@@ -21,7 +21,7 @@ interface PropertyContextType {
 
 export const PropertyContext = createContext<PropertyContextType | undefined>(undefined);
 
-export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
+export const PropertyContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [allProperties, setAllProperties] = useState<propertyData[]>([]);
   const [properties, setProperties] = useState<propertyData[]>([]);
   const [filters, setFilters] = useState<Filters>({

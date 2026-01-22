@@ -405,10 +405,6 @@ export default function HotelListPage() {
     );
 }
 
-
-
-
-
 const facilities = [{
     tag: "Couple Friendly",
     fac: ["Free Cancellation", "Breakfast available at extra charges", "Enjoy Happy Hours with 1+1 offer"]
