@@ -231,9 +231,6 @@ export const hotelsData = [
   },
 ];
 
-
-
-
 export interface HotelDetails {
   id: number;
   name: string;
@@ -432,9 +429,6 @@ export const hotelData: HotelDataType = {
   },
 }
 
-
-
-
 export const locationList = ["Lucknow", "Mumbai", "Jaipur"];
 
 type HotelInfo = {
@@ -444,12 +438,13 @@ type HotelInfo = {
   price: number;
   oldPrice: number,
   rating: number;
-  tag:string,
+  tag: string,
   totalRating: number,
   images: string[];
   lat: number;
   lng: number;
   contact: number,
+  offer?: boolean
   email: string,
   description: string;
   thumbnailImag?: string
@@ -471,7 +466,8 @@ export const hotelDetails: HotelDetailsType = {
       oldPrice: 9000,
       rating: 4.8,
       totalRating: 789,
-      tag:"4",
+      tag: "4",
+      offer: true,
       images: [
         "/images/image-gallery/hotels/hotel-2.avif",
         "/images/image-gallery/hotels/hotel-3.avif",
@@ -498,7 +494,8 @@ export const hotelDetails: HotelDetailsType = {
       rating: 4.5,
       oldPrice: 6800,
       totalRating: 550,
-      tag:"5",
+      tag: "5",
+      offer: true,
       images: [
         "/images/image-gallery/hotels/hotel-2.avif",
         "/images/image-gallery/hotels/hotel-3.avif",
@@ -523,7 +520,7 @@ export const hotelDetails: HotelDetailsType = {
       location: "Lucknow",
       price: 6200,
       oldPrice: 6500,
-      tag:"5",
+      tag: "5",
       totalRating: 500,
       rating: 4.5,
       images: [
@@ -551,7 +548,7 @@ export const hotelDetails: HotelDetailsType = {
       price: 6200,
       rating: 4.5,
       totalRating: 300,
-      tag:"5",
+      tag: "5",
       oldPrice: 6300,
       images: [
         "/images/image-gallery/hotels/hotel-2.avif",
@@ -578,7 +575,7 @@ export const hotelDetails: HotelDetailsType = {
       location: "Jaipur",
       price: 5400,
       rating: 4.7,
-      tag:"5",
+      tag: "5",
       oldPrice: 6000,
       totalRating: 200,
       images: [
@@ -603,7 +600,7 @@ export const hotelDetails: HotelDetailsType = {
       id: 2,
       name: "Pink City Residency",
       location: "Jaipur",
-      tag:"5",
+      tag: "5",
       price: 7800,
       rating: 4.4,
       oldPrice: 8000,
@@ -633,7 +630,7 @@ export const hotelDetails: HotelDetailsType = {
       price: 4800,
       rating: 4.6,
       oldPrice: 5000,
-      tag:"5",
+      tag: "5",
       totalRating: 800,
       images: [
         "/images/image-gallery/hotels/hotel-2.avif",
@@ -661,7 +658,7 @@ export const hotelDetails: HotelDetailsType = {
       price: 5500,
       rating: 4.3,
       totalRating: 200,
-      tag:"5",
+      tag: "5",
       oldPrice: 5900,
       images: [
         "/images/image-gallery/hotels/hotel-2.avif",
@@ -683,4 +680,18 @@ export const hotelDetails: HotelDetailsType = {
 }
 
 
+export const calculator = [
+  {
+    off : "10% OFF",
+    night:"Stay 3+ Nights"
+  },
+  {
+    off : "15% OFF",
+    night:"Stay 5+ Nights"
+  },
+  {
+    off : "25% OFF",
+    night:"Stay 7+ Nights"
+  }
+]
 

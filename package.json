@@ -3,9 +3,9 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "dev": "next dev -p 5555",
-    "build": "next build",
+    "dev": "next dev",
     "start": "next start",
+    "build": "next build",
     "lint": "next lint"
   },
   "dependencies": {
@@ -16,12 +16,12 @@
     "axios": "^1.7.2",
     "date-fns": "^3.4.0",
     "gray-matter": "^4.0.3",
-    "next": "^16.0.6",
+    "next": "^16.1.4",
     "next-auth": "^4.24.11",
     "next-themes": "^0.3.0",
     "nextjs-toploader": "^3.7.15",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
     "react-google-maps": "^9.4.5",
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.5.0",

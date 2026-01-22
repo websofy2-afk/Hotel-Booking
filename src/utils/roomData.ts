@@ -21,7 +21,8 @@ export const roomData = [
       "Mini Fridge",
       "Work Desk"
     ],
-    images: "/images/properties/prop-1.jpg",
+    thumbnail : "/images/properties/prop-1.jpg",
+    images: ["/images/properties/prop-1.jpg", "/images/properties/prop-2.jpg", "/images/properties/prop-3.jpg"]
   },
   
   {
@@ -46,7 +47,8 @@ export const roomData = [
       "Premium Sofa",
       "Bath Tub"
     ],
-    images: "/images/properties/prop-2.jpg",
+    thumbnail: "/images/properties/prop-2.jpg",
+    images: ["/images/properties/prop-1.jpg", "/images/properties/prop-2.jpg", "/images/properties/prop-3.jpg"]
   },
 
   {
@@ -61,8 +63,8 @@ export const roomData = [
     maxChildren: 2,
     bedType: "2 Queen Beds",
     pricePerNight: 9500,
-    tag: "Best for Family",  // ⭐ NEW
-    rating: 4.9,             // ⭐ NEW
+    tag: "Best for Family",
+    rating: 4.9,
     amenities: [
       "Two Bedrooms",
       "Living Room",
@@ -71,6 +73,8 @@ export const roomData = [
       "Large Bathroom",
       "Kitchenette"
     ],
-    images: "/images/properties/prop-3.jpg",
-  }
+    thumbnail: "/images/properties/prop-3.jpg",
+    images: ["/images/properties/prop-1.jpg", "/images/properties/prop-2.jpg", "/images/properties/prop-3.jpg"]
+  },
+
 ];

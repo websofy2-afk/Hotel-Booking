@@ -1,4 +1,4 @@
-import { FaStar, FaShieldAlt, FaHeadset, FaSwimmingPool, FaBed, FaUtensils } from "react-icons/fa";
+import {FaHeadset, FaSwimmingPool, FaBed, FaWifi, FaParking } from "react-icons/fa";
 
 export const reasons = [
    {
@@ -15,5 +15,15 @@ export const reasons = [
     icon: <FaHeadset size={30} />,
     title: "24/7 Support",
     desc: "We are always available to assist you anytime.",
+  },
+  {
+    icon: <FaWifi size={30} />,
+    title: "Free High-Speed WiFi",
+    desc: "Enjoy high-speed internet access throughout the hotel.",
+  },
+  {
+    icon: <FaParking size={30} />,
+    title: "Free Parking",
+    desc: "Secure and convenient on-site parking available at no additional cost.",
   },
 ];

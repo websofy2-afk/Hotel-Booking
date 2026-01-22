@@ -11,7 +11,8 @@ export interface roomsProps {
   bedType: string;
   pricePerNight: number;
   amenities: string[];
-  images: string;
+  images: string[];
+  thumbnail : string;
   tag: string;
   rating: number;
 }

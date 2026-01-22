@@ -1,8 +1,8 @@
 
 import { Metadata } from "next";
-import HeroSub from "./components/shared/hero-sub";
 import Link from "next/link";
 import Image from "next/image";
+import HeroSub from "./(ui)/components/shared/hero-sub";
 
 export const metadata: Metadata = {
   title: "404 Page | Property-pro",
