@@ -38,7 +38,7 @@ export default function Features() {
 
     return (
         <section className='bg-light'>
-            <div className="container px-4 lg:max-w-screen-xl md:max-w-screen-md mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div className="container lg:max-w-screen-xl md:max-w-screen-md mx-auto flex flex-col md:flex-row justify-between items-center px-4">
                 <div className="flex lg:flex-row flex-col lg:gap-0 gap-8 justify-between">
                     <div className='mb-8 md:mb-0 flex-1'>
                         <div className='relative' data-aos="fade-right">
@@ -55,7 +55,7 @@ export default function Features() {
 
                     <div className='flex-1 w-[55em]'>
                         <div className="lg:pl-16 flex flex-col justify-center h-full w-[45em]">
-                            <h2 className='mb-8 text-4xl text-midnight_text' data-aos="fade-left">Why People{" "}
+                            <h2 className='mb-8 uppercase text-midnight_text' data-aos="fade-left">Why People{" "}
                                 <span className='text-skyBlue'>Choose Our Hotel</span> 
                                 </h2>
                             {reasons?.map((feature, index) => (

@@ -18,7 +18,7 @@ export default function AboutUs() {
             <Counter />
             <WhyChoose />
             <MissionVission />
-            <Awards />
+            {/* <Awards /> */}
             <OurJourney />
             <Founder />
         </>

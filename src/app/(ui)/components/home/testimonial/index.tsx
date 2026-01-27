@@ -3,16 +3,16 @@ import Image from "next/image";
 export default function Testimonials() {
   return (
     <section className="bg-light">
-      <div className="container lg:max-w-screen-xl md:max-w-screen-md px-8 mx-auto flex flex-col-reverse md:flex-row items-center justify-between">
+      <div className="container lg:max-w-screen-xl md:max-w-screen-md mx-auto flex px-4 flex-col-reverse md:flex-row items-center justify-between">
         <div className="flex items-center justify-between w-full">
           <div className="flex-1 lg:block hidden" data-aos="fade-right">
             <Image
               src="/images/testimonial/vector-smart.png"
               alt="testimonial"
-              width={451}
-              height={470}
+              width={500}
+              height={500}
               quality={100}
-              className="w-auto h-auto"
+              className="w-84 h-auto"
             />
           </div>
           <div className="flex-1" data-aos="fade-left">

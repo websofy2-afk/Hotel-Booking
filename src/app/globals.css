@@ -68,7 +68,7 @@ html {
     }
 
     h1 {
-        @apply md:text-[51px] md:leading-[1.2] text-[28px] leading-[1.2] font-bold text-midnight_text dark:text-white;
+        @apply md:text-[50px] md:leading-[1.2] text-[28px] leading-[1.2] font-bold text-midnight_text dark:text-white;
     }
 
     h2 {
@@ -76,7 +76,7 @@ html {
     }
 
     h3 {
-        @apply md:text-[28px] leading-[1.2] text-lg font-bold text-white dark:text-primary;
+        @apply md:text-[25px] leading-[1.2] text-lg font-bold text-white dark:text-primary;
     }
 
     h4 {
@@ -154,3 +154,5 @@ html {
 .dark .custom-input{
     background-color: red;
 }
+
+

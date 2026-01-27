@@ -27,7 +27,6 @@ export default function AdvanceSearch({ category }: { category?: string }) {
                 console.error('Error fetching services:', error)
             }
         }
-
         fetchData()
     }, [])
 
@@ -72,7 +71,7 @@ export default function AdvanceSearch({ category }: { category?: string }) {
         } else if (sortOrder === "desc") {
             return titleB.localeCompare(titleA);
         }
-        return 0; // no sort
+        return 0;
     });
 
     const filteredCount = sortedProperties.length;
@@ -303,7 +302,7 @@ export default function AdvanceSearch({ category }: { category?: string }) {
                                     </button>
                                 </div>
                             </div>
-                            {filteredProperties.length > 0 ?
+                            {/* {filteredProperties.length > 0 ?
                                 <div className={` ${viewMode === 'grid' ? 'grid sm:grid-cols-2' : 'flex flex-col'} gap-6 px-4`}>
                                     {(sortOrder ? sortedProperties : properties).map((data: any, index: any) => (
                                         <PropertyCard key={index} property={data} viewMode={viewMode} />
@@ -314,7 +313,7 @@ export default function AdvanceSearch({ category }: { category?: string }) {
                                     <Image src={"/images/not-found/no-results.png"} alt='no-result' width={100} height={100} />
                                     <p className='text-gray'>No result found</p>
                                 </div>
-                            }
+                            } */}
                         </div>
                     </div>
                 </div>

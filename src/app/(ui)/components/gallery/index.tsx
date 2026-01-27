@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Masonry from "react-masonry-css";
@@ -46,7 +45,7 @@ export default function Gallery() {
         setActiveIndex(globalIdx - (page - 1) * itemsPerPage);
         setIsZoomed(false);
         setTranslate({ x: 0, y: 0 });
-        document.body.style.overflow = "hidden"; // prevent behind scroll
+        document.body.style.overflow = "hidden";
     }
 
     function closeLightbox() {
@@ -105,12 +104,12 @@ export default function Gallery() {
         800: 2,
         500: 1,
     };
-
     return (
         <section className="py-16 bg-light">
             <div className="max-w-7xl mx-auto px-4">
-                <h1 className="text-3xl md:text-4xl font-bold text-center mb-8" data-aos="fade-up">
-                    LuxeLeaf — Photos, Videos & Virtual Tours
+                <h1 className="text-center mb-8 uppercase  md:text-[40px]" data-aos="fade-up">
+                    LuxeLeaf —{" "}
+                    <span className="text-skyBlue">Photos, Videos & Virtual Tours</span>
                 </h1>
                 <Masonry
                     breakpointCols={breakpointCols}

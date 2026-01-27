@@ -16,3 +16,5 @@ export const amenities = [
   { icon: <FaParking size={40} />, title: "Free Parking" },
   { icon: <FaDumbbell size={40} />, title: "Gym & Fitness Center" }
 ];
+
+

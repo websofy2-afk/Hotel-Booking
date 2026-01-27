@@ -2,7 +2,7 @@ export default function CompanyInfo() {
     return (
         <div className="pt-16">
             <div className="estate-summary-b md:bg-transparent bg-primary">
-                <div className="bg-primary container lg:max-w-screen-xl md:max-w-screen-md mx-auto px-8 rounded-lg">
+                <div className="bg-primary container lg:max-w-screen-xl md:max-w-screen-md mx-auto rounded-lg">
                     <div className="grid grid-cols-1 md:grid-cols-3">
                         <div
                             className="flex lg:flex-row flex-col justify-center items-center md:border-r border-border py-10 px-4"

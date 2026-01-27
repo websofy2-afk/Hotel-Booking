@@ -1,0 +1,209 @@
+"use client";
+import { useEffect, useState } from "react";
+import PageBreadcrumb from "../common/PageBreadCrumb";
+import BlogModel from "./BlogModel";
+import Tooltip from "../common/Tooltip";
+import { extractExcerpt } from "@/lib/extractExcerpt";
+import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
+import MessageModel from "../common/MessageModel";
+
+export default function Blog() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [data, setData] = useState<any[]>([]);
+  const [blogCategorydata, setBlogCategoryData] = useState<any[]>([]);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [modal, setModal] = useState<{ mode: string; item?: any } | null>(null);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
+    null
+  );
+
+  const [blogDescription, setBlogDescription] = useState("");
+  const [showDescription, setShowDescription] = useState(false);
+
+  const showTooltip = (
+    message: string,
+    type: "success" | "error" | "info" = "info"
+  ) => {
+    setTooltip({ message, type });
+    setTimeout(() => setTooltip(null), 3000);
+  };
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordsPerPage = 10;
+
+  const [search, setSearch] = useState({ title: "", category: "" });
+
+  const fetchData = async () => {
+    const [blogRes, blogCategoryRes] = await Promise.all([fetch("/api/auth/blog"), fetch("/api/auth/blog-category")])
+    const blogJson = await blogRes.json();
+    const blogCategoryJson = await blogCategoryRes.json();
+    setData(blogJson.data);
+    setBlogCategoryData(blogCategoryJson.data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const filteredData = data.filter(
+    (item) =>
+      item.title.toLowerCase().includes(search.title.toLowerCase()) &&
+      item.category.toLowerCase().includes(search.category.toLowerCase())
+  );
+
+  const totalPages = Math.ceil(filteredData.length / recordsPerPage);
+  const currentData = filteredData.slice(
+    (currentPage - 1) * recordsPerPage,
+    currentPage * recordsPerPage
+  );
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const handleSave = async (form: any) => {
+    if (!modal) return;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let res: any = null;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let data: any = null;
+
+    try {
+      if (modal.mode === "create") {
+        res = await fetch("/api/auth/blog", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form)
+        });
+      } else if (modal.mode === "edit") {
+        res = await fetch(`/api/auth/blog/${modal.item._id}`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(form),
+        });
+      } else if (modal.mode === "delete") {
+        res = await fetch(`/api/auth/blog/${modal.item._id}`, {
+          method: "DELETE",
+        });
+      }
+      data = await res.json();
+      if (res.ok) {
+        showTooltip(data?.message, "success");
+      } else {
+        showTooltip(data.message || "Something went wrong", "error");
+      }
+    }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    catch (error) {
+      console.log("Internal Server Error ", error)
+      showTooltip("Internal Server Error", "error");
+    } finally {
+      setModal(null);
+      fetchData();
+    }
+  };
+
+  return (
+    <div className="p-4">
+      {tooltip && <Tooltip message={tooltip.message} type={tooltip.type} />}
+      <PageBreadcrumb pageTitle="Blog" />
+      <div className="flex justify-end items-center mb-4">
+        <button onClick={() => setModal({ mode: "create" })} className="bg-learning cursor-pointer text-white px-4 py-2 rounded-lg transition hover:bg-learning/90">
+          + Create Blog
+        </button>
+      </div>
+      <div className="flex gap-3 mb-4">
+        {["title", "category"].map((key) => (
+          <input
+            key={key}
+            type="text"
+            placeholder={`Search by ${key}`}
+            className="border px-2 py-1 rounded"
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            value={(search as any)[key]}
+            onChange={(e) => setSearch({ ...search, [key]: e.target.value })}
+          />
+        ))}
+      </div>
+      <table className="min-w-full bg-white border rounded shadow">
+        <thead>
+          <tr className="bg-gray-100">
+            <th className="py-2 px-3 border">Title</th>
+            <th className="py-2 px-3 border">Category</th>
+            <th className="py-2 px-3 border">Date</th>
+            <th className="py-2 px-3 border">Description</th>
+            <th className="py-2 px-3 border">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {currentData.map((item) => (
+            <tr key={item._id} className="text-center">
+              <td className="border p-2">{item.title}</td>
+              <td className="border p-2">{item.category}</td>
+              <td className="border p-2">{item.date.split("-").reverse().join("/")}</td>
+              <td className="border p-2 flex items-center justify-center"
+              >{extractExcerpt(item.content, 20)}...
+
+                <span onClick={() => { setBlogDescription(extractExcerpt(item.content, 500)), setShowDescription(!showDescription); }}
+                >
+                  {showDescription ? (
+                    <IoEyeOutline size={17} className="text-gray-500 cursor-pointer" />
+                  ) : (
+                    <IoEyeOffOutline size={17} className="text-gray-500 cursor-pointer" />
+                  )}
+                </span>
+              </td>
+              <td className="border">
+                <div className="flex mx-1 gap-2 justify-center">
+                  <button onClick={() => setModal({ mode: "edit", item })} className="bg-green-600 cursor-pointer text-white px-3 py-1 rounded">
+                    Edit
+                  </button>
+                  <button onClick={() => setModal({ mode: "delete", item })} className="bg-red-600 cursor-pointer text-white px-3 py-1 rounded">
+                    Delete
+                  </button>
+                </div>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <div className="flex justify-center items-center gap-2 mt-4">
+        <button
+          className="px-3 py-1 border cursor-pointer rounded disabled:opacity-50"
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage((prev) => prev - 1)}
+        >
+          Prev
+        </button>
+
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => setCurrentPage(page)}
+            className={`px-3 py-1 border cursor-pointer rounded ${currentPage === page ? "bg-blue-600 text-white" : ""}`}
+          >
+            {page}
+          </button>
+        ))}
+        <button
+          className="px-3 py-1 border cursor-pointer rounded disabled:opacity-50"
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage((prev) => prev + 1)}
+        >
+          Next
+        </button>
+      </div>
+      {modal && (
+        <BlogModel
+          mode={modal.mode}
+          initialData={modal.item}
+          onClose={() => setModal(null)}
+          onSave={handleSave}
+          blogCategorydata={blogCategorydata}
+        />
+      )}
+      {
+        showDescription && <MessageModel closedModel={setShowDescription} data={blogDescription}  mode="blog" />
+      }
+    </div>
+  );
+}
+

@@ -13,13 +13,13 @@ export default function Footer() {
             <Logo />
           </div>
           <p className="mb-6 max-w-xs">
-            Experience luxury, comfort and unforgettable hospitality.
-            Where elegance meets relaxation.
+            Experience luxury, comfort and unforgettable hospitality. Where elegance meets relaxation.
           </p>
           <div className="flex gap-4 mt-4">
             {
               footerData?.socialMedia.map((item, index) => (
-                <Link key={index} title={item.socialMediaName} href={item.url} className="w-10 h-10 flex items-center justify-center rounded-full bg-white transition">
+                <Link key={index} title={item.socialMediaName} target="_blank"
+                  rel="noopener noreferrer" href={item.url} className="w-10 h-10 flex items-center justify-center rounded-full bg-white transition">
                   {item.icon}
                 </Link>
               ))
@@ -27,7 +27,7 @@ export default function Footer() {
           </div>
         </div>
         <div>
-          
+
           <h3 className="text-xl font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-3">
             {
@@ -40,9 +40,8 @@ export default function Footer() {
             }
           </ul>
         </div>
-
         <div>
-          <h3 className="text-xl font-semibold mb-4">Services</h3>
+          <h3 className="text-xl font-semibold mb-4">Amenities</h3>
           <ul className="space-y-3">
             {
               footerData?.services.map((item, index) => (
@@ -54,7 +53,6 @@ export default function Footer() {
             }
           </ul>
         </div>
-
         <div>
           <h3 className="text-xl font-semibold mb-4">Stay Updated</h3>
           <div className="space-y-3 text-gray-300 mb-4">
@@ -68,7 +66,7 @@ export default function Footer() {
                         href={item.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm hover:text-skyBlue transition text-ftextcol mb-0"
+                        className="hover:text-skyBlue transition text-ftextcol mb-0"
                       >
                         <span>Websofy Software Pvt. Ltd., Indira Nagar, Lucknow, Uttar Pradesh</span>
                       </Link>
@@ -77,7 +75,7 @@ export default function Footer() {
                         {item.icon}
                         <Link
                           href={item.url}
-                          className="text-sm hover:text-skyBlue transition text-ftextcol mb-0"
+                          className="hover:text-skyBlue transition text-ftextcol mb-0"
                         >
                           {item.title}
                         </Link>
@@ -87,17 +85,6 @@ export default function Footer() {
               ))
             }
           </div>
-          <p className="text-gray-300 mb-4">Subscribe for exclusive offers & updates.</p>
-          <form className="flex items-center w-[18em] bg-white rounded-full overflow-hidden">
-            <input
-              type="email"
-              placeholder="Enter your email"
-              className="flex-1 px-4 py-3 text-black outline-none"
-            />
-            <button className="px-6 py-3 bg-skyBlue hover:bg-skyBlue/80 transition text-white font-semibold">
-              Subscribe
-            </button>
-          </form>
         </div>
       </div>
       <div className="border-t border-white/10 mt-12 pt-6 text-center text-gray-400 text-sm">

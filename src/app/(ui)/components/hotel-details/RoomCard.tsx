@@ -16,7 +16,6 @@ const RoomCard: React.FC<RoomCardProps> = ({ property, viewMode }) => {
     const [openModal, setOpenModal] = useState(false);
     const [openGallery, setOpenGallery] = useState(false);
 
-
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
@@ -39,7 +38,6 @@ const RoomCard: React.FC<RoomCardProps> = ({ property, viewMode }) => {
                 <Link
                     href="#"
                     // href={`/properties/properties-list/${property.slug}`}
-                    onClick={() => setOpenModal(true)}
 
                     className={`group ${viewMode === "list" && "flex"}`}>
                     <div className={`relative ${viewMode === "list" && "w-[30%]"}`}>
@@ -158,7 +156,7 @@ const RoomCard: React.FC<RoomCardProps> = ({ property, viewMode }) => {
                             onClick={() => setOpenModal(true)}
                             className="w-full mt-2 font-semibold hover:bg-primary hover:text-white text-primary py-2 rounded-lg border border-primary transition"
                         >
-                            Book Your Room
+                            Book Your Room Now..!
                         </button>
                     </div>
                 </Link>

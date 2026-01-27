@@ -13,15 +13,15 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black/20"></div>
       <div className="relative z-10 container mx-auto px-6 top-12 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
         <div data-aos="fade-right" className="text-white space-y-6">
-          <h1 className="text-white font-bold leading-tight">
+          <h1 className="text-white leading-tight">
             LuxeLeaf A Luxury Hotel
           </h1>
-          <p className="text-lg  opacity-90">
+          <p className="text-lg opacity-90">
             Experience luxurious comfort with world-class amenities, peaceful surroundings,
             and an unforgettable stay tailored just for you.
           </p>
           <button
-            onClick={()=>router.push("/category")}
+            onClick={()=>router.push("/hotel-location")}
             className="inline-block font-semibold py-2 md:py-4 text-lg md:text-xl px-4 md:px-8 bg-skyBlue/80 border border-transparent text-white rounded-lg hover:bg-skyBlue transition duration-300 text-nowrap">
             Explore Hotels
           </button>

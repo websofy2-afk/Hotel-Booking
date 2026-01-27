@@ -1,7 +1,7 @@
 "use client";
 import { hotelData, hotelDetails } from "@/utils/constant";
 import Image from "next/image";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useRef } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
@@ -18,6 +18,7 @@ export default function HotelListPage() {
     const hotel = selectedHotel?.hotels;
     const [openAmenitiesIndex, setOpenAmenitiesIndex] = useState<number | null>(null);
     const popupRef = useRef<HTMLDivElement>(null);
+    const [searchTerm, setSearchTerm] = useState("");
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -39,7 +40,6 @@ export default function HotelListPage() {
         "Rating - High to Low",
     ];
 
-
     const [activeFilter, setActiveFilter] = useState(filterOptions[0]);
     const router = useRouter();
     const [openFilter, setOpenFilter] = useState<string | null>(null);
@@ -49,9 +49,11 @@ export default function HotelListPage() {
     const priceRanges = [
         { id: "2000-3000", label: "₹2000 to ₹3000", min: 2000, max: 3000 },
         { id: "3000-5000", label: "₹3000 to ₹5000", min: 3000, max: 5000 },
-        { id: "5000-6500", label: "₹5000 to ₹6500", min: 5000, max: 6500 },
+        { id: "5000-6500", label: "₹5000 to ₹6500", min: 5000, max: 6500 }
     ];
+
     const [isLoading, setIsLoading] = useState(true);
+
     useEffect(() => {
         const t = setTimeout(() => setIsLoading(false), 1500);
         return () => clearTimeout(t);
@@ -67,7 +69,9 @@ export default function HotelListPage() {
         }
 
         if (selectedRating) ok = hotel.rating >= selectedRating;
-
+        if (searchTerm.trim()) {
+            ok = ok && hotel.name.toLowerCase().includes(searchTerm.toLowerCase());
+        }
         return ok;
     });
 
@@ -199,11 +203,20 @@ export default function HotelListPage() {
                         <h2 className="text-3xl">Showing hotels in {location}</h2>
                         <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-midnight_text ml-auto">
                             <CiSearch className="text-gray-500 text-xl" />
+                            {/* <input
+                                type="text"
+                                placeholder="Search Hotel"
+                                className="outline-none  text-sm bg-transparent"
+                            /> */}
+
                             <input
                                 type="text"
-                                placeholder="Search Location"
-                                className="outline-none  text-sm bg-transparent"
+                                placeholder="Search Hotel"
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="outline-none text-sm bg-transparent"
                             />
+
                         </div>
                     </div>
                 </div>
@@ -326,7 +339,7 @@ export default function HotelListPage() {
                                                 </span>
                                                 {openAmenitiesIndex === hotel.id && (
                                                     <div className="absolute translate-x-14 translate-y-2  top-0 left-0 z-50 bg-gray/5  shadow-xl rounded-md p-3 w-32">
-                                                        <p className="font-semibold pl-2">Aminities</p>
+                                                        <p className="font-semibold pl-2">Amenities</p>
                                                         {hotel.amenities.map((item, i) => (
                                                             <div
                                                                 key={i}

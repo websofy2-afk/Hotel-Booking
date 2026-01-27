@@ -8,7 +8,7 @@ export const headerData = [
     //   { label: "Property Details", href: "/properties/properties-list/modern-apartment" },
     // ],
   },
-   { label: "Category", href: "/category" },
+  //  { label: "Category", href: "/category" },
   //  { label: "Amenities", href: "#" },
   //  { label: "Offers", href: "#" },
    { label: "Gallery", href: "/gallery" },

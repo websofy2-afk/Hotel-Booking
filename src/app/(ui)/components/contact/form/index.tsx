@@ -67,7 +67,8 @@ const ContactForm = () => {
 
   return (
     <div className="bg-white shadow-lg rounded-xl p-8" data-aos="fade-right">
-      <h2 className="text-2xl font-semibold mb-6">Send Us a Message</h2>
+      <h1 className="md:text-[40px] mb-6 uppercase">Send Us{" "} 
+        <span className="text-skyBlue">a Message</span></h1>
       <form onSubmit={handleSubmit} className="space-y-5">
         <div>
           <label className="block mb-1 font-medium">Name</label>

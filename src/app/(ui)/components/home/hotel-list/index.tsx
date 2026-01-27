@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from 'react';
 import PropertyCard from './property-card';
-import { roomData } from '@/utils/roomData';
+import { locationData, roomData } from '@/utils/roomData';
 import { useHotel } from '@/context-api/CategoryContext';
 
-const Listing = () => {
+const LocationListing = () => {
   const [properties, setProperties] = useState<any[]>([])
   
   useEffect(() => {
@@ -26,15 +26,16 @@ const Listing = () => {
 
   return (
     <section className="flex justify-center items-center">
-      <div className="lg:max-w-screen-xl md:max-w-screen-md mx-auto container px-4">
-        <h2 className="text-4xl mb-12 text-midnight_text" data-aos="fade-up">
+      <div className="lg:max-w-screen-xl md:max-w-screen-md mx-auto px-4 container">
+        <h2 className="mb-12 text-midnight_text text-center uppercase" data-aos="fade-up">
           Discover Your{" "}
           <span className='text-skyBlue'>Perfect Stay</span>
           </h2>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {property.map((property, index) => (
-            <div key={property.id} data-aos="fade-up" data-aos-delay={`${index * 100}`}>
-              <PropertyCard property={property} />
+          {locationData?.map((loc, index) => (
+            <div key={loc.id} data-aos="fade-up" data-aos-delay={`${index * 100}`}>
+              <PropertyCard location={loc}/>
             </div>
           ))}
         </div>
@@ -43,6 +44,6 @@ const Listing = () => {
   );
 };
 
-export default Listing;
+export default LocationListing;
 
 

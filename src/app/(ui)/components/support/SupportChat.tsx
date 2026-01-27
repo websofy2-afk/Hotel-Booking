@@ -10,12 +10,15 @@ const SupportChat = () => {
             <div className="flex items-center gap-4">
                 <FaHeadset className="text-blue-500 text-4xl" />
                 <div>
-                    <h3 className="text-midnight_text font-semibold">Customer Support</h3>
-                    <p className="text-gray">
+                    <h3 className="text-midnight_text font-semibold">Customer{" "}
+                        <span className='text-skyBlue'>Support</span></h3>
+                    <p className="text-lg text-midnight_text text-opacity-80 text-justify">
                         Need help? Contact us directly on WhatsApp.
                     </p>
-                    <Link href="tel:+9198765432" className="mt-2 text-gray flex items-center gap-4 font-medium"><FaPhoneAlt className="text-red-500" /> <span>+91-98765432</span> </Link>
-                    <Link href="mailto:info@luxeleaf.com" className="font-medium text-gray flex items-center gap-4"><FaEnvelope className="text-skyBlue" /> <span>info@luxeleaf.com</span> </Link>
+                    <div className='flex items-center mt-2 gap-6'>
+                        <Link href="tel:+9198765432" className="text-gray flex items-center gap-2 font-medium"><FaPhoneAlt className="text-red-500" /> <span>+91-98765432</span> </Link>
+                        <Link href="mailto:info@luxeleaf.com" className="font-medium text-gray flex items-center gap-2"><FaEnvelope className="text-skyBlue" /> <span>info@luxeleaf.com</span> </Link>
+                    </div>
                 </div>
             </div>
             <Link

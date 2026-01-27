@@ -5,10 +5,6 @@ import Image from "next/image";
 import ImageModal from "./ImageModal";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
-
-
-
-
 export default function HotelGallery({images} : {images? : string[]}) {
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);

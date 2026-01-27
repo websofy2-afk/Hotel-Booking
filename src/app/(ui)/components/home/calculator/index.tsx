@@ -18,12 +18,12 @@ export default function StayCalculator() {
   return (
     <section>
       <div
-        className="container px-4 lg:max-w-screen-xl mx-auto flex flex-col lg:flex-row gap-16 justify-between items-center"
+        className="container lg:max-w-screen-xl mx-auto flex flex-col lg:flex-row px-4 gap-16 justify-between items-center"
         data-aos="fade-left"
       >
         {/* Left Section */}
         <div className="max-w-xl" data-aos="fade-right">
-          <h2 className="text-4xl mb-4 text-midnight_text capitalize">
+          <h2 className=" mb-4 text-midnight_text uppercase">
             Save More{" "}
             <span className="text-skyBlue">with LuxeLeaf</span>
           </h2>
@@ -54,13 +54,7 @@ export default function StayCalculator() {
           {/* CTA Buttons */}
           <div data-aos="fade-up">
             <Link
-              href="/category"
-              className="text-xl bg-primary py-3 px-8 text-white rounded-lg me-3 mb-2 border border-primary hover:bg-blue-700"
-            >
-              Explore Rooms
-            </Link>
-            <Link
-              href="#"
+              href="/hotel-location"
               className="text-xl hover:bg-primary hover:text-white py-3 px-8 text-primary border border-primary rounded-lg me-3 mb-2"
             >
               Book Now

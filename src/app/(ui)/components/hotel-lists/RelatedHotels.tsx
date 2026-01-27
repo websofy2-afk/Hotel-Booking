@@ -2,7 +2,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { hotelData, hotelDetails, hotelList } from '@/utils/constant';
 import { FaEnvelope, FaPhoneAlt } from "react-icons/fa";
-import { useParams, useRouter, useSearchParams } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { MdOutlineStarRate } from "react-icons/md";
 import { useEffect, useRef, useState } from "react";
 import Slider from "react-slick";

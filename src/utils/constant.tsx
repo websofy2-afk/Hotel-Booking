@@ -1,4 +1,4 @@
-import { RoomCardProps, roomsProps } from "@/app/types/rooms/rooms";
+import { roomsProps } from "@/app/types/rooms/rooms";
 import { FaCheckCircle, FaConciergeBell, FaHandsHelping, FaLeaf, FaRegSmileBeam, FaStar, FaWifi } from "react-icons/fa";
 import { roomData } from "./roomData";
 
@@ -678,7 +678,6 @@ export const hotelDetails: HotelDetailsType = {
     },
   ]
 }
-
 
 export const calculator = [
   {

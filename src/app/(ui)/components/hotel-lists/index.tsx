@@ -6,12 +6,11 @@ import RelatedHotels from "./RelatedHotels";
 
 const HotelsList = () => {
     return (
-            <div>
-                <HotelInfo/>
-                {/* <HotelDetails /> */}
-                {/* <RelatedHotels /> */}
-            </div>
-
+        <div>
+            <HotelInfo />
+            {/* <HotelDetails /> */}
+            {/* <RelatedHotels /> */}
+        </div>
     )
 }
 

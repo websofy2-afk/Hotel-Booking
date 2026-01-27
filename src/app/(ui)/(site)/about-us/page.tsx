@@ -2,11 +2,6 @@ import { Metadata } from "next";
 import HeroSub from "../../components/shared/hero-sub";
 import AboutUs from "../../components/about-us";
 
-
-export const metadata: Metadata = {
-  title: "About Us | LuxeLeaf",
-};
-
 const page = () => {
   const breadcrumbLinks = [
     { href: "/", text: "Home" },

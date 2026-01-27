@@ -6,7 +6,6 @@ import { Filters } from '@/app/types/property/filtertypes';
 import { roomsProps } from '@/app/types/rooms/rooms';
 import { roomData } from '@/utils/roomData';
 
-// Context type
 interface HotelContextType {
     property: roomsProps[];
     setHotels: Dispatch<SetStateAction<roomsProps[]>>;
@@ -17,7 +16,6 @@ interface HotelContextType {
 
 export const CategoryContext = createContext<HotelContextType | undefined>(undefined);
 
-// Provider Component
 export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     const [allHotel, setAllHotel] = useState<roomsProps[]>([]);
     const [hotels, setHotels] = useState<roomsProps[]>([]);
@@ -30,7 +28,7 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children
         rating: 1,
     });
 
-    // Apply filters
+
     useEffect(() => {
         const filteredHotels = roomData?.filter((hotel) => {
             return (
@@ -55,7 +53,6 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children
         setHotels(filteredHotels);
     }, [filters, allHotel]);
 
-    // Helper: update a single filter field
     const updateFilter = (key: keyof Filters, value: string) => {
         setFilters((prev) => ({
             ...prev,

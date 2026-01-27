@@ -10,14 +10,13 @@ export default function HotelAmenities() {
     return (
         <section>
             <div className="container lg:max-w-screen-xl md:max-w-screen-md mx-auto px-4">
-                <h2 className="text-4xl mb-8 text-center text-midnight_text" data-aos="fade-left">Hotel Highlights{" "}
+                <h2 className="text-4 mb-8 text-center text-midnight_text uppercase " data-aos="fade-left">Hotel Highlights{" "}
                     <span className='text-skyBlue'>& Amenities</span>
                 </h2>
                 <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-4 gap-8">
                     {amenities.map((item, index) => (
                         <div key={index} className="image-item block" data-aos="fade-up" data-aos-delay={`${index * 100}`}>
-                            <Link 
-                            // href={`/properties/properties-list`}
+                            <Link
                             href="#"
                              className='group'>
                                 <div className='p-4 flex items-center justify-center border-2 rounded-lg border-border mb-6 group-hover:-translate-y-1 text-skyBlue group-hover:duration-500'>

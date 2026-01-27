@@ -1,5 +1,4 @@
 'use client'
-
 import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import { hotelDetails } from '@/utils/constant';

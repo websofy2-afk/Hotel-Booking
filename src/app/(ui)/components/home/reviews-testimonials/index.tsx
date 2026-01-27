@@ -34,12 +34,11 @@ export default function Testimonials() {
 
   return (
     <section className="flex justify-center bg-light items-center">
-      <div className="lg:max-w-screen-xl md:max-w-screen-md mx-auto container px-4">
+      <div className="lg:max-w-screen-xl md:max-w-screen-md mx-auto px-4 container">
 
         <h2
-          className="text-4xl mb-12 text-center text-midnight_text"
-          data-aos="fade-up"
-        >
+          className="uppercase mb-12 text-center text-midnight_text"
+          data-aos="fade-up">
           What Our{" "}
           <span className="text-skyBlue">Guests Say</span>
         </h2>
@@ -84,7 +83,6 @@ export default function Testimonials() {
           >
             <FaChevronRight className="text-xl" />
           </button>
-
         </div>
       </div>
     </section>

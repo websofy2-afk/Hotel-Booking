@@ -4,7 +4,9 @@ import { contactFormData } from "../ContactFormData";
 const ContactInfo = () => {
   return (
     <div className="bg-white shadow-lg rounded-xl p-8" data-aos="fade-left">
-      <h2 className="text-2xl font-semibold mb-6">Contact Information</h2>
+      <h2 className="mb-6 text-skyBlue">Contact{" "}
+        <span className="text-midnight_text">Information</span>
+         </h2>
       {
         contactFormData.contactInfo.map((item, index) => (
           <div key={index} className={`space-y-4 ${item.url.startsWith("https") ? "mb-6":"mb-0"}`}>

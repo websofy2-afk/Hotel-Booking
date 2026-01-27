@@ -24,6 +24,6 @@ export const reasons = [
   {
     icon: <FaParking size={30} />,
     title: "Free Parking",
-    desc: "Secure and convenient on-site parking available at no additional cost.",
+    desc: "Secure and convenient parking available at no additional cost.",
   },
 ];

@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import HotelLocationForm from "../hotel-location-form";
 import SearchLocation from "../search-location";
 
 export default function RooftopShowcase() {
@@ -10,14 +9,12 @@ export default function RooftopShowcase() {
         <section
             className="relative flex mt-16 bg-cover bg-center shadow-xl w-full h-[500px] justify-center bg-light items-center"
             style={{
-                backgroundImage:
-                    "url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1500&q=80')",
+                backgroundImage:"url('https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1500&q=80')",
             }}
         >
             <div className="absolute inset-0 bg-black/60 flex items-center justify-center">
                 <div className="text-center text-white px-6">
-                    <h1
-                        data-aos="fade-down"
+                    <h1 data-aos="fade-down"
                         className="mb-4 text-5xl text-white sm:text-5xl md:text-6xl font-bold leading-tight"
                     >
                         LuxeLeaf Hotel & Rooftop Dining

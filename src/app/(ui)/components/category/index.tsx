@@ -10,6 +10,8 @@ import SortBar from "./SortBar";
 import HotelSkeleton from "./HotelSkeleton";
 import HotelCard from "./CotegorylCard";
 import Pagination from "./Pagination";
+import { locationData } from "@/utils/roomData";
+import PropertyCard from "../home/hotel-list/property-card";
 
 export default function HotelsPage() {
   const [hotels, setHotels] = useState(hotelsData);
@@ -38,29 +40,18 @@ export default function HotelsPage() {
   );
 
   return (
-    // <section className="min-h-screen bg-light">
-    //   <div className="max-w-screen-xl mx-auto px-4 py-10 flex gap-10">
-    //     <FilterSidebar setHotels={setHotels} />
-    //     <div className="flex-1">
-    //       <SortBar setSortOption={setSortOption} />
-    //       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-5">
-    //         {loading
-    //           ? [...Array(6)].map((_, i) => <HotelSkeleton key={i} />)
-    //           : paginatedHotels.map((hotel) => (
-    //               <HotelCard key={hotel.id} hotel={hotel} />
-    //             ))}
-    //       </div>
-    //       <Pagination
-    //         currentPage={page}
-    //         totalItems={sortedHotels.length}
-    //         perPage={perPage}
-    //         onPageChange={setPage}
-    //       />
-    //     </div>
-    //   </div>
-    // </section>
-    <>
-      <CategoryList />
-    </>
+
+    <section>
+      {/* <CategoryList /> */}
+
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:max-w-screen-xl md:max-w-screen-md mx-auto container px-4">
+        {locationData?.map((loc, index) => (
+          <div key={loc.id} data-aos="fade-up" data-aos-delay={`${index * 100}`}>
+            <PropertyCard location={loc} />
+          </div>
+        ))}
+      </div>
+    </section>
   );
 }

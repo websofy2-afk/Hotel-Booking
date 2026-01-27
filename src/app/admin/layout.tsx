@@ -1,10 +1,12 @@
 
+// import "./globals-admin.css";
+
+import { SidebarProvider } from "@/context-api/SidebarContext";
+
 export default function RootLayout({
-    children,
+  children,
 }: Readonly<{
-    children: React.ReactNode;
+  children: React.ReactNode;
 }>) {
-    return (
-        <>{children}</>
-    );
+  return <SidebarProvider>{children}</SidebarProvider>
 }
