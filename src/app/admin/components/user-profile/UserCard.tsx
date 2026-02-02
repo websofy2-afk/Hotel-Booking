@@ -261,35 +261,33 @@ export default function UserCard() {
             />
           </div>
           :
-          <div className="p-5 border border-gray-200 rounded-2xl lg:p-6">
+          <div className="p-5 border w-full border-border shadow-md shadow-skyBlue/20 outline-none rounded-2xl lg:p-6">
             <div className="flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
-
               <div className="flex flex-col items-center w-full gap-6 xl:flex-row">
                 <div className="w-20 overflow-hidden ">
                   <Image width={80} height={80} src="/images/logo/user.jpg" alt="user"
                     className="w-16 h-16 rounded-full"
                   />
                 </div>
-
                 <div className="w-full">
-                  <h4 className="mb- text-lg font-semibold text-MidnightNavyText">
+                  <h4 className="mb- text-lg font-semibold text-midnight_text">
                     {user.firstName} {user.lastName}
                   </h4>
-                  <p className="text-sm text-SlateBlueText">{user.bio || "—"}</p>
+                  <p className="text-sm text-gray">{user.bio || "—"}</p>
                 </div>
               </div>
 
               <div className="flex items-center gap-5 justify-center">
                 <button
                   onClick={updateProfile}
-                  className="flex w-full items-center cursor-pointer justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-14 font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 lg:inline-flex lg:w-auto"
+                  className="flex w-full items-center cursor-pointer justify-center gap-2 rounded-full border border-semidark bg-white px-3 py-1 text-14 font-medium text-midnight_text shadow-md shadow-skyBlue/20 hover:bg-light hover:text-semidark lg:inline-flex lg:w-auto"
                 >
                   <SquarePen size={13} />
                   Edit
                 </button>
                 <button
                   onClick={updatePassword}
-                  className="flex w-full items-center cursor-pointer justify-center gap-2 rounded-full border border-gray-300 bg-white px-4 py-3 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 lg:inline-flex lg:w-44"
+                  className="flex w-full items-center cursor-pointer justify-center gap-2 rounded-full border border-gray-300 bg-white px-3 py-1 font-medium text-midnight_text shadow-md shadow-skyBlue/20 hover:bg-light hover:text-semidark  lg:inline-flex lg:w-44"
                 >
                   <Key size={15} />
                   Reset Password
@@ -297,11 +295,11 @@ export default function UserCard() {
               </div>
             </div>
             <div className="mt-6 grid grid-cols-1 gap-4 lg:grid-cols-2">
-              <p className="text-SlateBlueText"><strong className="text-MidnightNavyText">Email:</strong> {user.email}</p>
-              <p className="text-SlateBlueText"><strong className="text-MidnightNavyText">Phone:</strong> {user.phone || "—"}</p>
-              <p className="text-SlateBlueText"><strong className="text-MidnightNavyText">Country:</strong> {user.country || "—"}</p>
-              <p className="text-SlateBlueText"><strong className="text-MidnightNavyText">City/State:</strong> {user.city || "—"}</p>
-              <p className="text-SlateBlueText"><strong className="text-MidnightNavyText">Postal Code:</strong> {user.postalCode || "—"}</p>
+              <p className="text-gray"><strong className="text-midnight_text">Email:</strong> {user.email}</p>
+              <p className="text-gray"><strong className="text-midnight_text">Phone:</strong> {user.phone || "—"}</p>
+              <p className="text-gray"><strong className="text-midnight_text">Country:</strong> {user.country || "—"}</p>
+              <p className="text-gray"><strong className="text-midnight_text">City/State:</strong> {user.city || "—"}</p>
+              <p className="text-gray"><strong className="text-midnight_text">Postal Code:</strong> {user.postalCode || "—"}</p>
             </div>
           </div>
       }
@@ -314,7 +312,7 @@ export default function UserCard() {
           >
             <form
               onSubmit={handleSaveProfile}
-              className="w-full bg-white border border-gray-300 rounded-3xl p-6 lg:p-10"
+              className="w-full bg-white border border-border  rounded-3xl p-6 lg:p-10"
             >
               <h4 className="text-2xl font-semibold mb-4 text-gray-800">Edit Profile</h4>
 
@@ -325,7 +323,8 @@ export default function UserCard() {
                     name="firstName"
                     value={formData.firstName}
                     onChange={handleChange}
-                    className="h-11 w-full rounded-lg border px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden"
+                    className="h-11 w-full rounded-lg border p-2 border-border shadow-md shadow-skyBlue/20 outline-none
+                    px-4 py-2.5 text-sm placeholder:text-midnight_text focus:outline-hidden"
                   />
                 </div>
 
@@ -335,7 +334,8 @@ export default function UserCard() {
                     name="lastName"
                     value={formData.lastName}
                     onChange={handleChange}
-                    className="h-11 w-full rounded-lg border px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden"
+                    className="h-11 w-full rounded-lg border p-2 border-border shadow-md shadow-skyBlue/20 outline-none
+                    px-4 py-2.5 text-sm placeholder:text-midnight_text focus:outline-hidden"
                   />
                 </div>
 
@@ -345,46 +345,51 @@ export default function UserCard() {
                     name="email"
                     value={formData.email}
                     disabled
-                    className="h-11 w-full cursor-no-drop rounded-lg border px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden"
+                    className="h-11 w-full rounded-lg border p-2 border-border shadow-md shadow-skyBlue/20 outline-none
+                    px-4 py-2.5 cursor-not-allowed text-sm placeholder:text-midnight_text focus:outline-hidden"
                   />
                 </div>
-
                 <div>
                   <Label>Phone</Label>
                   <input
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="h-11 w-full rounded-lg border px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden"
+                    className="h-11 w-full rounded-lg border p-2 border-border shadow-md shadow-skyBlue/20 outline-none
+                    px-4 py-2.5 text-sm placeholder:text-midnight_text focus:outline-hidden"
                   />
                 </div>
-                <div className="col-span-2 flex gap-6">
-                  <div>
+                <div className="col-span-2 flex gap-6 justify-center">
+                  <div className="w-60">
                     <Label>Country</Label>
                     <input
                       name="country"
                       value={formData.country}
                       onChange={handleChange}
-                      className="h-11 w-full rounded-lg border px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden"
+                      className="h-11 w-full rounded-lg border p-2 border-border shadow-md shadow-skyBlue/20 outline-none
+                    px-4 py-2.5 text-sm placeholder:text-midnight_text focus:outline-hidden"
                     />
                   </div>
-                  <div>
+
+                  <div className="w-60">
                     <Label>City/State</Label>
                     <input
                       name="city"
                       value={formData.city}
                       onChange={handleChange}
-                      className="h-11 w-full rounded-lg border px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden"
+                      className="h-11 w-full rounded-lg border p-2 border-border shadow-md shadow-skyBlue/20 outline-none
+                    px-4 py-2.5 text-sm  placeholder:text-midnight_text focus:outline-hidden"
                     />
                   </div>
 
-                  <div>
+                  <div className="w-60">
                     <Label>Postal Code</Label>
                     <input
                       name="postalCode"
                       value={formData.postalCode}
                       onChange={handleChange}
-                      className="h-11 w-full rounded-lg border px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden"
+                      className="h-11 w-full rounded-lg border p-2 border-border shadow-md shadow-skyBlue/20 outline-none
+                    px-4 py-2.5 text-sm  placeholder:text-midnight_text focus:outline-hidden"
                     />
                   </div>
                 </div>
@@ -396,7 +401,9 @@ export default function UserCard() {
                     name="bio"
                     value={formData.bio}
                     onChange={handleChange}
-                    className="w-full rounded-lg border px-4 py-2.5 text-sm shadow-theme-xs resize-none placeholder:text-gray-400 focus:outline-hidden"
+                    className="w-full 
+                    rounded-lg border p-2 border-border shadow-md shadow-skyBlue/20 outline-none
+                     px-4 py-2.5 text-sm resize-none placeholder:text-midnight_text focus:outline-hidden"
                   />
                 </div>
               </div>
@@ -425,20 +432,20 @@ export default function UserCard() {
       {mode === "passwordUpdate" &&
         (
           <Modal isOpen={isOpen} onClose={closeModal} className="max-w-[700px] m-4">
-            <form onSubmit={handleSavePassword} className="w-full max-w-[700px] bg-white border border-gray-300 rounded-3xl p-6 lg:p-10">
+            <form onSubmit={handleSavePassword} className="w-full max-w-[700px] bg-white border border-border rounded-3xl p-6 lg:p-10">
               <h4 className="text-2xl font-semibold mb-4 text-gray-800">Reset Password</h4>
               <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                 <div>
                   <Label>Old Password</Label>
-                  <input type="password" name="oldPassword" value={updateCredentials.oldPassword} onChange={handlePasswordChange} className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden" />
+                  <input type="password" name="oldPassword" value={updateCredentials.oldPassword} onChange={handlePasswordChange} className="h-11 w-full p-2 border-border shadow-md shadow-skyBlue/20 outline-none placeholder:text-midnight_text focus:outline-hidden rounded-lg border appearance-none px-4 py-2.5 text-sm placeholder:text-gray-400 focus:outline-hidden" />
                 </div>
                 <div>
                   <Label>New Password</Label>
-                  <input type="password" name="newPassword" value={updateCredentials.newPassword} onChange={handlePasswordChange} className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden" />
+                  <input type="password" name="newPassword" value={updateCredentials.newPassword} onChange={handlePasswordChange} className="h-11 w-full p-2 border-border shadow-md shadow-skyBlue/20 outline-none placeholder:text-midnight_text focus:outline-hidden rounded-lg border appearance-none px-4 py-2.5 text-sm placeholder:text-gray-400 focus:outline-hidden" />
                 </div>
                 <div>
                   <Label>Confirm New Password</Label>
-                  <input type="password" name="confirmPassword" value={updateCredentials.confirmPassword} onChange={handlePasswordChange} className="h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-gray-400 focus:outline-hidden" />
+                  <input type="password" name="confirmPassword" value={updateCredentials.confirmPassword} onChange={handlePasswordChange} className="h-11 w-full p-2 border-border shadow-md shadow-skyBlue/20 outline-none placeholder:text-midnight_text focus:outline-hidden rounded-lg border appearance-none px-4 py-2.5 text-sm placeholder:text-gray-400 focus:outline-hidden" />
                 </div>
                 <div>
                   <div className="flex">
@@ -449,11 +456,10 @@ export default function UserCard() {
                     />
                   </div>
                 </div>
-
               </div>
 
               <div className="flex justify-between items-center gap-3 mt-6">
-                <p className="text-sm text-primary w-72"> <span className="font-bold">Note* :</span> You will be logged out of the admin panel once you update your password.</p>
+                <p className="text-sm text-red-500 w-72"> <span className="font-bold">Note* :</span> You will be logged out of the admin panel once you update your password.</p>
                 <div className="flex gap-3">
                   <Button type="button" variant="outline" onClick={closeModal}>Cancel</Button>
                   {

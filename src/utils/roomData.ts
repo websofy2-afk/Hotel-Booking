@@ -80,10 +80,6 @@ export const roomData = [
   },
 ];
 
-
-
-
-
 export const locationData : locationProps[]  = [
   {
     id: 1,

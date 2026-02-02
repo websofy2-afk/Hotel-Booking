@@ -16,7 +16,8 @@ export default function SignUpForm() {
     lastName: "",
     email: "",
     password: "",
-  })
+  });
+
   const captchaRef = useRef<ReCAPTCHA | null>(null);
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
   const [loading, setLoading] = useState(false)
@@ -38,7 +39,6 @@ export default function SignUpForm() {
 
   const handleSignup = async (e: React.FormEvent) => {
     e.preventDefault();
-
      if (!strongPasswordRegex.test(form.password)) {
             setLoading(false);
             captchaRef.current?.reset();
@@ -80,22 +80,20 @@ export default function SignUpForm() {
       <div className="flex flex-col justify-center sm:pt-10 flex-1 w-full max-w-md mx-auto">
         <div>
           <div className="mb-5 sm:mb-8">
-            <h1 className="mb-2 font-semibold text-MidnightNavyText text-28 sm:text-36">
+            <h1 className="mb-2">
               Sign Up
             </h1>
-            <p className="text-sm text-SlateBlueText">
+            <p className="text-lg text-gray">
               Enter your email and password to sign up!
             </p>
           </div>
-
           <div>
             <form onSubmit={handleSignup}>
               <div className="space-y-5">
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                  {/* <!-- First Name --> */}
                   <div className="sm:col-span-1">
                     <Label>
-                      First Name<span className="text-primary">*</span>
+                      First Name<span className="text-red-500">*</span>
                     </Label>
                     <Input
                       type="text"
@@ -106,10 +104,9 @@ export default function SignUpForm() {
                       onChange={(e) => setForm({ ...form, firstName: e.target.value })}
                     />
                   </div>
-                  {/* <!-- Last Name --> */}
                   <div className="sm:col-span-1">
                     <Label>
-                      Last Name<span className="text-primary">*</span>
+                      Last Name<span className="text-red-500">*</span>
                     </Label>
                     <Input
                       type="text"
@@ -124,7 +121,7 @@ export default function SignUpForm() {
                 <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                   <div>
                     <Label>
-                      Email<span className="text-primary">*</span>
+                      Email<span className="text-red-500">*</span>
                     </Label>
                     <Input
                       type="email"
@@ -137,7 +134,7 @@ export default function SignUpForm() {
                   </div>
                   <div>
                     <Label>
-                      Password<span className="text-primary">*</span>
+                      Password<span className="text-red-500">*</span>
                     </Label>
                     <div className="relative">
                       <Input
@@ -186,7 +183,7 @@ export default function SignUpForm() {
               </div>
             </form>
             <div className="mt-5">
-              <p className="text-sm font-normal text-center text-learning hover:text-learning/80 sm:text-start">
+              <p className="text-sm font-normal text-center text-primary hover:text-primary/80 sm:text-start">
                 Already have an account?{" "}
                 <Link
                   href="/admin/signin"

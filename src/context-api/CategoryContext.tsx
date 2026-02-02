@@ -12,6 +12,11 @@ interface HotelContextType {
     filters: CategoryFilters;
     setFilters: Dispatch<SetStateAction<CategoryFilters>>;
     updateFilter: (key: keyof Filters, value: string) => void;
+    hotelLocation: any[];
+    photos: any[];
+    videos: any[];
+    testimonial: any[];
+    faq: any[];
 }
 
 export const CategoryContext = createContext<HotelContextType | undefined>(undefined);
@@ -28,6 +33,32 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children
         rating: 1,
     });
 
+    const [hotelLocation, setHotelLocation] = useState<any[]>([]);
+    const [photos, setPhotos] = useState<any[]>([]);
+    const [videos, setVideos] = useState<any[]>([]);
+    const [testimonial, setTestimonial] = useState<any[]>([]);
+    const [faq, setFaq] = useState<any[]>([]);
+
+    const fetchData = async () => {
+        try {
+            const [hotelLocationRes, photosRes, videosRes, testimonialRes, faqRes] = await Promise.all([fetch("/api/auth/hotel-location"), fetch("/api/auth/gallery/photo"), fetch("/api/auth/gallery/video"), fetch("/api/auth/testimonial"), fetch("/api/auth/faq")]);
+
+            if (!hotelLocationRes.ok || !photosRes.ok || !videosRes || !testimonialRes || !faqRes) throw new Error("Failed to fetch");
+            const hotelLocationJson = await hotelLocationRes.json();
+            const photosResJson = await photosRes.json();
+            const videosResJson = await videosRes.json();
+            const testimonialResJson = await testimonialRes.json();
+            const faqResJson = await faqRes.json();
+
+            setHotelLocation(hotelLocationJson?.data);
+            setPhotos(photosResJson?.data);
+            setVideos(videosResJson?.data);
+            setTestimonial(testimonialResJson?.data);
+            setFaq(faqResJson?.data);
+        } catch (error) {
+            console.error("Error fetching data records :", error);
+        }
+    }
 
     useEffect(() => {
         const filteredHotels = roomData?.filter((hotel) => {
@@ -53,6 +84,10 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children
         setHotels(filteredHotels);
     }, [filters, allHotel]);
 
+    useEffect(() => {
+        fetchData();
+    }, []);
+
     const updateFilter = (key: keyof Filters, value: string) => {
         setFilters((prev) => ({
             ...prev,
@@ -68,6 +103,11 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children
                 filters,
                 setFilters,
                 updateFilter,
+                hotelLocation,
+                photos,
+                videos,
+                testimonial,
+                faq
             }}
         >
             {children}
@@ -76,10 +116,10 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children
 };
 
 export const useHotel = () => {
-    const data = useContext(CategoryContext);
-    if (!data) {
-        return null;
+    const dataContext = useContext(CategoryContext);
+    if (!dataContext) {
+        throw new Error("useHotel must be used within HotelProvider");
     } else {
-        return data;
+        return dataContext;
     }
 }

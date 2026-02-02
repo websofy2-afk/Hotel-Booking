@@ -1,19 +1,21 @@
 "use client";
-import { locationList } from "@/utils/constant";
 import { useRouter } from "next/navigation";
 import { useState, useMemo } from "react";
 import { MdLocationOn } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import { CiLocationOn } from "react-icons/ci";
+import { useHotel } from "@/context-api/CategoryContext";
 
-export default function SearchLocation({ closeModal }: { closeModal?: () => void; }) {
+export function SearchLocation({ closeModal }: { closeModal?: () => void}) {
     const [location, setLocation] = useState("Lucknow");
     const [inputPlaceholder, setInputPlaceholder] = useState("");
     const [showLocation, setShowLocation] = useState(false);
+    const { hotelLocation } = useHotel();
     const router = useRouter();
+    const locationList = hotelLocation?.map(item => item.hotelLocation);
 
     const filteredLocations = useMemo(() => {
-        if (!location) return locationList;
+        if (!location) return [...locationList].reverse();
         return locationList.filter((loc) =>
             loc.toLowerCase().includes(location.toLowerCase())
         );
@@ -80,7 +82,8 @@ export default function SearchLocation({ closeModal }: { closeModal?: () => void
                                         key={index}
                                         className={`py-2 text-xl px-3 flex items-center border-white/70 gap-2 hover:bg-gray-100 text-midnight_text cursor-pointer ${index !== filteredLocations.length - 1 ? "border-b" : ""}`}
                                         onClick={() => handleLocation(loc)}
-                                    ><CiLocationOn />{loc}
+                                    ><CiLocationOn />
+                                        {loc}
                                     </p>
                                 ))}
                             </div>

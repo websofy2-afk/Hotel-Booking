@@ -78,14 +78,14 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
     <div className="fixed inset-0 bg-opacity-50 flex items-center justify-center z-[9999] bg-black/60">
       {tooltip && <Tooltip message={tooltip.message} type={tooltip.type} />}
       <div
-        className="bg-white p-6 rounded-lg w-[95%] max-w-[1150px] max-h-[90vh] shadow-lg 
-                   overflow-y-auto scroll-smooth hide-scrollbar" onClick={(e) => e.stopPropagation()}
+        className={`bg-white p-6 rounded-lg w-[95%] ${mode === "delete" ? "max-w-[550px]" : "max-w-[1150px]"}  max-h-[90vh] shadow-lg 
+                   overflow-y-auto scroll-smooth hide-scrollbar` } onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-semibold">{mode === "edit" ? "Update" : mode === "delete" ? "Delete" : "Create"} Blog</h2>
+          <h2 className="text-xl">{mode === "edit" ? "Update" : mode === "delete" ? "Delete" : "Create"} Blog</h2>
           <button
             onClick={onClose}
-            className="cursor-pointer right-3 top-3 z-999 flex h-9.5 w-9.5 items-center justify-center rounded-full bg-gray-100 text-gray-400 transition-colors hover:bg-gray-200 hover:text-gray-700 sm:right-6 sm:top-6 sm:h-11 sm:w-11"
+            className="cursor-pointer right-3 top-3 z-999 flex h-9.5 w-9.5 items-center justify-center rounded-full bg-herobg/50 text-midnight_text transition-colors hover:bg-herobg hover:text-gray sm:right-6 sm:top-6 sm:h-11 sm:w-11"
           >
             <X />
           </button>
@@ -102,7 +102,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   <input
                     name="title"
                     placeholder="Title"
-                    className="border w-full p-2 rounded"
+                    className="border border-border shadow-md shadow-skyBlue/20 outline-none w-full p-2 rounded"
                     value={form.title}
                     onChange={handleChange}
                   />
@@ -112,7 +112,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   <input
                     name="subTitle"
                     placeholder="Subtitle"
-                    className="border w-full p-2 rounded"
+                    className="border w-full p-2 rounded border-border shadow-md shadow-skyBlue/20 outline-none"
                     value={form.subTitle}
                     onChange={handleChange}
                   />
@@ -123,7 +123,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   <Label>Category</Label>
                   <select
                     name="category"
-                    className="border w-full p-2 rounded cursor-pointer"
+                    className="border w-full p-2 rounded cursor-pointer border-border shadow-md shadow-skyBlue/20 outline-none"
                     value={form.category}
                     onChange={handleChange}
                   >
@@ -141,7 +141,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   <input
                     name="hashtag"
                     placeholder="Hashtag Seprated By Comma"
-                    className="border w-full p-2 rounded"
+                    className="border w-full p-2 rounded border-border shadow-md shadow-skyBlue/20 outline-none"
                     value={form.hashtag}
                     onChange={handleChange}
                   />
@@ -153,7 +153,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   <input
                     type="date"
                     name="date"
-                    className="border w-full p-2 rounded"
+                    className="border w-full p-2 rounded border-border shadow-md shadow-skyBlue/20 outline-none"
                     value={form.date}
                     onChange={handleChange}
                   />
@@ -163,7 +163,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   <input
                     name="slug"
                     placeholder="Slug"
-                    className="border w-full p-2 rounded"
+                    className="border w-full p-2 rounded border-border shadow-md shadow-skyBlue/20 outline-none"
                     value={form.slug}
                     onChange={handleChange}
                   />
@@ -176,7 +176,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   <input
                     name="metaTitle"
                     placeholder="Meta Title"
-                    className="border w-full p-2 rounded"
+                    className="border border-border shadow-md shadow-skyBlue/20 outline-none w-full p-2 rounded"
                     value={form.metaTitle}
                     onChange={handleChange}
                   />
@@ -186,7 +186,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   <input
                     name="metaDescription"
                     placeholder="Meta Description"
-                    className="border w-full p-2 rounded"
+                    className="border border-border shadow-md shadow-skyBlue/20 outline-none w-full p-2 rounded"
                     value={form.metaDescription}
                     onChange={handleChange}
                   />
@@ -200,7 +200,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   placeholder="Meta Keywords Seprated By Comma..."
                   rows={5}
                   onChange={handleChange}
-                  className="border w-full resize-none p-2 rounded"
+                  className="border border-border shadow-md shadow-skyBlue/20 outline-none w-full resize-none p-2 rounded"
                 />
               </div>
 
@@ -212,7 +212,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   placeholder="Write your schema markup..."
                   rows={15}
                   onChange={handleChange}
-                  className="border w-full resize-none p-2 rounded"
+                  className="border border-border shadow-md shadow-skyBlue/20 outline-none w-full resize-none p-2 rounded"
                 />
               </div>
 
@@ -225,6 +225,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                   config={config}
                   tabIndex={1}
                   onChange={newContent => setForm({ ...form, content: newContent })}
+                  className="border border-border shadow-md shadow-skyBlue/20 outline-none"
                 />
               </div>
               <Label>Blog Image</Label>
@@ -239,13 +240,13 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
         )}
         <div className="flex justify-end gap-3 mt-6">
           <button
-            className="bg-gray-300 cursor-pointer px-3 py-1 rounded hover:bg-gray-400"
+            className="bg-gray/30 cursor-pointer px-3 py-1 rounded hover:bg-gray/20"
             onClick={onClose}
           >
             Cancel
           </button>
           <button
-            className={`${mode === "delete" ? "bg-red-600" : "bg-blue-600"
+            className={`${mode === "delete" ? "bg-red-600" : "bg-primary"
               } text-white px-3 py-1 cursor-pointer rounded hover:opacity-90`}
             onClick={handleSubmit}
           >

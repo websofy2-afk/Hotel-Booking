@@ -35,7 +35,7 @@ export default function ContactUs() {
   const [toDate, setToDate] = useState("");
   const recordsPerPage = 10;
 
-  useEffect(() => {    
+  useEffect(() => {
     const fetchContacts = async () => {
       try {
         const res = await fetch("/api/auth/contact-us");
@@ -122,7 +122,7 @@ export default function ContactUs() {
       ...filteredData.map((d, i) =>
         [i + 1, d.name, d.phone, d.email, d.message, new Date(d?.createdAt).toLocaleDateString("en-IN")]),
     ];
-    const csvContent ="data:text/csv;charset=utf-8," + csvRows.map((e) => e.join(",")).join("\n");
+    const csvContent = "data:text/csv;charset=utf-8," + csvRows.map((e) => e.join(",")).join("\n");
 
     const encodedUri = encodeURI(csvContent);
     const link = document.createElement("a");
@@ -148,7 +148,7 @@ export default function ContactUs() {
       <PageBreadcrumb pageTitle="Contact us" />
       <div className="flex items-start justify-between gap-12">
         <div className="flex sm:flex-row justify-start items-center mb-6 gap-4">
-          <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="flex items-center gap-3 w-full sm:w-[14em]">
             <input
               type="text"
               placeholder="Search by Email Or Phone"
@@ -157,10 +157,10 @@ export default function ContactUs() {
                 setSearchTerm(e.target.value);
                 setCurrentPage(1);
               }}
-              className="border px-3 py-2 rounded-lg w-full sm:w-[15em] focus:ring focus:ring-blue-300 outline-none"
+              className="border px-3 py-2 rounded-lg w-full sm:w-[15em] focus:ring focus:ring-skyBlue/30 outline-none"
+
             />
           </div>
-
           <div className="flex gap-2">
             <div className="flex gap-2 items-center justify-center">
               <label htmlFor="fromDate">From</label>
@@ -172,7 +172,7 @@ export default function ContactUs() {
                   setFromDate(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="border px-3 py-2 rounded-lg focus:ring focus:ring-blue-300 outline-none cursor-pointer"
+                className="border px-3 py-2 rounded-lg focus:ring focus:ring-skyBlue/30 outline-none cursor-pointer"
               />
             </div>
 
@@ -186,7 +186,7 @@ export default function ContactUs() {
                   setToDate(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="border px-3 py-2 rounded-lg focus:ring focus:ring-blue-300 outline-none cursor-pointer"
+                className="border px-3 py-2 rounded-lg focus:ring focus:ring-skyBlue/30 outline-none cursor-pointer"
               />
             </div>
           </div>
@@ -194,19 +194,18 @@ export default function ContactUs() {
 
         <button
           onClick={exportToCSV}
-          className="bg-learning cursor-pointer text-white px-4 py-2 rounded-lg hover:bg-learning/90 transition"
+          className="bg-primary  cursor-pointer text-white px-4 py-2 rounded-lg hover:bg-primary/80 transition"
         >
           Export CSV
         </button>
       </div>
-
       {loading ? (
         <div className="flex justify-center items-center text-center">
           <Radio
             visible={true}
             height="150"
             width="150"
-            colors={["#f9b52b", "#e31e24", "#e31e24"]}
+            colors={["#e31e24", "#2F73F2", "#2F73F2"]}
             ariaLabel="radio-loading"
             wrapperStyle={{}}
             wrapperClass=""
@@ -217,40 +216,41 @@ export default function ContactUs() {
       ) :
 
         (
-          <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
+          <div className="overflow-x-auto bg-white rounded-lg border border-border shadow-md shadow-skyBlue/20">
             <table className="min-w-full divide-y divide-gray-200">
-              <thead className="bg-gray-100">
+              <thead className="bg-herobg">
                 <tr>
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-midnight_text">
                     Sn. No.
                   </th>
                   <th
                     onClick={() => handleSort("name")}
-                    className="px-6 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer select-none"
+                    className="px-6 py-3 text-left text-sm font-semibold text-midnight_text cursor-pointer select-none"
                   >
                     <div className="flex items-center gap-1">
                       Name
                       <ArrowUpDown
                         className={`w-4 h-4 transition-transform ${sortField === "name"
                           ? sortOrder === "asc"
-                            ? "rotate-180 text-blue-600"
-                            : "text-blue-600"
-                          : "text-gray-400"
+                            ? "rotate-180 text-primary"
+                            : "text-primary"
+                          : "text-midnight_text"
                           }`}
                       />
                     </div>
                   </th>
                   <th
-                    className="px-6 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer select-none"
+                    className="px-6 py-3 text-left text-sm font-semibold text-midnight_text cursor-pointer select-none"
+                    onClick={() => handleSort("phone")}
                   >
                     <div className="flex items-center gap-1">
                       Phone
                       <ArrowUpDown
                         className={`w-4 h-4 transition-transform ${sortField === "phone"
                           ? sortOrder === "asc"
-                            ? "rotate-180 text-blue-600"
-                            : "text-blue-600"
-                          : "text-gray-400"
+                            ? "rotate-180 text-primary"
+                            : "text-primary"
+                          : "text-midnight_text"
                           }`}
                       />
                     </div>
@@ -258,7 +258,7 @@ export default function ContactUs() {
 
                   <th
                     onClick={() => handleSort("email")}
-                    className="px-6 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer select-none"
+                    className="px-6 py-3 text-left text-sm font-semibold text-midnight_text cursor-pointer select-none"
                   >
                     <div
                       className="flex items-center gap-1">
@@ -266,29 +266,29 @@ export default function ContactUs() {
                       <ArrowUpDown
                         className={`w-4 h-4 transition-transform ${sortField === "email"
                           ? sortOrder === "asc"
-                            ? "rotate-180 text-blue-600"
-                            : "text-blue-600"
-                          : "text-gray-400"
+                            ? "rotate-180 text-primary"
+                            : "text-primary"
+                          : "text-midnight_text"
                           }`}
                       />
                     </div>
                   </th>
 
-                  <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700 select-none">
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-midnight_text cursor-pointer select-none">
                     <div className="flex items-center gap-1">Message</div>
                   </th>
                   <th
                     onClick={() => handleSort("date")}
-                    className="px-6 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer select-none"
+                    className="px-6 py-3 text-left text-sm font-semibold text-midnight_text cursor-pointer select-none"
                   >
                     <div className="flex items-center gap-1">
                       Date
                       <ArrowUpDown
                         className={`w-4 h-4 transition-transform ${sortField === "date"
                           ? sortOrder === "asc"
-                            ? "rotate-180 text-blue-600"
-                            : "text-blue-600"
-                          : "text-gray-400"
+                            ? "rotate-180 text-primary"
+                            : "text-primary"
+                          : "text-midnight_text"
                           }`}
                       />
                     </div>
@@ -298,70 +298,69 @@ export default function ContactUs() {
 
               <tbody className="divide-y divide-gray-200">
                 {currentRecords.map((record, index) => (
-                  <tr key={record._id} className="hover:bg-gray-50 transition-colors">
-                    <td className="px-6 py-4 text-sm text-gray-900">
+                  <tr key={record._id} className="hover:bg-herobg/30  transition-colors">
+                    <td className="px-6 py-4 text-sm text-midnight_text text-opacity-80">
                       {(currentPage - 1) * recordsPerPage + index + 1}.
                     </td>
                     <td
-                      className="px-6 py-4 text-sm text-gray-900">{record.name}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{record.phone}</td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{record.email}</td>
+                      className="px-6 py-4 text-sm text-midnight_text text-opacity-80">{record.name}</td>
+                    <td className="px-6 py-4 text-sm text-midnight_text text-opacity-80">{record.phone}</td>
+                    <td className="px-6 py-4 text-sm text-midnight_text text-opacity-80">{record.email}</td>
                     <td
 
-                      className="px py-4 text-sm w-44 items-center justify-center flex gap-1 text-gray-900">
+                      className="px py-4 text-sm w-44 items-center justify-center flex gap-1 text-midnight_text text-opacity-80">
                       {record.message.substring(0, 20)}...
-                      
                       <span onClick={() => {
                         handleOnChange(record.name, record.phone, record.message, new Date(record?.createdAt).toLocaleDateString("en-IN"), record.email,);
                         setShowMessage(!showMessage);
                       }}>
                         {showMessage ? (
-                          <IoEyeOutline size={17} className="text-gray-500 cursor-pointer" />
+                          <IoEyeOutline size={17} className="text-skyBlue cursor-pointer" />
                         ) : (
-                          <IoEyeOffOutline size={17} className="text-gray-500 cursor-pointer" />
+                          <IoEyeOffOutline size={17} className="text-skyBlue cursor-pointer" />
                         )}
                       </span>
-                      
-                      </td>
-                    <td className="px-6 py-4 text-sm text-gray-900">{
+
+                    </td>
+                    <td className="px-6 py-4 text-sm text-midnight_text text-opacity-80">{
                       new Date(record?.createdAt).toLocaleDateString("en-IN")
                     }</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-
-            <div className="flex justify-between items-center p-4">
-              <span className="text-sm text-gray-600">
-                Page {currentPage} of {totalPages}
-              </span>
-              <div className="flex gap-2">
-                <button
-                  onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                  disabled={currentPage === 1}
-                  className={`px-3 py-1 border rounded ${currentPage === 1
-                    ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                    : "bg-white cursor-pointer hover:bg-gray-100"
-                    }`}
-                >
-                  Prev
-                </button>
-                <button
-                  onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-                  disabled={currentPage === totalPages}
-                  className={`px-3 py-1 border rounded ${currentPage === totalPages
-                    ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                    : "bg-white hover:bg-gray-100 cursor-pointer"
-                    }`}
-                >
-                  Next
-                </button>
-              </div>
-            </div>
           </div>
         )}
+
+      <div className="flex justify-between items-center p-4">
+        <span className="text-sm text-gray-600">
+          Page {currentPage} of {totalPages}
+        </span>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-3 py-1 border rounded ${currentPage === 1
+              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+              : "bg-white cursor-pointer hover:bg-gray-100"
+              }`}
+          >
+            Prev
+          </button>
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className={`px-3 py-1 border rounded ${currentPage === totalPages
+              ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+              : "bg-white hover:bg-gray-100 cursor-pointer"
+              }`}
+          >
+            Next
+          </button>
+        </div>
+      </div>
       {
-        showMessage && <MessageModel closedModel={setShowMessage} data={studentRecord} mode="contact"/>
+        showMessage && <MessageModel closedModel={setShowMessage} data={studentRecord} mode="contact" />
       }
     </div>
   );

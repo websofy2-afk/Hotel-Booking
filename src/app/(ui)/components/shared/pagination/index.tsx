@@ -3,34 +3,43 @@
 type PaginationProps = {
   currentPage: number;
   totalPages: number;
-  onPageChange: (page: number) => void;
+  setCurrentPage: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export default function Pagination({
   currentPage,
   totalPages,
-  onPageChange,
+  setCurrentPage,
 }: PaginationProps) {
   if (totalPages <= 1) return null;
 
   return (
-    <div className="flex justify-center gap-3 mt-10">
-      {Array.from({ length: totalPages }).map((_, i) => {
-        const page = i + 1;
-        return (
-          <button
-            key={page}
-            onClick={() => onPageChange(page)}
-            className={`px-4 py-2 rounded border ${
-              currentPage === page
-                ? 'bg-primary text-white'
-                : 'border-border text-gray'
+    <div className="flex justify-between items-center p-4">
+      <span className="text-sm text-gray-600">
+        Page {currentPage} of {totalPages}
+      </span>
+      <div className="flex gap-2">
+        <button
+          onClick={() => setCurrentPage(p => Math.max(p - 1, 1))}
+          disabled={currentPage === 1}
+          className={`px-3 py-1 border rounded ${currentPage === 1
+            ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+            : "bg-white cursor-pointer hover:bg-gray-100"
             }`}
-          >
-            {page}
-          </button>
-        );
-      })}
+        >
+          Prev
+        </button>
+        <button
+          onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+          disabled={currentPage === totalPages}
+          className={`px-3 py-1 border rounded ${currentPage === totalPages
+            ? "bg-gray-200 text-gray-500 cursor-not-allowed"
+            : "bg-white hover:bg-gray-100 cursor-pointer"
+            }`}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

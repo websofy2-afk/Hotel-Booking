@@ -106,11 +106,12 @@ export default function Blog() {
       {tooltip && <Tooltip message={tooltip.message} type={tooltip.type} />}
       <PageBreadcrumb pageTitle="Blog" />
       <div className="flex justify-end items-center mb-4">
-        <button onClick={() => setModal({ mode: "create" })} className="bg-learning cursor-pointer text-white px-4 py-2 rounded-lg transition hover:bg-learning/90">
+        <button onClick={() => setModal({ mode: "create" })} className="bg-primary cursor-pointer text-white px-4 py-2 rounded-lg transition hover:bg-primary/90">
           + Create Blog
         </button>
       </div>
-      <div className="flex gap-3 mb-4">
+
+      <div className="flex gap-3 mb-4 w-[30em]">
         {["title", "category"].map((key) => (
           <input
             key={key}
@@ -123,9 +124,9 @@ export default function Blog() {
           />
         ))}
       </div>
-      <table className="min-w-full bg-white border rounded shadow">
+      <table className="min-w-full bg-white rounded shadow">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-herobg">
             <th className="py-2 px-3 border">Title</th>
             <th className="py-2 px-3 border">Category</th>
             <th className="py-2 px-3 border">Date</th>
@@ -136,22 +137,22 @@ export default function Blog() {
         <tbody>
           {currentData.map((item) => (
             <tr key={item._id} className="text-center">
-              <td className="border p-2">{item.title}</td>
-              <td className="border p-2">{item.category}</td>
-              <td className="border p-2">{item.date.split("-").reverse().join("/")}</td>
-              <td className="border p-2 flex items-center justify-center"
+              <td className="border border-border shadow-md shadow-skyBlue/20 p-2">{item.title}</td>
+              <td className="border border-border shadow-md shadow-skyBlue/20 p-2">{item.category}</td>
+              <td className="border border-border shadow-md shadow-skyBlue/20 p-2">{item.date.split("-").reverse().join("/")}</td>
+              <td className="border border-border shadow-md shadow-skyBlue/20 p-2 flex items-center justify-center"
               >{extractExcerpt(item.content, 20)}...
 
                 <span onClick={() => { setBlogDescription(extractExcerpt(item.content, 500)), setShowDescription(!showDescription); }}
                 >
                   {showDescription ? (
-                    <IoEyeOutline size={17} className="text-gray-500 cursor-pointer" />
+                    <IoEyeOutline size={17} className="text-skyBlue cursor-pointer" />
                   ) : (
-                    <IoEyeOffOutline size={17} className="text-gray-500 cursor-pointer" />
+                    <IoEyeOffOutline size={17} className="text-skyBlue cursor-pointer" />
                   )}
                 </span>
               </td>
-              <td className="border">
+              <td className="border border-border shadow-md shadow-skyBlue/20">
                 <div className="flex mx-1 gap-2 justify-center">
                   <button onClick={() => setModal({ mode: "edit", item })} className="bg-green-600 cursor-pointer text-white px-3 py-1 rounded">
                     Edit

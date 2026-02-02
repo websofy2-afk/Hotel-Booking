@@ -1,9 +1,9 @@
 "use client";
-import SearchLocation from "../search-location";
+import { SearchLocation } from "../search-location";
 import { useRouter } from "next/navigation";
 
 const Hero = () => {
-  const router = useRouter(); 
+  const router = useRouter();
 
   return (
     <section className="relative w-full h-screen overflow-hidden flex items-center">
@@ -21,7 +21,7 @@ const Hero = () => {
             and an unforgettable stay tailored just for you.
           </p>
           <button
-            onClick={()=>router.push("/hotel-location")}
+            onClick={() => router.push("/hotel-location")}
             className="inline-block font-semibold py-2 md:py-4 text-lg md:text-xl px-4 md:px-8 bg-skyBlue/80 border border-transparent text-white rounded-lg hover:bg-skyBlue transition duration-300 text-nowrap">
             Explore Hotels
           </button>

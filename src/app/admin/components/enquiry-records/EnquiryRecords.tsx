@@ -129,7 +129,7 @@ export default function EnquiryRecords() {
       <PageBreadcrumb pageTitle="Enquiry" />
       <div className="flex items-start justify-between gap-12">
         <div className="flex sm:flex-row justify-start items-center mb-6 gap-4">
-          <div className="flex items-center gap-3 w-full sm:w-auto">
+          <div className="flex items-center gap-3 w-full sm:w-[14em]">
             <input
               type="text"
               placeholder="Search by Email Or Phone"
@@ -138,7 +138,7 @@ export default function EnquiryRecords() {
                 setSearchTerm(e.target.value);
                 setCurrentPage(1);
               }}
-              className="border px-3 py-2 rounded-lg w-full sm:w-[15em] focus:ring focus:ring-blue-300 outline-none"
+              className="border px-3 py-2 rounded-lg w-full sm:w-[15em] focus:ring focus:ring-skyBlue/30 outline-none"
             />
           </div>
 
@@ -153,7 +153,7 @@ export default function EnquiryRecords() {
                   setFromDate(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="border px-3 py-2 rounded-lg focus:ring focus:ring-blue-300 outline-none cursor-pointer"
+                className="border px-3 py-2 rounded-lg focus:ring focus:ring-skyBlue/30 outline-none cursor-pointer"
               />
             </div>
 
@@ -167,14 +167,14 @@ export default function EnquiryRecords() {
                   setToDate(e.target.value);
                   setCurrentPage(1);
                 }}
-                className="border px-3 py-2 rounded-lg focus:ring focus:ring-blue-300 outline-none cursor-pointer"
+                className="border px-3 py-2 rounded-lg focus:ring focus:ring-skyBlue/30 outline-none cursor-pointer"
               />
             </div>
           </div>
         </div>
         <button
           onClick={exportToCSV}
-          className="bg-learning cursor-pointer text-white px-4 py-2 rounded-lg hover:bg-learning/90 transition"
+          className="bg-primary cursor-pointer text-white px-4 py-2 rounded-lg hover:bg-primary/80 transition"
         >
           Export CSV
         </button>
@@ -186,7 +186,7 @@ export default function EnquiryRecords() {
             visible={true}
             height="150"
             width="150"
-            colors={["#f9b52b", "#e31e24", "#e31e24"]}
+            colors={["#e31e24", "#2F73F2", "#2F73F2"]}
             ariaLabel="radio-loading"
             wrapperStyle={{}}
             wrapperClass=""
@@ -195,41 +195,41 @@ export default function EnquiryRecords() {
       ) : filteredData.length === 0 ? (
         <div className="text-center text-gray-500">No matching records found.</div>
       ) : (
-        <div className="overflow-x-auto bg-white shadow-lg rounded-lg">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-100">
+        <div className="overflow-x-auto bg-white rounded-lg border border-border shadow-md shadow-skyBlue/20">
+          <table className="min-w-full divide-y divide-gray">
+            <thead className="bg-herobg">
               <tr>
-                <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
+                <th className="px-6 py-3 text-left text-sm font-semibold text-midnight_text">
                   Sn. No.
                 </th>
                 <th
                   onClick={() => handleSort("name")}
-                  className="px-6 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer select-none"
+                  className="px-6 py-3 text-left text-sm font-semibold text-midnight_text cursor-pointer select-none"
                 >
                   <div className="flex items-center gap-1">
                     Name
                     <ArrowUpDown
                       className={`w-4 h-4 transition-transform ${sortField === "name"
                         ? sortOrder === "asc"
-                          ? "rotate-180 text-blue-600"
-                          : "text-blue-600"
-                        : "text-gray-400"
+                          ? "rotate-180 text-primary"
+                          : "text-primary"
+                        : "text-midnight_text"
                         }`}
                     />
                   </div>
                 </th>
                 <th
                   onClick={() => handleSort("phone")}
-                  className="px-6 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer select-none"
+                  className="px-6 py-3 text-left text-sm font-semibold text-midnight_text cursor-pointer select-none"
                 >
                   <div className="flex items-center gap-1">
                     Phone
                     <ArrowUpDown
                       className={`w-4 h-4 transition-transform ${sortField === "phone"
                         ? sortOrder === "asc"
-                          ? "rotate-180 text-blue-600"
-                          : "text-blue-600"
-                        : "text-gray-400"
+                          ? "rotate-180 text-primary"
+                          : "text-primary"
+                        : "text-midnight_text"
                         }`}
                     />
                   </div>
@@ -237,35 +237,34 @@ export default function EnquiryRecords() {
 
                 <th
                   onClick={() => handleSort("email")}
-                  className="px-6 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer select-none"
+                  className="px-6 py-3 text-left text-sm font-semibold text-midnight_text cursor-pointer select-none"
                 >
                   <div className="flex items-center gap-1">
                     Email
                     <ArrowUpDown
                       className={`w-4 h-4 transition-transform ${sortField === "email"
                         ? sortOrder === "asc"
-                          ? "rotate-180 text-blue-600"
-                          : "text-blue-600"
-                        : "text-gray-400"
+                          ? "rotate-180 text-primary"
+                          : "text-primary"
+                        : "text-midnight_text"
                         }`}
                     />
                   </div>
                 </th>
-
                 <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700 select-none">
                   <div className="flex items-center gap-1">Course</div>
                 </th>
                 <th
                   onClick={() => handleSort("date")}
-                  className="px-6 py-3 text-left text-sm font-semibold text-gray-700 cursor-pointer select-none"
+                  className="px-6 py-3 text-left text-sm font-semibold text-midnight_text cursor-pointer select-none"
                 >
                   <div className="flex items-center gap-1">
                     Date
                     <ArrowUpDown
                       className={`w-4 h-4 transition-transform ${sortField === "date"
                         ? sortOrder === "asc"
-                          ? "rotate-180 text-blue-600"
-                          : "text-blue-600"
+                          ? "rotate-180 text-primary"
+                          : "text-primary"
                         : "text-gray-400"
                         }`}
                     />
@@ -274,52 +273,53 @@ export default function EnquiryRecords() {
               </tr>
             </thead>
 
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray">
               {currentRecords.map((record, index) => (
-                <tr key={record._id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-6 py-4 text-sm text-gray-900">
+                <tr key={record._id} className="hover:bg-herobg/30 transition-colors">
+                  <td className="px-6 py-4 text-sm text-midnight_text text-opacity-80">
                     {(currentPage - 1) * recordsPerPage + index + 1}.
                   </td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{record.name}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{record.phone}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{record.email}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{record.course}</td>
-                  <td className="px-6 py-4 text-sm text-gray-900">{
+                  <td className="px-6 py-4 text-sm text-midnight_text text-opacity-80">{record.name}</td>
+                  <td className="px-6 py-4 text-sm text-midnight_text text-opacity-80">{record.phone}</td>
+                  <td className="px-6 py-4 text-sm text-midnight_text text-opacity-80">{record.email}</td>
+                  <td className="px-6 py-4 text-sm text-midnight_text text-opacity-80">{record.course}</td>
+                  <td className="px-6 py-4 text-sm text-midnight_text text-opacity-80">{
                     new Date(record?.createdAt).toLocaleDateString("en-IN")
                   }</td>
                 </tr>
               ))}
             </tbody>
           </table>
-          <div className="flex justify-between items-center p-4">
-            <span className="text-sm text-gray-600">
-              Page {currentPage} of {totalPages}
-            </span>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
-                disabled={currentPage === 1}
-                className={`px-3 py-1 border rounded ${currentPage === 1
-                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-white cursor-pointer hover:bg-gray-100"
-                  }`}
-              >
-                Prev
-              </button>
-              <button
-                onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
-                disabled={currentPage === totalPages}
-                className={`px-3 py-1 border rounded ${currentPage === totalPages
-                  ? "bg-gray-200 text-gray-500 cursor-not-allowed"
-                  : "bg-white hover:bg-gray-100 cursor-pointer"
-                  }`}
-              >
-                Next
-              </button>
-            </div>
-          </div>
+
         </div>
       )}
+      <div className="flex justify-between items-center p-4">
+        <span className="text-sm">
+          Page {currentPage} of {totalPages}
+        </span>
+        <div className="flex gap-2">
+          <button
+            onClick={() => setCurrentPage((p) => Math.max(p - 1, 1))}
+            disabled={currentPage === 1}
+            className={`px-3 py-1 border rounded ${currentPage === 1
+              ? "bg-herobg text-midnight_text cursor-not-allowed"
+              : "bg-white cursor-pointer hover:bg-light"
+              }`}
+          >
+            Prev
+          </button>
+          <button
+            onClick={() => setCurrentPage((p) => Math.min(p + 1, totalPages))}
+            disabled={currentPage === totalPages}
+            className={`px-3 py-1 border rounded ${currentPage === totalPages
+              ? "bg-herobg text-midnight_text cursor-not-allowed"
+              : "bg-white hover:bg-light cursor-pointer"
+              }`}
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

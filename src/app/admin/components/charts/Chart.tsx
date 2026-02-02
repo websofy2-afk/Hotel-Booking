@@ -14,7 +14,7 @@ import {
 import { useEffect, useState } from "react";
 import PageBreadcrumb from "../common/PageBreadCrumb";
 import { Radio } from "react-loader-spinner";
-const COLORS = ["#e31e24", "#f9b52b"];
+const COLORS = ["#2F73F2", "#102D47"];
 
 const DashboardPage = () => {
   const [enrollments, setEnrollments] = useState<any[]>([]);
@@ -71,7 +71,7 @@ const DashboardPage = () => {
             visible={true}
             height="150"
             width="150"
-            colors={["#f9b52b", "#e31e24", "#e31e24"]}
+            colors={["#e31e24", "#2F73F2", "#2F73F2"]}
             ariaLabel="radio-loading"
             wrapperStyle={{}}
             wrapperClass=""
@@ -83,7 +83,7 @@ const DashboardPage = () => {
                 <p className="text-white font-semibold">Total Enquiry Request</p>
                 <h2 className="text-3xl text-white font-bold">{enrollments.length}</h2>
               </div>
-              <div className="bg-formbg shadow rounded-lg p-6">
+              <div className="bg-primary shadow rounded-lg p-6">
                 <p className="text-white font-semibold">Total Contacts Request</p>
                 <h2 className="text-3xl text-white font-bold">{contacts.length}</h2>
               </div>
@@ -91,7 +91,7 @@ const DashboardPage = () => {
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div className="bg-white shadow rounded-lg p-4">
-                <h3 className="text-lg text-MidnightNavyText font-semibold mb-3">
+                <h3 className="text-lg text-midnight_text mb-3">
                   Enquiry Trend
                 </h3>
 
@@ -103,14 +103,14 @@ const DashboardPage = () => {
                     <Line
                       type="monotone"
                       dataKey="count"
-                      stroke="#e31e24"
+                      stroke="#2F73F2"
                       strokeWidth={3}
                     />
                   </LineChart>
                 </ResponsiveContainer>
               </div>
               <div className="bg-white shadow rounded-lg p-4">
-                <h3 className="text-lg text-MidnightNavyText font-semibold mb-3">
+                <h3 className="text-lg text-midnight_text mb-3">
                   Contact Requests Trend
                 </h3>
                 <ResponsiveContainer width="100%" height={300}>
@@ -121,7 +121,7 @@ const DashboardPage = () => {
                     <Line
                       type="monotone"
                       dataKey="count"
-                      stroke="#f9b52b"
+                      stroke="#2F73F2"
                       strokeWidth={3}
                     />
                   </LineChart>
@@ -129,7 +129,7 @@ const DashboardPage = () => {
               </div>
             </div>
             <div className="bg-white shadow rounded-lg p-4">
-              <h3 className="text-lg text-MidnightNavyText font-semibold mb-3">
+              <h3 className="text-lg text-midnight_text mb-3">
                 Enquiry vs Contact Ratio
               </h3>
               <ResponsiveContainer width="100%" height={300}>

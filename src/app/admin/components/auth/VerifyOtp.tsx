@@ -56,10 +56,10 @@ function VerifyOtpPageContent() {
       <div className="flex flex-col justify-center sm:pt-10 flex-1 w-full max-w-md mx-auto">
         <div>
           <div className="mb-5 sm:mb-8">
-            <h1 className="mb-2 font-semibold text-gray-800 text-title-sm sm:text-title-md">
+            <h1 className="mb-2">
               Verify Your Email
             </h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-lg text-gray">
               Enter the 6-digit code we sent to your email to complete your registration.
             </p>
           </div>
@@ -70,7 +70,7 @@ function VerifyOtpPageContent() {
                 <div className="grid grid-cols-1">
                   <div className="sm:col-span-1">
                     <Label>
-                      Verification Code<span className="text-error-500">*</span>
+                      Verification Code<span className="text-red-500">*</span>
                     </Label>
                     <Input
                       type="text"
@@ -80,7 +80,6 @@ function VerifyOtpPageContent() {
                         const value = e.target.value.replace(/\D/g, "");
                         setOtp(value.slice(0, 6));
                       }}
-
                       maxLength={6}
                     />
                   </div>

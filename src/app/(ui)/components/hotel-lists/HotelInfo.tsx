@@ -203,13 +203,7 @@ export default function HotelListPage() {
                         <h2 className="text-3xl">Showing hotels in {location}</h2>
                         <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-midnight_text ml-auto">
                             <CiSearch className="text-gray-500 text-xl" />
-                            {/* <input
-                                type="text"
-                                placeholder="Search Hotel"
-                                className="outline-none  text-sm bg-transparent"
-                            /> */}
-
-                            <input
+                                                       <input
                                 type="text"
                                 placeholder="Search Hotel"
                                 value={searchTerm}

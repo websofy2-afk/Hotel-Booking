@@ -1,9 +1,8 @@
 "use client";
-
-import { useSidebar } from "@/app/context/SidebarContext";
 import AppSidebar from "../layout/AppSidebar";
 import AppHeader from "../layout/AppHeader";
 import React from "react";
+import { useSidebar } from "@/context-api/SidebarContext";
 
 export default function AdminLayout({
   children,

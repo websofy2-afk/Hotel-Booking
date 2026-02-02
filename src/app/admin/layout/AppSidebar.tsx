@@ -5,16 +5,19 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { ChevronDown, Ellipsis, KeySquare } from "lucide-react";
 import { RiSpeakAiLine } from "react-icons/ri";
-import { useSidebar } from "@/app/context/SidebarContext";
 import { FaBlogger, FaPhoneAlt, FaRegUser } from "react-icons/fa";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { MdOutlineCategory } from "react-icons/md";
+import { MdOutlineBedroomParent, MdOutlineCategory, MdRateReview } from "react-icons/md";
+import { useSidebar } from "@/context-api/SidebarContext";
+import { FaHotel, FaMapLocationDot } from "react-icons/fa6";
+import { BsPatchQuestion } from "react-icons/bs";
+import { GrGallery } from "react-icons/gr";
 
 type NavItem = {
   name: string;
   icon: React.ReactNode;
   path?: string;
-  subItems?: { name: string; path: string; pro?: boolean; new?: boolean }[];
+  subItems?: { name: string; path: string; new?: boolean }[];
 };
 
 const navItems: NavItem[] = [
@@ -29,21 +32,56 @@ const navItems: NavItem[] = [
     path: "/admin/enquiry-records"
   },
   {
-    icon: <FaBlogger size={18}/>,
+    icon: <FaBlogger size={18} />,
     name: "Blog",
     path: "/admin/blogs",
   },
   {
     name: "Contact Us",
-    icon: <FaPhoneAlt size={15}/>,
+    icon: <FaPhoneAlt size={15} />,
     path: "/admin/contact-us"
 
   },
   {
     name: "Blog Category",
-    icon: <MdOutlineCategory size={18}/>,
+    icon: <MdOutlineCategory size={18} />,
     path: "/admin/category"
 
+  },
+  {
+    name: "Hotel Location",
+    icon: <FaMapLocationDot size={18} />,
+    path: "/admin/hotel-location"
+  },
+  {
+    name: "Gallery",
+    icon: <GrGallery size={18} />,
+    subItems: [
+      { name: "Photos", path: "/admin/gallery/photos" },
+      { name: "Videos", path: "/admin/gallery/videos" },
+    ],
+
+  },
+  {
+    name: "Testimonials",
+    icon: <MdRateReview size={18} />,
+    path: "/admin/testimonials"
+
+  },
+  {
+    name: "Hotels",
+    icon: <FaHotel size={15} />,
+    path: "#"
+  },
+  {
+    name: "Rooms",
+    icon: <MdOutlineBedroomParent size={18} />,
+    path: "#"
+  },
+  {
+    name: "FAQs",
+    icon: <BsPatchQuestion size={18} />,
+    path: "/admin/faq"
   },
   {
     icon: <FaRegUser size={18} />,
@@ -57,8 +95,8 @@ const othersItems: NavItem[] = [
     icon: <KeySquare />,
     name: "Authentication",
     subItems: [
-      { name: "Sign In", path: "/signin"},
-      { name: "Sign Out", path: "/logout"},
+      { name: "Sign In", path: "/signin" },
+      { name: "Sign Out", path: "/logout" },
     ],
   },
 ];
@@ -235,7 +273,7 @@ const AppSidebar: React.FC = () => {
 
   return (
     <aside
-      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-white text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
+      className={`fixed mt-16 flex flex-col lg:mt-0 top-0 px-5 left-0 bg-light text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-border shadow-md shadow-skyBlue/20
         ${isExpanded || isMobileOpen
           ? "w-[290px]"
           : isHovered
@@ -255,7 +293,7 @@ const AppSidebar: React.FC = () => {
           {isExpanded || isHovered || isMobileOpen ? (
             <div className="w-64 flex justify-center items-center">
               <Image
-                src="/images/logo/stintwol-logo.png"
+                src="/images/logo/logo.png"
                 alt="Logo"
                 width={180}
                 height={20}
@@ -263,7 +301,7 @@ const AppSidebar: React.FC = () => {
             </div>
           ) : (
             <Image
-              src="/images/logo/stintwol-logo.png"
+              src="/images/logo/logo.png"
               alt="Logo"
               width={500}
               height={500}
@@ -276,10 +314,10 @@ const AppSidebar: React.FC = () => {
           <div className="flex flex-col gap-4">
             <div>
               <h2
-                className={`mb-4 text-xs uppercase flex leading-[20px] text-MidnightNavyText font-semibold ${!isExpanded && !isHovered
+                className={`mb-4 text-sm uppercase flex leading-[20px] text-midnight_text font-bold ${!isExpanded && !isHovered
                   ? "lg:justify-center"
                   : "justify-start"
-                  }`} 
+                  }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
                   "Menu"

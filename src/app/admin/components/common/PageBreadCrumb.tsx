@@ -10,7 +10,7 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({ pageTitle }) => {
   return (
     <div className="flex flex-wrap items-center mt-20 justify-between gap-3 mb-6">
       <h2
-        className="text-xl font-semibold text-MidnightNavyText"
+        className="text-xl font-semibold"
         x-text="pageName"
       >
         {pageTitle}
@@ -26,7 +26,7 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({ pageTitle }) => {
               <ChevronRight size={17} />
             </Link>
           </li>
-          <li className="text-sm text-MidnightNavyText">
+          <li className="text-sm text-midnight_text">
             {pageTitle}
           </li>
         </ol>

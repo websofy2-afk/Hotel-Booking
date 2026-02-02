@@ -109,10 +109,10 @@ export default function ResetPassword() {
             <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
                 <div>
                     <div className="mb-5 sm:mb-8">
-                        <h1 className="mb-2 font-semibold text-MidnightNavyTex text-28 sm:text-36">
+                        <h1 className="mb-2">
                             {step === 1 ? "Forgot Password" : "Verify OTP & Reset Password"}
                         </h1>
-                        <p className="text-sm text-SlateBlueText">
+                        <p className="text-lg text-gray">
                             {step === 1 ? "Enter your email to send otp!" : "Enter password and varify otp to reset to your password!"}
                         </p>
                     </div>
@@ -123,7 +123,7 @@ export default function ResetPassword() {
                                     <div className="space-y-6">
                                         <div>
                                             <Label>
-                                                Email <span className="text-primary">*</span>{" "}
+                                                Email <span className="text-red-500">*</span>{" "}
                                             </Label>
                                             <Input placeholder="Enter your email" type="email" value={email}
                                                 onChange={(e) => setEmail(e.target.value)} required />
@@ -165,7 +165,7 @@ export default function ResetPassword() {
 
                                         <div>
                                             <Label>
-                                                New Password <span className="text-primary">*</span>{" "}
+                                                New Password <span className="text-red-500">*</span>{" "}
                                             </Label>
                                             <div className="relative">
                                                 <Input
@@ -190,7 +190,7 @@ export default function ResetPassword() {
 
                                         <div>
                                             <Label>
-                                                Confirm Password <span className="text-primary">*</span>{" "}
+                                                Confirm Password <span className="text-red-500">*</span>{" "}
                                             </Label>
                                             <div className="relative">
                                                 <Input
@@ -212,10 +212,9 @@ export default function ResetPassword() {
                                                 </span>
                                             </div>
                                         </div>
-
                                         <div>
                                             <Label>
-                                                OTP <span className="text-primary">*</span>{" "}
+                                                OTP <span className="text-red-500">*</span>{" "}
                                             </Label>
                                             <Input placeholder="Enter otp to send your email" required type="text" value={otp}
                                                 onChange={(e) => setOtp(e.target.value)} />

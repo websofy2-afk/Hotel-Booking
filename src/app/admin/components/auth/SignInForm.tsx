@@ -13,7 +13,8 @@ export default function SignInForm() {
   const [form, setForm] = useState({
     email: "",
     password: "",
-  })
+  });
+  
   const captchaRef = useRef<ReCAPTCHA | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [captchaValue, setCaptchaValue] = useState<string | null>(null);
@@ -23,7 +24,7 @@ export default function SignInForm() {
     null
   );
 
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const router = useRouter()
 
   const showTooltip = (

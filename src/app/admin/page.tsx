@@ -35,9 +35,9 @@ export default function HomePage() {
         height="100"
         width="100"
         color="#4fa94d"
-        outerCircleColor="#e31e24"
-        innerCircleColor="#f9b52b"
-        barColor="#f9b52b"
+        outerCircleColor="#35B4F6"
+        innerCircleColor="#2F73F2"
+        barColor="#2F73F2"
         ariaLabel="circles-with-bar-loading"
         wrapperStyle={{}}
         wrapperClass=""

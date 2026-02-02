@@ -11,7 +11,16 @@ export const headerData = [
   //  { label: "Category", href: "/category" },
   //  { label: "Amenities", href: "#" },
   //  { label: "Offers", href: "#" },
-   { label: "Gallery", href: "/gallery" },
+  {
+    label: "Gallery",
+    href: "#",
+    submenu: [
+      { label: "Photos", href: "/gallery/photos" },
+      { label: "Videos", href: "/gallery/videos" },
+    ],
+
+
+  },
   // {
   //   label: "Blogs",
   //   href: "#",
@@ -22,6 +31,6 @@ export const headerData = [
   // },
   { label: "Contact", href: "/contact" },
   { label: "Support", href: "/support" },
-//   { label: "Documentation", href: "/documentation" },
+  //   { label: "Documentation", href: "/documentation" },
 ];
 

@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react'
 import Tooltip from '../common/Tooltip';
 import { CirclesWithBar } from 'react-loader-spinner';
-import Logo from '@/app/(ui)/components/Layout/Header/Logo';
+import Logo from '@/app/(ui)/components/layout/header/logo';
 
 const Logout = () => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any

@@ -25,7 +25,7 @@ export default function BlogCategory() {
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 10;
 
-  const [search, setSearch] = useState({category: "" });
+  const [search, setSearch] = useState({ category: "" });
 
   const fetchData = async () => {
     const res = await fetch("/api/auth/blog-category");
@@ -81,7 +81,7 @@ export default function BlogCategory() {
       }
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-     catch (error) {
+    catch (error) {
       console.log("Internal Server Error ", error)
       showTooltip("Internal Server Error", "error");
     } finally {
@@ -95,11 +95,11 @@ export default function BlogCategory() {
       {tooltip && <Tooltip message={tooltip.message} type={tooltip.type} />}
       <PageBreadcrumb pageTitle="Blog Category" />
       <div className="flex justify-end items-center mb-4">
-        <button onClick={() => setModal({ mode: "create" })} className="bg-learning cursor-pointer text-white px-4 py-2 rounded-lg transition hover:bg-learning/90">
+        <button onClick={() => setModal({ mode: "create" })} className="bg-primary cursor-pointer text-white px-4 py-2 rounded-lg transition hover:bg-primary/90">
           + Create Blog Category
         </button>
       </div>
-      <div className="flex gap-3 mb-4">
+      <div className="flex gap-3 mb-4 w-[12em]">
         {["category"].map((key) => (
           <input
             key={key}
@@ -112,9 +112,9 @@ export default function BlogCategory() {
           />
         ))}
       </div>
-          <table className="min-w-full bg-white border rounded shadow">
+      <table className="min-w-full bg-white rounded shadow">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-herobg">
             <th className="py-2 px-3 border">Category</th>
             <th className="py-2 px-3 border">Actions</th>
           </tr>
@@ -122,20 +122,22 @@ export default function BlogCategory() {
         <tbody>
           {currentData.map((item) => (
             <tr key={item._id} className="text-center">
-              <td className="border p-2">{item.category}</td>
-              <td className="border p-2 flex gap-2 justify-center">
-                <button onClick={() => setModal({ mode: "edit", item })} className="bg-green-600 cursor-pointer text-white px-3 py-1 rounded">
-                  Edit
-                </button>
-                <button onClick={() => setModal({ mode: "delete", item })} className="bg-red-600 cursor-pointer text-white px-3 py-1 rounded">
-                  Delete
-                </button>
+              <td className="border border-border shadow-md shadow-skyBlue/20 p-2">{item.category}</td>
+              <td className="border border-border shadow-md shadow-skyBlue/20">
+                <div className="flex mx-1 gap-2 justify-center">
+                  <button onClick={() => setModal({ mode: "edit", item })} className="bg-green-600 cursor-pointer text-white px-3 py-1 rounded">
+                    Edit
+                  </button>
+                  <button onClick={() => setModal({ mode: "delete", item })} className="bg-red-600 cursor-pointer text-white px-3 py-1 rounded">
+                    Delete
+                  </button>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
-      
+
 
       <div className="flex justify-center items-center gap-2 mt-4">
         <button

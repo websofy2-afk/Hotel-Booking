@@ -1,6 +1,3 @@
-
-// import "./globals-admin.css";
-
 import { SidebarProvider } from "@/context-api/SidebarContext";
 
 export default function RootLayout({

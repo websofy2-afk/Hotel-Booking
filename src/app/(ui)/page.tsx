@@ -5,23 +5,23 @@ import Features from './components/shared/features';
 import CompanyInfo from './components/home/info';
 import Testimonials from './components/home/testimonial';
 import RooftopShowcase from './components/home/rooftop-showcase';
-import ReviewsTestimonials from './components/home/reviews-testimonials';
-import ImageGallery from './components/home/image-gallery';
+import { ImageGallery } from './components/home/image-gallery';
 import HotelAmenities from './components/home/hotel-amenities';
-import LocationListing from './components/home/hotel-list';
+import { LocationListing } from './components/home/hotel-list';
+import { TestimonialsReviews } from './components/home/reviews-testimonials';
 
 export default function Home() {
     return (
         <main>
             <Hero />
             <HotelAmenities />
-            <History /> 
+            <History />
             <LocationListing />
             <Features />
             <Calculator />
             <Testimonials />
             <ImageGallery />
-            <ReviewsTestimonials />
+            <TestimonialsReviews />
             <CompanyInfo />
             <RooftopShowcase />
         </main>
