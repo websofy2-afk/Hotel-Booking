@@ -2,7 +2,7 @@ import BlogCategory from '@/app/admin/components/blog-category/BlogCategory';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: "Category | Stintwol"
+  title: "Blog Category | Stintwol"
 };
 
 const page = () => {

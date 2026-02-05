@@ -115,7 +115,7 @@ export default function BlogCategory() {
       <table className="min-w-full bg-white rounded shadow">
         <thead>
           <tr className="bg-herobg">
-            <th className="py-2 px-3 border">Category</th>
+            <th className="py-2 px-3 border">Blog Category</th>
             <th className="py-2 px-3 border">Actions</th>
           </tr>
         </thead>

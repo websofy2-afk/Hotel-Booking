@@ -82,7 +82,7 @@ export default function BlogModel({ mode, onClose, onSave, initialData, blogCate
                    overflow-y-auto scroll-smooth hide-scrollbar` } onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl">{mode === "edit" ? "Update" : mode === "delete" ? "Delete" : "Create"} Blog</h2>
+          <h2 className="text-xl">{mode === "edit" ? "Update" : mode === "delete" ? "Delete" : "Add"} Blog</h2>
           <button
             onClick={onClose}
             className="cursor-pointer right-3 top-3 z-999 flex h-9.5 w-9.5 items-center justify-center rounded-full bg-herobg/50 text-midnight_text transition-colors hover:bg-herobg hover:text-gray sm:right-6 sm:top-6 sm:h-11 sm:w-11"

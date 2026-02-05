@@ -12,6 +12,7 @@ import { useSidebar } from "@/context-api/SidebarContext";
 import { FaHotel, FaMapLocationDot } from "react-icons/fa6";
 import { BsPatchQuestion } from "react-icons/bs";
 import { GrGallery } from "react-icons/gr";
+import { TbCategoryPlus } from "react-icons/tb";
 
 type NavItem = {
   name: string;
@@ -31,23 +32,23 @@ const navItems: NavItem[] = [
     icon: <RiSpeakAiLine size={18} />,
     path: "/admin/enquiry-records"
   },
-  {
-    icon: <FaBlogger size={18} />,
-    name: "Blog",
-    path: "/admin/blogs",
-  },
+  // {
+  //   icon: <FaBlogger size={18} />,
+  //   name: "Blogs",
+  //   path: "/admin/blogs",
+  // },
   {
     name: "Contact Us",
     icon: <FaPhoneAlt size={15} />,
     path: "/admin/contact-us"
 
   },
-  {
-    name: "Blog Category",
-    icon: <MdOutlineCategory size={18} />,
-    path: "/admin/category"
+  // {
+  //   name: "Blog Category",
+  //   icon: <MdOutlineCategory size={18} />,
+  //   path: "/admin/blog-category"
 
-  },
+  // },
   {
     name: "Hotel Location",
     icon: <FaMapLocationDot size={18} />,
@@ -66,17 +67,21 @@ const navItems: NavItem[] = [
     name: "Testimonials",
     icon: <MdRateReview size={18} />,
     path: "/admin/testimonials"
-
   },
   {
     name: "Hotels",
     icon: <FaHotel size={15} />,
-    path: "#"
+    path: "/admin/hotels"
   },
   {
     name: "Rooms",
     icon: <MdOutlineBedroomParent size={18} />,
-    path: "#"
+    path: "/admin/rooms"
+  },
+  {
+    name: "Room Category",
+    icon: <TbCategoryPlus size={18} />,
+    path: "/admin/room-category"
   },
   {
     name: "FAQs",

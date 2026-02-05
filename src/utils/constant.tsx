@@ -681,16 +681,16 @@ export const hotelDetails: HotelDetailsType = {
 
 export const calculator = [
   {
-    off : "10% OFF",
-    night:"Stay 3+ Nights"
+    off: "10% OFF",
+    night: "Stay 3+ Nights"
   },
   {
-    off : "15% OFF",
-    night:"Stay 5+ Nights"
+    off: "15% OFF",
+    night: "Stay 5+ Nights"
   },
   {
-    off : "25% OFF",
-    night:"Stay 7+ Nights"
+    off: "25% OFF",
+    night: "Stay 7+ Nights"
   }
 ]
 

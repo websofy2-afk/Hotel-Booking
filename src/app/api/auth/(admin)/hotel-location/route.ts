@@ -21,7 +21,7 @@ export async function POST(req: Request) {
     const cleanLocationFeatures = locationFeatures?.split(/,(?![^()]*\))/).map((k: string) => k.trim()).filter(Boolean);
 
     const newHotelLocation = await HotelLocation.create({ hotelLocation, focusOn, whyChooseLocation, locationFeatures: cleanLocationFeatures, image, image_public_Id });
-    return NextResponse.json({ message: "Hotel location created successfylly.", success: true, data: newHotelLocation });
+    return NextResponse.json({ message: "Hotel location added successfully.", success: true, data: newHotelLocation });
   }
   catch (error) {
     const err = error as Error;

@@ -24,9 +24,9 @@ export async function POST(req: Request) {
     const newBlog = await Blog.create({ title, subTitle, content: cleanContent, image, category, date, hashtag, image_public_Id, metaTitle, metaDescription, slug, schemaMarkup, metakeywords: cleanMetaKeywords });
     return NextResponse.json({ message: "Blog created successfylly.", success: true, data: newBlog });
   }
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   catch (err: any) {
-    console.error("Error creating blog:", err);
-    return NextResponse.json({ success: false, message: err.message }, { status: 500 });
+    const error = err as Error;
+    console.error("Error creating blog:", error);
+    return NextResponse.json({ success: false, message: error.message }, { status: 500 });
   }
 }

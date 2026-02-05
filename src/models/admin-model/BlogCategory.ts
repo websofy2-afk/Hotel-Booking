@@ -1,10 +1,10 @@
-import mongoose from "mongoose";
+import { model, models, Schema } from "mongoose";
 
-const BlogCategorySchema = new mongoose.Schema(
+const BlogCategorySchema = new Schema(
   {
-    category: {type:String, required : true},
+    category: { type: String, required: true },
   },
   { timestamps: true }
 );
 
-export default mongoose.models.BlogCategory || mongoose.model("BlogCategory", BlogCategorySchema);
+export default models.BlogCategory || model("BlogCategory", BlogCategorySchema);

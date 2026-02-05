@@ -10,7 +10,6 @@ type RouteContext = {
 export async function GET(req: Request, context: RouteContext) {
     await dbConnect();
     const { id } = await context.params;
-
     try {
         const blog = await Blog.findById(id);
         if (!blog) {
@@ -20,11 +19,10 @@ export async function GET(req: Request, context: RouteContext) {
             );
         }
         return NextResponse.json({ success: true, data: blog });
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         return NextResponse.json(
-            { success: false, message: error.message },
+            { success: false, message: err.message },
             { status: 500 }
         );
     }
@@ -34,7 +32,6 @@ export async function PUT(req: Request, context: RouteContext) {
     await dbConnect();
     const { id } = await context.params;
     const body = await req.json();
-
     try {
         const existingBlog = await Blog.findById(id);
         if (body.image && body.image !== existingBlog.image) {
@@ -42,7 +39,7 @@ export async function PUT(req: Request, context: RouteContext) {
                 await Image.findByIdAndDelete(existingBlog.image_public_Id);
             }
         }
-        
+
         const updated = await Blog.findByIdAndUpdate(id, body, {
             new: true,
             runValidators: true,
@@ -57,7 +54,8 @@ export async function PUT(req: Request, context: RouteContext) {
         return NextResponse.json({ message: "Blog updated successfully.", success: true, data: updated });
     }
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch (error: any) {
+    catch (err) {
+        const error = err as Error;
         return NextResponse.json(
             { success: false, message: error.message },
             { status: 500 }
@@ -82,11 +80,10 @@ export async function DELETE(req: Request, context: RouteContext) {
             );
         }
         return NextResponse.json({ success: true, message: "Blog deleted successfully" });
-    }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    catch (error: any) {
+    } catch (error) {
+        const err = error as Error;
         return NextResponse.json(
-            { success: false, message: error.message },
+            { success: false, message: err.message },
             { status: 500 }
         );
     }

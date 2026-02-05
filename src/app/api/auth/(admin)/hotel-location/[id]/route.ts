@@ -10,7 +10,6 @@ type RouteContext = {
 export async function GET(req: Request, context: RouteContext) {
     await dbConnect();
     const { id } = await context.params;
-
     try {
         const hotelLocation = await HotelLocation.findById(id);
         if (!hotelLocation) {
@@ -40,7 +39,15 @@ export async function PUT(req: Request, context: RouteContext) {
             await Image.findByIdAndDelete(existingHotelLocation.image_public_Id);
         }
 
-        const cleanLocationFeatures = body.locationFeatures?.split(/,(?![^()]*\))/).map((k: string) => k.trim()).filter(Boolean);
+        let cleanLocationFeatures = null;
+
+        if (typeof body.locationFeatures === "string") {
+            cleanLocationFeatures = body.locationFeatures?.split(/,(?![^()]*\))/).map((k: string) => k.trim()).filter(Boolean);
+        } else {
+            cleanLocationFeatures = body.locationFeatures;
+        }
+
+
         const updated = await HotelLocation.findByIdAndUpdate(id,
             {
                 ...body,

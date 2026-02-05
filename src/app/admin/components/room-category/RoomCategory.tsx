@@ -1,26 +1,18 @@
 "use client";
 import { useEffect, useState } from "react";
 import PageBreadcrumb from "../common/PageBreadCrumb";
-import BlogModel from "./BlogModel";
 import Tooltip from "../common/Tooltip";
-import { extractExcerpt } from "@/lib/extractExcerpt";
-import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
-import MessageModel from "../common/MessageModel";
-import Pagination from "@/app/(ui)/components/shared/pagination";
+import RoomCategoryModel from "./RoomCategoryModel";
 
-export default function Blog() {
+export default function RoomCategory() {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [data, setData] = useState<any[]>([]);
-  const [blogCategorydata, setBlogCategoryData] = useState<any[]>([]);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [modal, setModal] = useState<{ mode: string; item?: any } | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
     null
   );
-
-  const [blogDescription, setBlogDescription] = useState("");
-  const [showDescription, setShowDescription] = useState(false);
 
   const showTooltip = (
     message: string,
@@ -33,14 +25,12 @@ export default function Blog() {
   const [currentPage, setCurrentPage] = useState(1);
   const recordsPerPage = 10;
 
-  const [search, setSearch] = useState({ title: "", category: "" });
+  const [search, setSearch] = useState({ category: "" });
 
   const fetchData = async () => {
-    const [blogRes, blogCategoryRes] = await Promise.all([fetch("/api/auth/blog"), fetch("/api/auth/blog-category")])
-    const blogJson = await blogRes.json();
-    const blogCategoryJson = await blogCategoryRes.json();
-    setData(blogJson.data);
-    setBlogCategoryData(blogCategoryJson.data);
+    const res = await fetch("/api/auth/room-category");
+    const json = await res.json();
+    setData(json.data);
   };
 
   useEffect(() => {
@@ -48,9 +38,7 @@ export default function Blog() {
   }, []);
 
   const filteredData = data.filter(
-    (item) =>
-      item.title.toLowerCase().includes(search.title.toLowerCase()) &&
-      item.category.toLowerCase().includes(search.category.toLowerCase())
+    (item) => item.category.toLowerCase().includes(search.category.toLowerCase())
   );
 
   const totalPages = Math.ceil(filteredData.length / recordsPerPage);
@@ -69,19 +57,19 @@ export default function Blog() {
 
     try {
       if (modal.mode === "create") {
-        res = await fetch("/api/auth/blog", {
+        res = await fetch("/api/auth/room-category", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(form)
         });
       } else if (modal.mode === "edit") {
-        res = await fetch(`/api/auth/blog/${modal.item._id}`, {
+        res = await fetch(`/api/auth/room-category/${modal.item._id}`, {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(form),
         });
       } else if (modal.mode === "delete") {
-        res = await fetch(`/api/auth/blog/${modal.item._id}`, {
+        res = await fetch(`/api/auth/room-category/${modal.item._id}`, {
           method: "DELETE",
         });
       }
@@ -105,15 +93,14 @@ export default function Blog() {
   return (
     <div className="p-4">
       {tooltip && <Tooltip message={tooltip.message} type={tooltip.type} />}
-      <PageBreadcrumb pageTitle="Blog" />
+      <PageBreadcrumb pageTitle="Room Category" />
       <div className="flex justify-end items-center mb-4">
         <button onClick={() => setModal({ mode: "create" })} className="bg-primary cursor-pointer text-white px-4 py-2 rounded-lg transition hover:bg-primary/90">
-          + Add Blog
+          + Add Room Category
         </button>
       </div>
-
-      <div className="flex gap-3 mb-4 w-[30em]">
-        {["title", "category"].map((key) => (
+      <div className="flex gap-3 mb-4 w-[12em]">
+        {["category"].map((key) => (
           <input
             key={key}
             type="text"
@@ -128,30 +115,14 @@ export default function Blog() {
       <table className="min-w-full bg-white rounded shadow">
         <thead>
           <tr className="bg-herobg">
-            {["Title", "Category", "Date", "Description", "Actions"].map((item, index) => (
-              <th className="py-2 px-3 border" key={index}>{item}</th>
-            ))
-            }
+            <th className="py-2 px-3 border">Room Category</th>
+            <th className="py-2 px-3 border">Actions</th>
           </tr>
         </thead>
         <tbody>
           {currentData.map((item) => (
             <tr key={item._id} className="text-center">
-              <td className="border border-border shadow-md shadow-skyBlue/20 p-2">{item.title}</td>
               <td className="border border-border shadow-md shadow-skyBlue/20 p-2">{item.category}</td>
-              <td className="border border-border shadow-md shadow-skyBlue/20 p-2">{item.date.split("-").reverse().join("/")}</td>
-              <td className="border border-border shadow-md shadow-skyBlue/20 p-2 flex items-center justify-center"
-              >{extractExcerpt(item.content, 20)}...
-
-                <span onClick={() => { setBlogDescription(extractExcerpt(item.content, 500)), setShowDescription(!showDescription); }}
-                >
-                  {showDescription ? (
-                    <IoEyeOutline size={17} className="text-skyBlue cursor-pointer" />
-                  ) : (
-                    <IoEyeOffOutline size={17} className="text-skyBlue cursor-pointer" />
-                  )}
-                </span>
-              </td>
               <td className="border border-border shadow-md shadow-skyBlue/20">
                 <div className="flex mx-1 gap-2 justify-center">
                   <button onClick={() => setModal({ mode: "edit", item })} className="bg-green-600 cursor-pointer text-white px-3 py-1 rounded">
@@ -166,19 +137,43 @@ export default function Blog() {
           ))}
         </tbody>
       </table>
-      <Pagination currentPage={currentPage} totalPages={totalPages} setCurrentPage={setCurrentPage} />
+
+
+      <div className="flex justify-center items-center gap-2 mt-4">
+        <button
+          className="px-3 py-1 border cursor-pointer rounded disabled:opacity-50"
+          disabled={currentPage === 1}
+          onClick={() => setCurrentPage((prev) => prev - 1)}
+        >
+          Prev
+        </button>
+
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+          <button
+            key={page}
+            onClick={() => setCurrentPage(page)}
+            className={`px-3 py-1 border cursor-pointer rounded ${currentPage === page ? "bg-blue-600 text-white" : ""}`}
+          >
+            {page}
+          </button>
+        ))}
+        <button
+          className="px-3 py-1 border cursor-pointer rounded disabled:opacity-50"
+          disabled={currentPage === totalPages}
+          onClick={() => setCurrentPage((prev) => prev + 1)}
+        >
+          Next
+        </button>
+      </div>
+
       {modal && (
-        <BlogModel
+        <RoomCategoryModel
           mode={modal.mode}
           initialData={modal.item}
           onClose={() => setModal(null)}
           onSave={handleSave}
-          blogCategorydata={blogCategorydata}
         />
       )}
-      {
-        showDescription && <MessageModel closedModel={setShowDescription} data={blogDescription} mode="blog" />
-      }
     </div>
   );
 }
