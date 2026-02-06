@@ -39,7 +39,7 @@ export async function PUT(req: Request, context: RouteContext) {
                 await Image.findByIdAndDelete(existingBlog.image_public_Id);
             }
         }
-
+        
         const updated = await Blog.findByIdAndUpdate(id, body, {
             new: true,
             runValidators: true,
@@ -53,7 +53,6 @@ export async function PUT(req: Request, context: RouteContext) {
         }
         return NextResponse.json({ message: "Blog updated successfully.", success: true, data: updated });
     }
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     catch (err) {
         const error = err as Error;
         return NextResponse.json(

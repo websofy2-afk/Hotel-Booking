@@ -14,6 +14,8 @@ export const HotelModel = ({ mode, onClose, onSave, initialData, hotelLocation }
   const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
     null
   );
+
+  const images = new Array(4);
   const [form, setForm] = useState(
     initialData || {
       hotelName: "",
@@ -28,10 +30,18 @@ export const HotelModel = ({ mode, onClose, onSave, initialData, hotelLocation }
       hotelPolicies: "",
       whatGuestSaid: "",
       googleMapUrl: "",
-      image: "",
-      image_public_Id: "",
+      image_1: "",
+      image_1_public_Id: "",
+      image_2: "",
+      image_2_public_Id: "",
+      image_3: "",
+      image_3_public_Id: "",
+      image_4: "",
+      image_4_public_Id: "",
     }
   );
+
+  console.log("Initial data is --> ", initialData)
 
   const showTooltip = (
     message: string,
@@ -57,13 +67,20 @@ export const HotelModel = ({ mode, onClose, onSave, initialData, hotelLocation }
       !form.hotelFoodDescription ||
       !form.hotelPolicies ||
       !form.googleMapUrl ||
-      !form.image ||
-      !form.image_public_Id
+      !form.image_1 ||
+      !form.image_1_public_Id ||
+      !form.image_2 ||
+      !form.image_2_public_Id ||
+      !form.image_3 ||
+      !form.image_3_public_Id ||
+      !form.image_4 ||
+      !form.image_4_public_Id
     ) {
       showTooltip("Please fill all fields!", "error");
       setLoading(false);
       return;
     }
+    console.log("Form is --> ", form);
     onSave(form);
   };
 
@@ -142,7 +159,6 @@ export const HotelModel = ({ mode, onClose, onSave, initialData, hotelLocation }
                 </div>
               </div>
 
-
               <div className="flex flex-col md:flex-row justify-center items-center gap-3">
                 <div className="w-full">
                   <Label>Rating</Label>
@@ -169,7 +185,6 @@ export const HotelModel = ({ mode, onClose, onSave, initialData, hotelLocation }
                   </div>
                 </div>
               </div>
-
               <div className="flex flex-col md:flex-row justify-center items-center gap-3">
                 <div className="w-full">
                   <Label>Hotel Food </Label>
@@ -250,11 +265,30 @@ export const HotelModel = ({ mode, onClose, onSave, initialData, hotelLocation }
               </div>
               <Label>Hotel Images</Label>
               <ImageUploader
-                label="Hotel Image"
+                label="Hotel Image 1"
                 folder="hotle"
-                onUpload={(url, public_Id) => setForm({ ...form, image: url || "", image_public_Id: public_Id || null })}
-                defaultPreview={form.image}
+                onUpload={(url, public_Id) => setForm({ ...form, image_1: url || "", image_1_public_Id: public_Id || null })}
+                defaultPreview={form.image_1}
               />
+              <ImageUploader
+                label="Hotel Image 2"
+                folder="hotle"
+                onUpload={(url, public_Id) => setForm({ ...form, image_2: url || "", image_2_public_Id: public_Id || null })}
+                defaultPreview={form.image_2}
+              />
+              <ImageUploader
+                label="Hotel Image 3"
+                folder="hotle"
+                onUpload={(url, public_Id) => setForm({ ...form, image_3: url || "", image_3_public_Id: public_Id || null })}
+                defaultPreview={form.image_3}
+              />
+              <ImageUploader
+                label="Hotel Image 4"
+                folder="hotle"
+                onUpload={(url, public_Id) => setForm({ ...form, image_4: url || "", image_4_public_Id: public_Id || null })}
+                defaultPreview={form.image_4}
+              />
+
             </div>
           </>
         )}
