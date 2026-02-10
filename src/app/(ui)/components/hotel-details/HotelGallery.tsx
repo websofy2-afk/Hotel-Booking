@@ -5,7 +5,7 @@ import Image from "next/image";
 import ImageModal from "./ImageModal";
 import { BiChevronLeft, BiChevronRight } from "react-icons/bi";
 
-export default function HotelGallery({images} : {images? : string[]}) {
+export default function HotelGallery({ images }: { images?: string[] }) {
   const [activeImage, setActiveImage] = useState<string | null>(null);
   const sliderRef = useRef<HTMLDivElement>(null);
 
@@ -24,7 +24,7 @@ export default function HotelGallery({images} : {images? : string[]}) {
 
   return (
     <>
-     <div className="relative overflow-hidden rounded-xl">
+      <div className="relative overflow-hidden rounded-xl">
         {/* Left Arrow */}
         <button
           onClick={() => scrollByImage("left")}
@@ -46,7 +46,7 @@ export default function HotelGallery({images} : {images? : string[]}) {
           ref={sliderRef}
           className="flex gap-4 overflow-hidden"
         >
-           {images && images.map((img, i) => (
+          {images && images.map((img, i) => (
             <div
               key={i}
               className="min-w-[80%] sm:min-w-[100%] cursor-pointer"

@@ -10,15 +10,29 @@ import { LuDot } from "react-icons/lu";
 import { MdPeopleAlt } from "react-icons/md";
 import { TiTick } from "react-icons/ti";
 import { BiSolidOffer } from "react-icons/bi";
+import { useHotel } from "@/context-api/CategoryContext";
 
 export default function HotelListPage() {
     const params = useSearchParams();
     const location = params.get("location");
     const selectedHotel = location ? hotelData[location] : null;
-    const hotel = selectedHotel?.hotels;
+    const hote = selectedHotel?.hotels;
     const [openAmenitiesIndex, setOpenAmenitiesIndex] = useState<number | null>(null);
     const popupRef = useRef<HTMLDivElement>(null);
     const [searchTerm, setSearchTerm] = useState("");
+
+    const [hotels, setHotels] = useState<any[]>([]);
+    const [rooms, setRooms] = useState<any[]>([]);
+    const [hotelImage, setHotelImages] = useState<string[]>([]);
+
+    const { hotel, room } = useHotel();
+
+    useEffect(() => {
+        const filterHotel = hotel?.filter((item: any) => item.hotelLocation === location);
+        const filterRoom = room?.filter((item: any) => item.hotelLocation === location);
+        setHotels(filterHotel);
+        setRooms(filterRoom);
+    }, [location]);
 
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
@@ -26,12 +40,11 @@ export default function HotelListPage() {
                 setOpenAmenitiesIndex(null);
             }
         };
-
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
-    const b = hotel!.map(item => hotelDetails[item]).flat()
+    const b = hote!.map(item => hotelDetails[item]).flat()
 
     if (!selectedHotel) return <p>No hotel found!</p>;
     const filterOptions = [
@@ -59,7 +72,7 @@ export default function HotelListPage() {
         return () => clearTimeout(t);
     }, []);
 
-    const filterHotels = b.filter((hotel) => {
+    const filterHotels = hotels?.filter((hotel) => {
         let ok = true;
         if (selectedPrices.length > 0) {
             ok = selectedPrices.some((rangeId) => {
@@ -96,8 +109,8 @@ export default function HotelListPage() {
     }, []);
 
     const visibleHotels = sortedHotels.slice(0, visibleCount);
-
     const [hoverImage, setHoverImage] = useState<{ [key: number]: string }>({});
+
 
     return (
         <div className="px-6 mt-24 py-8 bg-gray-100 min-h-screen flex gap-6">
@@ -178,10 +191,11 @@ export default function HotelListPage() {
                     )}
                 </div>
             </div>
+
+
             {/* ---------------- RIGHT SECTION (ONLY THIS SCROLLS) ---------------- */}
             <div className="flex-1 h-[80vh] overflow-y-auto pr-3">
                 {/* SORT STRIP */}
-
                 <div className="flex bg-white border border-border shadow-lg shadow-skyBlue/20
           p-4 rounded-2xl items-center gap-3 flex-wrap mb-6 sticky top-0 bg-gray-100 py-3 z-20">
                     <span className="text-lg font-semibold text-midnight_text">Sort By :</span>
@@ -203,7 +217,7 @@ export default function HotelListPage() {
                         <h2 className="text-3xl">Showing hotels in {location}</h2>
                         <div className="flex items-center gap-2 bg-white px-4 py-2 rounded-full border border-midnight_text ml-auto">
                             <CiSearch className="text-gray-500 text-xl" />
-                                                       <input
+                            <input
                                 type="text"
                                 placeholder="Search Hotel"
                                 value={searchTerm}
@@ -217,67 +231,61 @@ export default function HotelListPage() {
 
                 {/* SHIMMER */}
                 {isLoading &&
-                    Array(3)
-                        .fill(null)
-                        .map((_, i) => (
-                            <div
-                                key={i}
-                                className="bg-white p-4 rounded-xl shadow animate-pulse flex gap-6 mb-6"
-                            >
-                                <div className="w-64 h-40 bg-gray/20 rounded" />
-                                <div className="flex-1 space-y-3">
-                                    <div className="h-5 w-40 bg-gray/20" />
-                                    <div className="h-4 w-28 bg-gray/20" />
-                                    <div className="h-3 w-full bg-gray/20" />
-                                </div>
+                    Array(3).fill(null).map((_, i) => (
+                        <div
+                            key={i}
+                            className="bg-white p-4 rounded-xl shadow animate-pulse flex gap-6 mb-6">
+                            <div className="w-64 h-40 bg-gray/20 rounded" />
+                            <div className="flex-1 space-y-3">
+                                <div className="h-5 w-40 bg-gray/20" />
+                                <div className="h-4 w-28 bg-gray/20" />
+                                <div className="h-3 w-full bg-gray/20" />
                             </div>
-                        ))}
+                        </div>
+                    ))}
 
                 {/* HOTEL CARDS */}
                 {!isLoading &&
                     visibleHotels.map((hotel) => (
-                        <div key={hotel.id} className="bg-white p-4 border-2 border-border cursor-pointer rounded-xl shadow-md shadow-skyBlue/20 mb-6 hover:border-skyBlue hover:border-2"
-                            onClick={() => router.push(`/hotel-list/${hotel.location.toLowerCase()}/${hotel.name.replace(/\s+/g, "-").toLowerCase()}`)}
+                        <div key={hotel._id} className="bg-white p-4 border-2 border-border cursor-pointer rounded-xl shadow-md shadow-skyBlue/20 mb-6 hover:border-skyBlue hover:border-2"
+                            onClick={() => router.push(
+                                `/hotel-list/${hotel.hotelLocation.toLowerCase()}/${hotel.hotelName.replace(/\s+/g, "-").toLowerCase()}`
+                            )}
                         >
                             <div className="flex flex-col lg:flex-row gap-6">
-
                                 <div className="w-full flex flex-col lg:w-64 relative">
                                     <Image
-                                        src={hoverImage[hotel.id] || hotel.thumbnailImag!}
+                                        src={ hoverImage[hotel._id] || hotel.image_1}
                                         alt={"Hotel Image"}
                                         width={500}
                                         height={400}
-                                        className="w-full h-full object-cover rounded-lg transition-all"
+                                        className="w-full h-full rounded-lg transition-all"
                                     />
-
-                                    {/* THUMBNAILS */}
                                     <div className="flex items-center  justify-between mt-2">
-                                        {hotel.images.map((img, i) => {
-                                            const isLast = i === hotel.images.length - 1;
+                                        {[hotel.image_1, hotel.image_2, hotel.image_3, hotel.image_4]?.map((img, i, images) => {
+                                            const isLast = i === images.length - 1;
                                             return (
                                                 <div key={i} className="relative">
                                                     <Image
                                                         src={img}
-                                                        alt="Thumbnail"
+                                                        alt={`Hotel image of ${i + 1}`}
                                                         width={80}
                                                         height={60}
                                                         onMouseEnter={() =>
-                                                            setHoverImage((p) => ({ ...p, [hotel.id]: img }))
+                                                            setHoverImage((p) => ({ ...p, [hotel._id]: img }))
                                                         }
                                                         onMouseLeave={() =>
-                                                            setHoverImage((p) => ({ ...p, [hotel.id]: hotel.thumbnailImag! }))
+                                                            setHoverImage((p) => ({ ...p, [hotel._id]: images[0] }))
                                                         }
-                                                        className="w-[3.5em] h-14 object-cover rounded cursor-pointer"
+                                                        className="w-[3.5em] h-14 rounded cursor-pointer"
                                                     />
-
-                                                    {/* VIEW ALL TEXT ON LAST THUMBNAIL */}
                                                     {isLast && (
                                                         <div
                                                             onMouseEnter={() =>
-                                                                setHoverImage((p) => ({ ...p, [hotel.id]: img }))
+                                                                setHoverImage((p) => ({ ...p, [hotel._id]: img }))
                                                             }
                                                             onMouseLeave={() =>
-                                                                setHoverImage((p) => ({ ...p, [hotel.id]: hotel.thumbnailImag! }))
+                                                                setHoverImage((p) => ({ ...p, [hotel._id]: images[0] }))
                                                             }
                                                             className="absolute inset-0 bg-black/30 cursor-pointer flex items-center justify-center rounded text-white text-xs font-semibold">
                                                             View All
@@ -294,47 +302,37 @@ export default function HotelListPage() {
                                         <div
                                             className="px-2 flex border-gray/30 items-center bg-gray-100 text-sm rounded border"
                                         >
-                                            <span className="flex items-center gap-1">{hotel.tag}
+                                            <span className="flex items-center gap-1">{hotel.rating}
                                                 <FaStar size={10} className="text-yellow-500" /></span>
                                             <LuDot /> Hotel
-
                                         </div>
-
-                                        <p className="text-gray-500 text-sm">
-                                            <span className="border-r-[1px] border-gray mr-1  ">{hotel.totalRating} Ratings{" "}</span>
-
-                                            <span className="bg-green-500 text-white px-2 py rounded">
-                                                {hotel.rating}/5
-                                            </span>
-                                        </p>
                                     </div>
-
-                                    <h2 className="text-xl font-bold">{hotel.name}</h2>
-                                    <p className="text-blue-600 text-sm">{hotel.location}</p>
+                                    <h2 className="text-xl font-bold">{hotel.hotelName}</h2>
+                                    <p className="text-blue-600 text-sm">{hotel.hotelLocation}</p>
 
                                     <div className="flex items-center justify gap-3 mt-4 relative overflow-visible">
-                                        {hotel.amenities?.slice(0, 2).map((amenity, index) => (
+                                        {hotel.hotelAmenities?.slice(0, 2).map((amenity: string, index: number) => (
                                             <span key={index} className="text-xs border px-1 border-gray/30 rounded-sm text-midnight_text">
                                                 {amenity}
                                             </span>
                                         ))}
-                                        {hotel.amenities && hotel.amenities.length > 2 && (
+                                        {hotel.hotelAmenities && hotel.hotelAmenities.length > 2 && (
                                             <div className="relative inline-block overflow-visible" ref={popupRef}>
                                                 <span
                                                     className="text-xs text-primary cursor-pointer"
                                                     onMouseEnter={() =>
-                                                        setOpenAmenitiesIndex(openAmenitiesIndex === hotel.id ? null : hotel.id)
+                                                        setOpenAmenitiesIndex(openAmenitiesIndex === hotel._id ? null : hotel._id)
                                                     }
                                                     onMouseLeave={() =>
-                                                        setOpenAmenitiesIndex(openAmenitiesIndex === hotel.id ? null : hotel.id)
+                                                        setOpenAmenitiesIndex(openAmenitiesIndex === hotel._id ? null : hotel._id)
                                                     }
                                                 >
                                                     & more
                                                 </span>
-                                                {openAmenitiesIndex === hotel.id && (
-                                                    <div className="absolute translate-x-14 translate-y-2  top-0 left-0 z-50 bg-gray/5  shadow-xl rounded-md p-3 w-32">
+                                                {openAmenitiesIndex === hotel._id && (
+                                                    <div className="absolute translate-x-14 translate-y-2  top-0 left-0 z-50 bg-white  shadow-xl rounded-md p-3 w-32 h-40 overflow-y-auto">
                                                         <p className="font-semibold pl-2">Amenities</p>
-                                                        {hotel.amenities.map((item, i) => (
+                                                        {hotel.hotelAmenities.map((item: string, i: number) => (
                                                             <div
                                                                 key={i}
                                                                 className="text-xs text-midnight_text dark:text-gray-200 py-1"
@@ -347,25 +345,16 @@ export default function HotelListPage() {
                                             </div>
                                         )}
                                     </div>
+
                                     <div className="flex items-center justify gap-3 mt-6 overflow-hidden">
-                                        {
-                                            facilities.map((item, index) => (
-                                                <div key={index}>
-                                                    {
-                                                        item.tag && <div className="flex items-center gap-1 text-[12px] text-skyBlue"><MdPeopleAlt /> {item.tag}</div>
-                                                    }
-
-                                                    {
-                                                        item.fac.map((f, index) => (
-                                                            <div key={index} className="flex items-center gap-1 text-[12px] "><TiTick size={15} className="text-green-500" />{f}</div>
-                                                        ))
-                                                    }
-
-
-                                                </div>
-                                            ))
-                                        }
+                                        <div className="flex items-center gap-1 text-[12px] text-skyBlue"><MdPeopleAlt />Suitable for {hotel.suitableFor.toLowerCase()}</div>
                                     </div>
+                                    {
+                                        hotel?.hotelAmenities.slice(0, 4).map((item: string, index: number) => (
+                                            <div key={index} className="flex items-center gap-1 text-[12px] "><TiTick size={15} className="text-green-500" />{item}</div>
+                                        ))
+                                    }
+
                                 </div>
                                 <div className="flex">
                                     <div className="h-52 flex flex-col justify-between">
@@ -380,21 +369,34 @@ export default function HotelListPage() {
                                                 </div>
                                             }
                                         </div>
+
                                         <div className={`flex flex-col ${hotel.offer ? "mt-16" : "mt-[8.6em]"} justify-end`}>
-                                            <div className="flex items-center justify-end gap-2">
-                                                <p className="line-through text-gray-400 text-sm">
-                                                    ₹{hotel.oldPrice}
-                                                </p>
-                                                <p className="text-2xl font-bold">₹{hotel.price}</p>
-                                            </div>
+                                            {
+                                                rooms?.map((item, index) => (
+                                                    <div key={index}>
+                                                        {
 
-                                            <div className="flex text-gray justify-end text-[13px]">
-                                                <p className="mr-1">
-                                                    ₹431
-                                                </p>
-                                                <p>taxes & fee <br /> per niight</p>
-                                            </div>
+                                                            item.roomRelatedToHotel === hotel.hotelName && (
+                                                                <div>
+                                                                    <div className="flex items-center justify-end gap-2">
+                                                                        <p className="line-through text-gray-400 text-sm">
+                                                                            ₹{item.oldPrice}
+                                                                        </p>
+                                                                        <p className="text-2xl font-bold">₹{item.newPrice}</p>
+                                                                    </div>
+                                                                    <div className="flex text-gray justify-end text-[13px]">
+                                                                        <p className="mr-1">
+                                                                            ₹{item.taxesAndFeePerNight}
+                                                                        </p>
+                                                                        <p>taxes & fee <br /> per niight</p>
+                                                                    </div>
+                                                                </div>
+                                                            )
 
+                                                        }
+                                                    </div>
+                                                ))
+                                            }
                                             <button className="text-primary text-end font-semibold text-[12px]">
                                                 Login now & save more
                                             </button>
@@ -412,7 +414,4 @@ export default function HotelListPage() {
     );
 }
 
-const facilities = [{
-    tag: "Couple Friendly",
-    fac: ["Free Cancellation", "Breakfast available at extra charges", "Enjoy Happy Hours with 1+1 offer"]
-}]
+const fac = ["Free Cancellation", "Breakfast available at extra charges", "Enjoy Happy Hours with 1+1 offer"]

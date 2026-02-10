@@ -30,6 +30,8 @@ export const HotelModel = ({ mode, onClose, onSave, initialData, hotelLocation }
       hotelPolicies: "",
       whatGuestSaid: "",
       googleMapUrl: "",
+      latitude: "",
+      longitude: "",
       image_1: "",
       image_1_public_Id: "",
       image_2: "",
@@ -67,6 +69,8 @@ export const HotelModel = ({ mode, onClose, onSave, initialData, hotelLocation }
       !form.hotelFoodDescription ||
       !form.hotelPolicies ||
       !form.googleMapUrl ||
+      !form.latitude ||
+      !form.longitude ||
       !form.image_1 ||
       !form.image_1_public_Id ||
       !form.image_2 ||
@@ -225,6 +229,28 @@ export const HotelModel = ({ mode, onClose, onSave, initialData, hotelLocation }
                     placeholder="Google Map Url Of Hotel"
                     className="border border-border shadow-md shadow-skyBlue/20 outline-none w-full p-2 rounded"
                     value={form.googleMapUrl}
+                    onChange={handleChange}
+                  />
+                </div>
+              </div>
+              <div className="flex flex-col md:flex-row justify-center items-center gap-3">
+                <div className="w-full">
+                  <Label>Latitude</Label>
+                  <input
+                    name="latitude"
+                    placeholder="Latitude"
+                    className="border border-border shadow-md shadow-skyBlue/20 outline-none w-full p-2 rounded"
+                    value={form.latitude}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="w-full">
+                  <Label>Longitude</Label>
+                  <input
+                    name="longitude"
+                    placeholder="Longitude"
+                    className="border border-border shadow-md shadow-skyBlue/20 outline-none w-full p-2 rounded"
+                    value={form.longitude}
                     onChange={handleChange}
                   />
                 </div>

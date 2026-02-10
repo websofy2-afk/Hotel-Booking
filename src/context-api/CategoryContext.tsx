@@ -17,6 +17,9 @@ interface HotelContextType {
     videos: any[];
     testimonial: any[];
     faq: any[];
+    hotel: any[];
+    room: any[];
+    roomCategory: any[];
 }
 
 export const CategoryContext = createContext<HotelContextType | undefined>(undefined);
@@ -38,10 +41,13 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children
     const [videos, setVideos] = useState<any[]>([]);
     const [testimonial, setTestimonial] = useState<any[]>([]);
     const [faq, setFaq] = useState<any[]>([]);
+    const [hotel, setHotel] = useState<any[]>([]);
+    const [room, setRoom] = useState<any[]>([]);
+    const [roomCategory, setRoomCategory] = useState<any[]>([]);
 
     const fetchData = async () => {
         try {
-            const [hotelLocationRes, photosRes, videosRes, testimonialRes, faqRes] = await Promise.all([fetch("/api/auth/hotel-location"), fetch("/api/auth/gallery/photo"), fetch("/api/auth/gallery/video"), fetch("/api/auth/testimonial"), fetch("/api/auth/faq")]);
+            const [hotelLocationRes, photosRes, videosRes, testimonialRes, faqRes, hotelRes, roomRes, roomCategoryRes] = await Promise.all([fetch("/api/auth/hotel-location"), fetch("/api/auth/gallery/photo"), fetch("/api/auth/gallery/video"), fetch("/api/auth/testimonial"), fetch("/api/auth/faq"), fetch("/api/auth/hotel"), fetch("/api/auth/room"), fetch("/api/auth/room-category")]);
 
             if (!hotelLocationRes.ok || !photosRes.ok || !videosRes || !testimonialRes || !faqRes) throw new Error("Failed to fetch");
             const hotelLocationJson = await hotelLocationRes.json();
@@ -49,12 +55,18 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children
             const videosResJson = await videosRes.json();
             const testimonialResJson = await testimonialRes.json();
             const faqResJson = await faqRes.json();
+            const hotelResJson = await hotelRes.json();
+            const roomResJson = await roomRes.json();
+            const roomCategoryResJson = await roomCategoryRes.json();
 
             setHotelLocation(hotelLocationJson?.data);
             setPhotos(photosResJson?.data);
             setVideos(videosResJson?.data);
             setTestimonial(testimonialResJson?.data);
             setFaq(faqResJson?.data);
+            setHotel(hotelResJson?.data);
+            setRoom(roomResJson?.data);
+            setRoomCategory(roomCategoryResJson?.data);
         } catch (error) {
             console.error("Error fetching data records :", error);
         }
@@ -107,7 +119,10 @@ export const AppContextProvider: React.FC<{ children: ReactNode }> = ({ children
                 photos,
                 videos,
                 testimonial,
-                faq
+                faq,
+                hotel,
+                room, 
+                roomCategory
             }}
         >
             {children}

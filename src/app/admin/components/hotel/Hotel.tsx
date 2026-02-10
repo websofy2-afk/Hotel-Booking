@@ -2,7 +2,6 @@
 import { useEffect, useState } from "react";
 import PageBreadcrumb from "../common/PageBreadCrumb";
 import Tooltip from "../common/Tooltip";
-import { extractExcerpt } from "@/lib/extractExcerpt";
 import { IoEyeOffOutline, IoEyeOutline } from "react-icons/io5";
 import MessageModel from "../common/MessageModel";
 import Pagination from "@/app/(ui)/components/shared/pagination";
@@ -143,7 +142,7 @@ export const Hotel = () => {
                             <td className="border border-border shadow-md shadow-skyBlue/20 p-2 text-yellow-500">{"★".repeat(item.rating)}</td>
                             <td className="border border-border shadow-md shadow-skyBlue/20 p-2 flex items-center justify-center"
                             >
-                                {item.aboutOfHotel.substring(0,20)}
+                                {item.aboutOfHotel.substring(0, 20)}
                                 <span onClick={() => { setBlogDescription(item.aboutOfHotel), setShowDescription(!showDescription); }}
                                 >
                                     {showDescription ? (

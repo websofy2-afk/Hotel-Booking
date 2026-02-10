@@ -13,6 +13,8 @@ const hotelSchema = new Schema({
     hotelPolicies: { type: [String], default: [], required: true },
     whatGuestSaid: String,
     googleMapUrl: { type: String, required: true },
+    latitude: { type: String, required: true },
+    longitude: { type: String, required: true },
     image_1: { type: String, required: true },
     image_1_public_Id: { type: String, required: true },
     image_2: { type: String, required: true },

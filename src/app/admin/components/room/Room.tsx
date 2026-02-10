@@ -38,7 +38,7 @@ export default function Room() {
   const [search, setSearch] = useState({ "room type": "", "hotel name": "" });
 
   const fetchData = async () => {
-    const [roomRes, hotelLocationRes, roomCategoryRes, hotelRes] = await Promise.all([fetch("/api/auth/room"), fetch("/api/auth/hotel-location"), fetch("/api/auth/room-category"), fetch("/api/auth/room-category")])
+    const [roomRes, hotelLocationRes, roomCategoryRes, hotelRes] = await Promise.all([fetch("/api/auth/room"), fetch("/api/auth/hotel-location"), fetch("/api/auth/room-category"), fetch("/api/auth/hotel")])
     const roomJson = await roomRes.json();
     const hotelLocationJson = await hotelLocationRes.json();
     const roomCategoryResJson = await roomCategoryRes.json();

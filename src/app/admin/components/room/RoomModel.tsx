@@ -1,6 +1,6 @@
 "use client";
 import ImageUploader from "../common/ImageUploader";
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useEffect } from "react";
 import Label from "../form/Label";
 import Tooltip from "../common/Tooltip";
 import { RxCross2 } from "react-icons/rx";
@@ -10,12 +10,12 @@ import { FiLoader } from "react-icons/fi";
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function RoomModel({ mode, onClose, onSave, initialData, hotelLocation, roomCategory, hotel }: any) {
-    const editor = useRef(null);
     const [tooltip, setTooltip] = useState<{ message: string; type: any } | null>(
         null
     );
+    
     const [loading, setLoading] = useState(false);
-
+    const [hotels, setHotels] = useState<string[]>([]);
     const [form, setForm] = useState(
         initialData || {
             roomType: "",
@@ -32,6 +32,12 @@ export default function RoomModel({ mode, onClose, onSave, initialData, hotelLoc
             image_public_Id: "",
         }
     );
+
+    useEffect(() => {
+        const filterHotel = hotel?.filter((item: any) => item.hotelLocation === form.hotelLocation).map((item: any) => item.hotelName);
+        setHotels(filterHotel);
+    }, [form.hotelLocation]);
+
 
     const showTooltip = (
         message: string,
@@ -115,35 +121,6 @@ export default function RoomModel({ mode, onClose, onSave, initialData, hotelLoc
                                 </div>
 
                                 <div className="w-full">
-                                    <Label>Room Realted To Hotel</Label>
-                                    <select
-                                        name="roomRelatedToHotel"
-                                        className="border w-full p-2 rounded cursor-pointer border-border shadow-md shadow-skyBlue/20 outline-none"
-                                        value={form.roomRelatedToHotel}
-                                        onChange={handleChange}
-                                    >
-                                        <option value="">Select Hotel</option>
-                                        {
-                                            [
-                                                "Revanta Hotel",
-                                                "Golden Crown Residency",
-                                                "Taj Hotel",
-                                                "Hotel Hayat",
-                                                "Raj Mahal Palace",
-                                                "Pink City Residency",
-                                                "Grand Palace Hotel",
-                                                "Sea Breeze Residency",
-                                            ].map((item: any, index: number) => (
-                                                // <option key={index} value={item.category}>{item.category}</option>
-                                                <option key={index} value={item}>{item}</option>
-                                            ))
-                                        }
-                                    </select>
-                                </div>
-
-                            </div>
-                            <div className="flex flex-col md:flex-row justify-center items-center gap-3">
-                                <div className="w-full">
                                     <Label>Hotel Location</Label>
                                     <select
                                         name="hotelLocation"
@@ -153,8 +130,28 @@ export default function RoomModel({ mode, onClose, onSave, initialData, hotelLoc
                                     >
                                         <option value="">Select Hotel Location</option>
                                         {
-                                            hotelLocation.map((item: any, index: number) => (
+                                            hotelLocation?.map((item: any, index: number) => (
                                                 <option key={index} value={item.hotelLocation}>{item.hotelLocation}</option>
+                                            ))
+                                        }
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div className="flex flex-col md:flex-row justify-center items-center gap-3">
+                                <div className="w-full">
+                                    <Label>Room Realted To Hotel</Label>
+                                    <select
+                                        name="roomRelatedToHotel"
+                                        className="border w-full p-2 rounded cursor-pointer border-border shadow-md shadow-skyBlue/20 outline-none"
+                                        value={form.roomRelatedToHotel}
+                                        onChange={handleChange}
+                                    >
+                                        <option value="">Select Hotel</option>
+                                        {
+                                            hotels &&
+                                            hotels?.map((item: string, index: number) => (
+                                                <option key={index} value={item}>{item}</option>
                                             ))
                                         }
                                     </select>
